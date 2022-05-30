@@ -9,7 +9,7 @@ import Link from "next/link";
 export const Layout = styled.div`
   margin: 0 auto;
   width: 1168px;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 0rem 1rem;
 `;
 
 export const Title = styled.h3`
@@ -77,7 +77,7 @@ export const ProductBottom = styled.div`
   margin-top: auto;
 `;
 
-export const Price = styled.div`
+export const PriceContainer = styled.div`
   font-size: 14px;
   font-family: "Open Sans";
   font-style: normal;
@@ -85,6 +85,15 @@ export const Price = styled.div`
   display: flex;
   align-items: center;
   padding-bottom: 2px;
+`;
+
+export const WithoutDiscount = styled.span`
+  text-decoration: line-through;
+  color: ${props => props.theme.black_3};
+`;
+
+export const WithDiscount = styled.span`
+  margin-right: 8px;
 `;
 
 export const CurrencySymbol = styled(BiRuble)`
@@ -119,9 +128,9 @@ export const NoImage = styled(GiClothes)`
 export const ButtonLink = styled(Link)``;
 
 export const ButtonShop = styled.button`
-  margin: 3rem auto;
+  margin: 3rem auto 0 auto;
   display: block;
-  width: 240px;
+  width: 270px;
   height: 48px;
   background-color: ${props => props.theme.secondary_2_color_3};
   border-radius: 5px;

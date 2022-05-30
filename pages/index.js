@@ -6,9 +6,17 @@ import SectionHomepage from "../src/components/Homepage/Section/Section.componen
 import { getHomepageData } from "../src/wp-rest/getHomepageData.call";
 import { getMenuCategoriesData } from "../src/wp-rest/getMenuCategoriesData.call";
 import { getProductsByCategoryId } from "../src/wp-rest/getProductsByCategoryId.call";
+import styled from "styled-components";
+
+const Line = styled.div`
+  margin: 2rem auto;
+  width: 950px;
+  height: 0px;
+  border-bottom: 1px solid ${props => props.theme.black_4};
+`;
 
 export default function Home({ data, categoriesLinkList, salesProducts }) {
-  console.log(salesProducts);
+  // console.log(salesProducts);
   return (
     <div>
       <Head>
@@ -21,7 +29,9 @@ export default function Home({ data, categoriesLinkList, salesProducts }) {
       <main>
         <HeroHomepage data={data} />
         <SalesHomepage products={salesProducts} />
+        <Line />
         <SectionHomepage data={data} />
+        <Line />
       </main>
 
       <footer>footer</footer>

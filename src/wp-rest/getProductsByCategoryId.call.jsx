@@ -20,6 +20,7 @@ const processProductsByCategoryId = object => {
       name: item.name,
       sku: item.sku,
       price: item.price,
+      regularPrice: item.regular_price,
       salePrice: item.sale_price,
       onSale: item.on_sale,
       description: item.description,

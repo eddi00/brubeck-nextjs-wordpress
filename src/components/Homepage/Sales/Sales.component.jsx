@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import {
-  ButtonLink,
   ButtonShop,
   CartIconOutline,
   CurrencySymbol,
@@ -10,13 +9,15 @@ import {
   Layout,
   Line,
   NoImage,
-  Price,
+  PriceContainer,
   ProductBottom,
   ProductCard,
   ProductGrid,
   ProductImage,
   ProductName,
   Title,
+  WithDiscount,
+  WithoutDiscount,
 } from "./Sales.styles";
 
 const SalesHomepage = ({ products }) => {
@@ -37,10 +38,17 @@ const SalesHomepage = ({ products }) => {
               <Line />
               <ProductName>{item.name}</ProductName>
               <ProductBottom>
-                <Price>
+                <PriceContainer>
                   <CurrencySymbol size="1rem" />
-                  {item.price}
-                </Price>
+                  {item.onSale ? (
+                    <>
+                      <WithDiscount>{item.salePrice}</WithDiscount>
+                      <WithoutDiscount>{item.regularPrice}</WithoutDiscount>
+                    </>
+                  ) : (
+                    <>{item.price}</>
+                  )}
+                </PriceContainer>
                 <CartIconOutline size="1.25rem" />
               </ProductBottom>
               <HeartIconOutline size="1.25rem" />
