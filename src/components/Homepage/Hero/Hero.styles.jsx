@@ -51,6 +51,9 @@ export const HeroTitle = styled.span`
   font-size: 40px;
   line-height: 40px; /* or 100% */
 
+  h1 {
+    margin-bottom: 1rem;
+  }
   /* font-feature-settings: "liga" off; */
 `;
 
