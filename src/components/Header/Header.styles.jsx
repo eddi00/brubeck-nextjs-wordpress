@@ -38,7 +38,7 @@ export const Text = styled.span`
   font-family: "Open Sans";
   line-height: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
 `;
 
 export const MainMenuLayout = styled.div`

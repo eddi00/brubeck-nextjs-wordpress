@@ -42,6 +42,9 @@ export const HeroText = styled.div`
   display: flex;
   flex-direction: column;
   /* row-gap: 1rem; */
+  h1 {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const HeroTitle = styled.span`
@@ -51,9 +54,6 @@ export const HeroTitle = styled.span`
   font-size: 40px;
   line-height: 40px; /* or 100% */
 
-  h1 {
-    margin-bottom: 1rem;
-  }
   /* font-feature-settings: "liga" off; */
 `;
 

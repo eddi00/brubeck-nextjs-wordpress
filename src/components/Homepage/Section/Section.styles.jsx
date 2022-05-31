@@ -16,7 +16,7 @@ export const Text = styled.div`
   font-family: "Ubuntu";
   font-style: normal;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 36px;
   /* or 133% */
 
