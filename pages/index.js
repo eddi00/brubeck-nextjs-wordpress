@@ -3,10 +3,15 @@ import { Header } from "../src/components/Header/Header.components";
 import HeroHomepage from "../src/components/Homepage/Hero/Hero.component";
 import SalesHomepage from "../src/components/Homepage/Sales/Sales.component";
 import SectionHomepage from "../src/components/Homepage/Section/Section.component";
-import { getHomepageData } from "../src/wp-rest/getHomepageData.call";
+import {
+  getHomepageData,
+  processHomepageData,
+} from "../src/wp-rest/getHomepageData.call";
 import { getMenuCategoriesData } from "../src/wp-rest/getMenuCategoriesData.call";
 import { getProductsByCategoryId } from "../src/wp-rest/getProductsByCategoryId.call";
 import styled from "styled-components";
+import CategoriesHomepage from "../src/components/Homepage/Categories/Categories.component";
+import Footer from "../src/components/Footer/Footer.component";
 
 const Line = styled.div`
   margin: 2rem auto;
@@ -32,9 +37,11 @@ export default function Home({ data, categoriesLinkList, salesProducts }) {
         <Line />
         <SectionHomepage data={data} />
         <Line />
+        <CategoriesHomepage data={data} />
+        <Line />
       </main>
 
-      <footer>footer</footer>
+      <Footer data={data} />
     </div>
   );
 }
@@ -43,7 +50,8 @@ export default function Home({ data, categoriesLinkList, salesProducts }) {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps() {
-  const data = await getHomepageData();
+  let data = await getHomepageData();
+  data = await processHomepageData(data); // Just for Homepage
   const categoriesLinkList = await getMenuCategoriesData();
   const salesProducts = await getProductsByCategoryId(33);
 

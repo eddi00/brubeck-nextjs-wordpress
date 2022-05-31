@@ -33,7 +33,10 @@ export const ProductCard = styled.div`
   /* border: 1px solid ${props => props.theme.black_4}; */
   /* box-shadow: 0px 4px 4px ${props => props.theme.black_4}; */
 
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+
   border-radius: 5px;
   box-sizing: border-box;
   padding: 1rem;
