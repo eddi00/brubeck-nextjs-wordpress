@@ -23,11 +23,17 @@ export const ProductGrid = styled.div`
   grid-row-gap: 2rem;
 `;
 
+// See https://getcssscan.com/css-box-shadow-examples
 export const ProductCard = styled.div`
-  width: 240px;
-  height: 360px;
-  border: 1px solid ${props => props.theme.black_4};
-  box-shadow: 0px 4px 4px ${props => props.theme.black_4};
+  width: 266px;
+  height: 400px;
+
+  /* width: 240px;
+  height: 360px; */
+  /* border: 1px solid ${props => props.theme.black_4}; */
+  /* box-shadow: 0px 4px 4px ${props => props.theme.black_4}; */
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 5px;
   box-sizing: border-box;
   padding: 1rem;
@@ -38,7 +44,8 @@ export const ProductCard = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  height: 200px;
+  /* height: 200px; */
+  height: 250px;
   width: 100%;
   position: relative;
 
