@@ -23,6 +23,7 @@ h5,
 h6 {
   font-family: "Ubuntu", Roboto;
   font-weight: 500;
+  margin: 0;
 }
 
 h1 {

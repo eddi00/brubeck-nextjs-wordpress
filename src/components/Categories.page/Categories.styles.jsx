@@ -5,7 +5,6 @@ export const Layout = styled.main`
   width: 1168px;
   margin: 2rem auto;
   padding: 0 1rem;
-  display: block;
 `;
 
 export const Line = styled.div`

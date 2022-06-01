@@ -3,7 +3,6 @@ import React from "react";
 import { Layout, Text } from "./Section.styles";
 
 const SectionHomepage = ({ data }) => {
-  console.log(data);
   return (
     <Layout>
       {data.about_image != null && (

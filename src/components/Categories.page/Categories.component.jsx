@@ -5,7 +5,6 @@ import {
   ArrowIcon,
   Block,
   Column,
-  ImageContainer,
   Layout,
   Line,
   Section,
