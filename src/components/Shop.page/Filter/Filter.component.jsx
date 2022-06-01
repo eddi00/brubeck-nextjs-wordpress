@@ -18,9 +18,9 @@ const Filter = () => {
       <SectionTitle>Сортировать</SectionTitle>
       <Select name="filter-type" id="filter-1">
         <option value="volvo">По умолчанию</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
+        <option value="saab">1</option>
+        <option value="mercedes">2</option>
+        <option value="audi">3</option>
       </Select>
       <Line />
       <Section>

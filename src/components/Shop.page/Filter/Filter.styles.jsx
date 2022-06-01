@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 180px;
+  min-width: 180px;
+`;
 
 export const Line = styled.div`
   height: 0px;

@@ -1,14 +1,21 @@
 import React from "react";
+import Product from "../Product/Product.component";
 import { Grid } from "./ProductGrid.styles";
 
-const ProductGrid = () => {
+const ProductGrid = ({ filteredProducts }) => {
+  console.log({ filteredProducts });
   return (
-    <Grid>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-    </Grid>
+    <>
+      {filteredProducts.length > 0 ? (
+        <Grid>
+          {filteredProducts.map((item, key) => (
+            <Product key={key} item={item} />
+          ))}
+        </Grid>
+      ) : (
+        <h3>Нет продуктов по вашему запросу.</h3>
+      )}
+    </>
   );
 };
 

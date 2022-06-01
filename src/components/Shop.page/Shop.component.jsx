@@ -4,13 +4,12 @@ import ProductGrid from "./ProductGrid/ProductGrid.component";
 import { Grid, Layout, Title } from "./Shop.styles";
 
 const ShopPage = ({ products }) => {
-  console.log(products);
   return (
     <Layout>
       <Title>Магазин</Title>
       <Grid>
         <Filter />
-        <ProductGrid products={products} />
+        <ProductGrid filteredProducts={products} />
       </Grid>
     </Layout>
   );
