@@ -65,6 +65,7 @@ export const LogoText = styled.span`
   font-size: 2rem;
   line-height: 46px;
   color: ${props => props.theme.primary_color_1};
+  cursor: pointer;
 `;
 
 export const SearchContainer = styled.div`

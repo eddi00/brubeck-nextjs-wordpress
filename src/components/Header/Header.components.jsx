@@ -39,7 +39,9 @@ export const Header = ({ data, categories }) => {
       <MainMenuLayout>
         <MainMenuGrid>
           <Wrapper>
-            <LogoText>BRUBECK</LogoText>
+            <Link href="/">
+              <LogoText>BRUBECK</LogoText>
+            </Link>
           </Wrapper>
           <Wrapper>
             <SearchContainer>
@@ -48,7 +50,9 @@ export const Header = ({ data, categories }) => {
             </SearchContainer>
           </Wrapper>
           <Wrapper>
-            <CartIcon size="1.5rem" />
+            <Link href="/cart">
+              <CartIcon size="1.5rem" />
+            </Link>
             <HeartIcon size="1.5rem" />
             <LoginText>Войти</LoginText>
           </Wrapper>
