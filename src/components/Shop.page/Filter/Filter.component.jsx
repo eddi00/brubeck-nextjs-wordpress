@@ -14,7 +14,7 @@ import {
 const Filter = () => {
   return (
     <Container>
-      <h4>Фильтер</h4>
+      <h4>Фильтр</h4>
       <Line />
       <SectionTitle>Сортировать</SectionTitle>
       <Select name="filter-type" id="filter-1">
