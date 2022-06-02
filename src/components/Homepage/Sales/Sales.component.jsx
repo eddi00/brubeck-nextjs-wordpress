@@ -32,14 +32,14 @@ const SalesHomepage = ({ products }) => {
                 {item.images.length > 0 ? (
                   <ProductImage src={item.images[0].src} layout="fill" />
                 ) : (
-                  <NoImage size="9rem" />
+                  <NoImage size="144" />
                 )}
               </ImageContainer>
               <Line />
               <ProductName>{item.name}</ProductName>
               <ProductBottom>
                 <PriceContainer>
-                  <CurrencySymbol size="1rem" />
+                  <CurrencySymbol size="16" />
                   {item.onSale ? (
                     <>
                       <WithDiscount>{item.salePrice}</WithDiscount>
@@ -49,9 +49,9 @@ const SalesHomepage = ({ products }) => {
                     <>{item.price}</>
                   )}
                 </PriceContainer>
-                <CartIconOutline size="1.25rem" />
+                <CartIconOutline size="20" />
               </ProductBottom>
-              <HeartIconOutline size="1.25rem" />
+              <HeartIconOutline size="20" />
             </ProductCard>
           ))}
       </ProductGrid>

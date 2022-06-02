@@ -42,7 +42,7 @@ export const Select = styled.select`
   margin: 0.75rem 0 0.25rem 0;
 `;
 
-export const Checkbox = styled.input`
+export const CheckboxInput = styled.input`
   margin-right: 0.5rem;
 `;
 

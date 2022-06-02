@@ -77,11 +77,11 @@ const Footer = ({ data }) => {
           <h5>Контакты</h5>
           <Line />
           <Wrapper>
-            <PhoneIcon size="1.25rem" />
+            <PhoneIcon size="20" />
             <Text>{data.header_first_tel_number}</Text>
           </Wrapper>
           <Wrapper>
-            <AddressIcon size="1.75rem" />
+            <AddressIcon size="28" />
             <Text>{data.header_address}</Text>
           </Wrapper>
         </div>

@@ -25,13 +25,13 @@ const CategoriesPage = () => {
           <Link href="/">
             <Block>
               <Text>Термобелье</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
           <Link href="/">
             <Block>
               <Text>Фитнес и бег</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
         </Column>
@@ -39,13 +39,13 @@ const CategoriesPage = () => {
           <Link href="/">
             <Block>
               <Text>Одежда</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
           <Link href="/">
             <Block>
               <Text>Нижнее бельё</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
         </Column>
@@ -61,13 +61,13 @@ const CategoriesPage = () => {
           <Link href="/">
             <Block>
               <Text>Термобелье</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
           <Link href="/">
             <Block>
               <Text>Фитнес и бег</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
         </Column>
@@ -75,13 +75,13 @@ const CategoriesPage = () => {
           <Link href="/">
             <Block>
               <Text>Одежда</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
           <Link href="/">
             <Block>
               <Text>Нижнее бельё</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
         </Column>
@@ -97,13 +97,13 @@ const CategoriesPage = () => {
           <Link href="/">
             <Block>
               <Text>Термобелье</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
           <Link href="/">
             <Block>
               <Text>Фитнес и бег</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
         </Column>
@@ -111,13 +111,13 @@ const CategoriesPage = () => {
           <Link href="/">
             <Block>
               <Text>Одежда</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
           <Link href="/">
             <Block>
               <Text>Нижнее бельё</Text>
-              <ArrowIcon size="2.5rem" />
+              <ArrowIcon size="40" />
             </Block>
           </Link>
         </Column>

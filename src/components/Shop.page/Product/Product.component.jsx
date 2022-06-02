@@ -24,7 +24,7 @@ const Product = ({ item }) => {
         {item.images.length > 0 ? (
           <ProductImage src={item.images[0].src} layout="fill" />
         ) : (
-          <NoImage size="9rem" />
+          <NoImage size="144" />
         )}
       </ImageContainer>
       <Line />
@@ -33,7 +33,7 @@ const Product = ({ item }) => {
       </ProductName>
       <ProductBottom>
         <PriceContainer>
-          <CurrencySymbol size="1rem" />
+          <CurrencySymbol size="16" />
           {item.onSale ? (
             <>
               <WithDiscount>{item.salePrice}</WithDiscount>
@@ -43,9 +43,9 @@ const Product = ({ item }) => {
             <>{item.price}</>
           )}
         </PriceContainer>
-        <CartIconOutline size="1.5rem" />
+        <CartIconOutline size="24" />
       </ProductBottom>
-      <HeartIconOutline size="1.5rem" />
+      <HeartIconOutline size="24" />
     </ProductCard>
   );
 };

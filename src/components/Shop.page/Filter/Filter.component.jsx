@@ -1,7 +1,8 @@
 import React from "react";
+import { CheckBox } from "./Filter.logic";
 import {
   BoxText,
-  Checkbox,
+  CheckboxInput,
   ChoiceContainer,
   Container,
   Line,
@@ -26,26 +27,26 @@ const Filter = () => {
       <Section>
         <SectionTitle>Пол</SectionTitle>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-men" />
           <BoxText>Мужчина</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-women" />
           <BoxText>Женщина</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-unisex" />
           <BoxText>Унисекс</BoxText>
         </ChoiceContainer>
       </Section>
       <Section>
         <SectionTitle>Дети</SectionTitle>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-boys" />
           <BoxText>Мальчики</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-girls" />
           <BoxText>Девочки</BoxText>
         </ChoiceContainer>
       </Section>
@@ -53,27 +54,27 @@ const Filter = () => {
       <Section>
         <SectionTitle>Категория</SectionTitle>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-thermal-underware" />
           <BoxText>Термобелье</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-fitness-and-running" />
           <BoxText>Фитнес и бег</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-underware" />
           <BoxText>Нижнее белье</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-accessories" />
           <BoxText>Аксессуары</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-new" />
           <BoxText>Новинки</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-sale" />
           <BoxText>Распродажа</BoxText>
         </ChoiceContainer>
       </Section>
@@ -81,19 +82,19 @@ const Filter = () => {
       <Section>
         <SectionTitle>Цвет</SectionTitle>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="color-black" />
           <BoxText>Черный</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="color-white" />
           <BoxText>Белый</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="color-red" />
           <BoxText>Красный</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="color-green" />
           <BoxText>Зелёный</BoxText>
         </ChoiceContainer>
       </Section>
@@ -101,15 +102,15 @@ const Filter = () => {
       <Section>
         <SectionTitle>Фирма</SectionTitle>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-company1" />
           <BoxText>Первая</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-company2" />
           <BoxText>Вторая</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <Checkbox type="checkbox" />
+          <CheckBox name="cat-company3" />
           <BoxText>Третья</BoxText>
         </ChoiceContainer>
       </Section>

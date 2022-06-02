@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 import { MdPhone, MdDomain, MdSearch, MdShoppingCart } from "react-icons/md";
 import { IoMdHeart } from "react-icons/io";
 import Link from "next/link";
@@ -21,6 +22,11 @@ export const TopBarGrid = styled.div`
 export const Wrapper = styled.section`
   display: flex;
   align-items: center;
+
+  a {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const PhoneIcon = styled(MdPhone)`
@@ -105,6 +111,13 @@ export const CartIcon = styled(MdShoppingCart)`
   margin-left: 100px;
   cursor: pointer;
 `;
+export const CartIconRef = React.forwardRef(({ onClick, href, size }, ref) => {
+  return (
+    <a href={href} onClick={onClick} ref={ref}>
+      <CartIcon size={size} />
+    </a>
+  );
+});
 
 export const HeartIcon = styled(IoMdHeart)`
   color: ${props => props.theme.primary_color_2};

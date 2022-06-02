@@ -13,12 +13,12 @@ import {
   TopBarLayout,
   Wrapper,
   HeartIcon,
-  CartIcon,
   LoginText,
   CategoriesLayout,
   Category,
   Categories,
   AllCategories,
+  CartIconRef,
 } from "./Header.styles";
 
 export const Header = ({ data, categories }) => {
@@ -27,11 +27,11 @@ export const Header = ({ data, categories }) => {
       <TopBarLayout>
         <TopBarGrid>
           <Wrapper>
-            <PhoneIcon size="1rem" />
+            <PhoneIcon size="16" />
             <Text>{data.header_first_tel_number}</Text>
           </Wrapper>
           <Wrapper>
-            <AddressIcon size="1rem" />
+            <AddressIcon size="16" />
             <Text>{data.header_address}</Text>
           </Wrapper>
         </TopBarGrid>
@@ -45,15 +45,18 @@ export const Header = ({ data, categories }) => {
           </Wrapper>
           <Wrapper>
             <SearchContainer>
-              <SearchIcon size="1.5rem" />
+              <SearchIcon size="24" />
               <Search type={"text"} />
             </SearchContainer>
           </Wrapper>
           <Wrapper>
-            <Link href="/cart">
-              <CartIcon size="1.5rem" />
+            {/* <Link href="/cart" passHref>
+              <CartIcon size="24" />
+            </Link> */}
+            <Link href="/cart" passHref>
+              <CartIconRef size="24" />
             </Link>
-            <HeartIcon size="1.5rem" />
+            <HeartIcon size="24" />
             <LoginText>Войти</LoginText>
           </Wrapper>
         </MainMenuGrid>
