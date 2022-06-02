@@ -118,6 +118,7 @@ export const CartIconRef = React.forwardRef(({ onClick, href, size }, ref) => {
     </a>
   );
 });
+CartIconRef.displayName = "CartIconRef";
 
 export const HeartIcon = styled(IoMdHeart)`
   color: ${props => props.theme.primary_color_2};
