@@ -1,35 +1,48 @@
 import React, { useEffect, useState } from "react";
 import Product from "../Product/Product.component";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Grid } from "./ProductGrid.styles";
 import { filterProducts } from "./ProductGrid.logic";
+import Pagination from "../Pagination/Pagination.component";
+import { changePage } from "../../../redux/shop/shop.slice";
 
 const ProductGrid = ({ products }) => {
+  const dispatch = useDispatch();
   const shopFilter = useSelector(state => state.shop.filter);
   const page = useSelector(state => state.shop.page);
-  const [test, setTest] = useState(products);
+  const sliceBy = useSelector(state => state.shop.sliceProductsBy);
 
-  let productsResult = products;
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [slicedProducts, setSlicedProducts] = useState(
+    filteredProducts.slice((page - 1) * sliceBy, page * sliceBy)
+  );
 
   useEffect(() => {
-    // console.log(shopFilter);
-
-    productsResult = filterProducts(products, shopFilter);
-    setTest(productsResult);
+    setFilteredProducts(filterProducts(products, shopFilter));
+    dispatch(changePage(1));
   }, [shopFilter]);
 
+  useEffect(() => {
+    setSlicedProducts(
+      filteredProducts.slice((page - 1) * sliceBy, page * sliceBy)
+    );
+  }, [page]);
+
   return (
-    <>
-      {test.length > 0 ? (
-        <Grid>
-          {test.map((item, key) => (
-            <Product key={key} item={item} />
-          ))}
-        </Grid>
+    <div>
+      {filteredProducts.length > 0 ? (
+        <>
+          <Pagination productsLength={filteredProducts.length} />
+          <Grid>
+            {slicedProducts.map((item, key) => (
+              <Product key={key} item={item} />
+            ))}
+          </Grid>
+        </>
       ) : (
         <h3>Нет продуктов по вашему запросу.</h3>
       )}
-    </>
+    </div>
   );
 };
 

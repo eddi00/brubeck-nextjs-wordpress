@@ -7,6 +7,7 @@ const initialState = {
     colors: [],
   },
   page: 1,
+  sliceProductsBy: 4,
 };
 
 export const shopSlice = createSlice({
@@ -39,10 +40,18 @@ export const shopSlice = createSlice({
         },
       };
     },
+    changePage: (state, action) => {
+      state.page = action.payload;
+    },
   },
 });
 
-export const { addCategory, removeCategory, addColor, removeColor } =
-  shopSlice.actions;
+export const {
+  addCategory,
+  removeCategory,
+  addColor,
+  removeColor,
+  changePage,
+} = shopSlice.actions;
 
 export default shopSlice.reducer;
