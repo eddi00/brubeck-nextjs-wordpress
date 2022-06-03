@@ -13,35 +13,25 @@ const ProductGrid = ({ products }) => {
   const page = useSelector(state => state.shop.page);
   const sliceBy = useSelector(state => state.shop.sliceProductsBy);
 
-  const [filteredProducts, setFilteredProducts] = useState(products);
-  const [slicedProducts, setSlicedProducts] = useState(
-    filteredProducts.slice((page - 1) * sliceBy, page * sliceBy)
-  );
+  const [filteredProducts, setFilteredProducts] = useState();
 
   useEffect(() => {
-    console.log({ shopFilter, page, sliceBy, filterProducts, slicedProducts });
-
-    const temp = filterProducts(products, shopFilter);
-    //dispatch(resetPage());
-    setSlicedProducts(temp.slice((page - 1) * sliceBy, page * sliceBy));
     setFilteredProducts(filterProducts(products, shopFilter));
+    dispatch(resetPage());
+    console.log("USE EFFECT WORK");
   }, [shopFilter]);
-
-  useEffect(() => {
-    setSlicedProducts(
-      filteredProducts.slice((page - 1) * sliceBy, page * sliceBy)
-    );
-  }, [page]);
 
   return (
     <div>
-      {filteredProducts.length > 0 ? (
+      {filteredProducts && filteredProducts.length > 0 ? (
         <>
           <Pagination productsLength={filteredProducts.length} />
           <Grid>
-            {slicedProducts.map((item, key) => (
-              <Product key={key} item={item} />
-            ))}
+            {filteredProducts
+              .slice((page - 1) * sliceBy, page * sliceBy)
+              .map((item, key) => (
+                <Product key={key} item={item} />
+              ))}
           </Grid>
         </>
       ) : (
@@ -52,3 +42,12 @@ const ProductGrid = ({ products }) => {
 };
 
 export default ProductGrid;
+
+// Trash
+
+// const [slicedProducts, setSlicedProducts] = useState(
+//   filteredProducts.slice((page - 1) * sliceBy, page * sliceBy)
+// );
+// const [slicedProducts, setSlicedProducts] = useState();
+
+// console.log({ shopFilter, page, sliceBy, filterProducts, slicedProducts });
