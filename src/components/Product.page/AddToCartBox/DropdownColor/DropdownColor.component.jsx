@@ -13,18 +13,19 @@ import {
 } from "./DropdownColor.styles";
 
 const DropdownColor = ({ setColor, colorList }) => {
+  const [show, setShow] = useState(false);
   const handleClickListItem = item => {
     setColor(item);
   };
 
   return (
-    <DropdownButton>
+    <DropdownButton onClick={() => setShow(!show)}>
       <PaletteIcon size={20} />
       <DropDownText>Выбрать цвет</DropDownText>
       <ArrowIcon size={24} />
-      <List>
-        {colorList.map(item => (
-          <ListItem onClick={() => handleClickListItem(item)}>
+      <List show={show}>
+        {colorList.map((item, key) => (
+          <ListItem key={key} onClick={() => handleClickListItem(item)}>
             <ColorCircle color={returnHexColor(item)} />
             <ColorText>{returnColorRuName(item)}</ColorText>
           </ListItem>

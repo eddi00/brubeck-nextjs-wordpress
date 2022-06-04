@@ -8,6 +8,7 @@ export const Container = styled.div`
   padding: 1rem;
   background-color: ${props => props.theme.secondary_1_color_3_10A};
   border-radius: 20px;
+  transition: all 1s linear ease-in-out;
 `;
 
 export const Select = styled.select`
@@ -28,6 +29,10 @@ export const AddToCart = styled.div`
   background-color: ${props => props.theme.secondary_1_color_3};
   cursor: pointer;
   margin-top: ${props => (props.showMargin ? "1.5rem" : "0")};
+
+  &:hover {
+    background-color: ${props => props.theme.secondary_1_color_4};
+  }
 `;
 
 export const AddToCartIcon = styled(MdShoppingBasket)`
@@ -57,4 +62,18 @@ export const TextGroup = styled.div`
   div::first-letter {
     text-transform: capitalize;
   }
+`;
+
+export const ErrorContainer = styled.div`
+  margin-top: 1rem;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  box-sizing: border-box;
+  background-color: ${props => props.theme.secondary_2_color_4};
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
 `;

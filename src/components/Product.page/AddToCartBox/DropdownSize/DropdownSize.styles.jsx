@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MdOutlineChevronLeft } from "react-icons/md";
-import { BsPalette2 } from "react-icons/bs";
+import { BsRulers } from "react-icons/bs";
 
 export const DropdownButton = styled.div`
   height: 48px;
@@ -15,15 +15,12 @@ export const DropdownButton = styled.div`
   cursor: pointer;
   position: relative;
 
-  &:focus ul,
-  &:hover ul {
-    visibility: visible;
-    transform: translateY(0%);
-    transition-delay: 0s, 0s, 0.3s;
+  &:hover {
+    background-color: ${props => props.theme.secondary_1_color_5};
   }
 `;
 
-export const PaletteIcon = styled(BsPalette2)`
+export const RulerIcon = styled(BsRulers)`
   margin-right: 0.5rem;
 `;
 
@@ -42,25 +39,21 @@ export const ArrowIcon = styled(MdOutlineChevronLeft)`
 
 export const List = styled.ul`
   position: absolute;
-  visibility: hidden;
+  visibility: ${props => (props.show ? "visible" : "hidden")};
   list-style: none;
   margin: 0;
   padding: 0;
   width: 100%;
   text-align: left;
-  top: 40px;
+  top: 3.5rem;
   left: 0px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   border: 1px solid #ededee;
   box-shadow: 0px 1px 1px 1px #ededee;
 
   li {
     border-bottom: 1px solid ${props => props.theme.black_5};
   }
-
-  transition-property: all;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
 `;
 
 export const ListItem = styled.li`
@@ -81,15 +74,6 @@ export const ListItem = styled.li`
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
-`;
-
-export const ColorCircle = styled.div`
-  height: 1rem;
-  width: 1rem;
-  border-radius: 50px;
-  background-color: ${props => props.color};
-  margin-right: 0.75rem;
-  border: 1px solid ${props => props.theme.black_4}; ;
 `;
 
 export const Text = styled.span`

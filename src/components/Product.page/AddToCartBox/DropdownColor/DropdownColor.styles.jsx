@@ -15,11 +15,8 @@ export const DropdownButton = styled.div`
   cursor: pointer;
   position: relative;
 
-  &:focus ul,
-  &:hover ul {
-    visibility: visible;
-    transform: translateY(0%);
-    transition-delay: 0s, 0s, 0.3s;
+  &:hover {
+    background-color: ${props => props.theme.secondary_1_color_5};
   }
 `;
 
@@ -42,29 +39,25 @@ export const ArrowIcon = styled(MdOutlineChevronLeft)`
 
 export const List = styled.ul`
   position: absolute;
-  /* visibility: ${props => (props.show ? "visible" : "hidden")}; */
+  visibility: ${props => (props.show ? "visible" : "hidden")};
   /* display: ${props => (props.show ? "block" : "none")}; */
   /*   
   transition: visibility 0.1s; */
-  visibility: hidden;
+  z-index: 3;
   list-style: none;
   margin: 0;
   padding: 0;
   width: 100%;
   text-align: left;
-  top: 40px;
+  top: 3.5rem;
   left: 0px;
-  margin-top: 10px;
+  /* padding-top: 10px; */
   border: 1px solid #ededee;
   box-shadow: 0px 1px 1px 1px #ededee;
 
   li {
     border-bottom: 1px solid ${props => props.theme.black_5};
   }
-
-  transition-property: all;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
 `;
 
 export const ListItem = styled.li`

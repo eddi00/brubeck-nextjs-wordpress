@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ArrowIcon,
   Text,
@@ -6,22 +6,24 @@ import {
   DropDownText,
   List,
   ListItem,
-  PaletteIcon,
+  RulerIcon,
 } from "./DropdownSize.styles";
 
 const DropDownSize = ({ setSize, sizeList }) => {
+  const [show, setShow] = useState(false);
+
   const handleClickListItem = item => {
     setSize(item);
   };
 
   return (
-    <DropdownButton>
-      <PaletteIcon size={20} />
+    <DropdownButton onClick={() => setShow(!show)}>
+      <RulerIcon size={20} />
       <DropDownText>Выбрать размер:</DropDownText>
       <ArrowIcon size={24} />
-      <List>
-        {sizeList.map(item => (
-          <ListItem onClick={() => handleClickListItem(item)}>
+      <List show={show}>
+        {sizeList.map((item, key) => (
+          <ListItem key={key} onClick={() => handleClickListItem(item)}>
             <Text>{item}</Text>
           </ListItem>
         ))}
