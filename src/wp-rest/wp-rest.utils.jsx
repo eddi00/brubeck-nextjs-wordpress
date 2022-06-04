@@ -4,6 +4,16 @@ export const returnCategoriesList = categories => {
   return array;
 };
 
-// export const returnAttributesList = attributes => {
+export const returnAttributeList = (attributes, attributeName) => {
+  let temp = [];
 
-// }
+  if (attributes) {
+    attributes.map(item => {
+      if (item.name === attributeName) {
+        temp.push(...item.options);
+      }
+    });
+  }
+
+  return temp;
+};

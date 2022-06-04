@@ -1,7 +1,7 @@
 import { WC_Api } from "../axios/wp-woocommerce";
 import { returnCategoriesList } from "./wp-rest.utils";
 
-export const getAllProducts = async categoryId => {
+export const getAllProducts = async () => {
   try {
     const res = await WC_Api.get("products");
     return processAllProducts(res.data);

@@ -40,6 +40,9 @@ export const shopSlice = createSlice({
         },
       };
     },
+    resetFilter: state => {
+      return { ...state, filter: initialState.filter };
+    },
     changePage: (state, action) => {
       state.page = action.payload;
     },
@@ -56,6 +59,7 @@ export const {
   removeColor,
   changePage,
   resetPage,
+  resetFilter,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;

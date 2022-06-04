@@ -4,7 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Grid } from "./ProductGrid.styles";
 import { filterProducts } from "./ProductGrid.logic";
 import Pagination from "../Pagination/Pagination.component";
-import { changePage, resetPage } from "../../../redux/shop/shop.slice";
+import {
+  changePage,
+  resetFilter,
+  resetPage,
+} from "../../../redux/shop/shop.slice";
 
 const ProductGrid = ({ products }) => {
   const dispatch = useDispatch();
@@ -18,7 +22,6 @@ const ProductGrid = ({ products }) => {
   useEffect(() => {
     setFilteredProducts(filterProducts(products, shopFilter));
     dispatch(resetPage());
-    console.log("USE EFFECT WORK");
   }, [shopFilter]);
 
   return (
