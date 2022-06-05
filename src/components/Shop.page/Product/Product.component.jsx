@@ -20,13 +20,15 @@ import {
 const Product = ({ item }) => {
   return (
     <ProductCard>
-      <ImageContainer>
-        {item.images.length > 0 ? (
-          <ProductImage src={item.images[0].src} layout="fill" />
-        ) : (
-          <NoImage size="144" />
-        )}
-      </ImageContainer>
+      <Link href={"/products/" + item.id}>
+        <ImageContainer>
+          {item.images.length > 0 ? (
+            <ProductImage src={item.images[0].src} layout="fill" />
+          ) : (
+            <NoImage size="144" />
+          )}
+        </ImageContainer>
+      </Link>
       <Line />
       <ProductName>
         <Link href={"/products/" + item.id}>{item.name}</Link>

@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { MdShoppingBasket } from "react-icons/md";
 
 export const Container = styled.div`
-  position: sticky;
-  width: 270px;
+  /* position: sticky;
+  top: 10px; */
+  /* width: 270px; */
+  width: 100%;
   box-sizing: border-box;
   padding: 1rem;
   background-color: ${props => props.theme.secondary_1_color_3_10A};

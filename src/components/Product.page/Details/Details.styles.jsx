@@ -9,15 +9,15 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   margin-top: 1.5rem;
-  gap: 1rem;
+  gap: 3rem;
 `;
 
 export const DetailsContainer = styled.div`
-  flex: 1;
+  flex: 3;
 `;
 
 export const AddToCartContainer = styled.div`
-  flex: 1;
+  flex: 2;
 
   /* display: flex;
   justify-content: center; */
