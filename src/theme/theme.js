@@ -27,4 +27,6 @@ export const theme = {
   secondary_2_color_3: "#295073",
   secondary_2_color_4: "#527798",
   secondary_2_color_5: "#9FBAD3",
+
+  secondary_2_color_3_10A: "#2950731a",
 };

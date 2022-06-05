@@ -9,6 +9,7 @@ export const Container = styled.div`
   background-color: ${props => props.theme.secondary_1_color_3_10A};
   border-radius: 20px;
   transition: all 1s linear ease-in-out;
+  margin-left: auto;
 `;
 
 export const Select = styled.select`
@@ -31,7 +32,7 @@ export const AddToCart = styled.div`
   margin-top: ${props => (props.showMargin ? "1.5rem" : "0")};
 
   &:hover {
-    background-color: ${props => props.theme.secondary_1_color_4};
+    background-color: ${props => props.theme.secondary_1_color_2};
   }
 `;
 
