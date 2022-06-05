@@ -48,8 +48,8 @@ const Details = ({ product }) => {
             <DetailSection>
               <DetailName>Размеры</DetailName>
               <DetailWrapper>
-                {product.sizeList.map(item => (
-                  <DetailSize>{item}</DetailSize>
+                {product.sizeList.map((item, key) => (
+                  <DetailSize key={key}>{item}</DetailSize>
                 ))}
               </DetailWrapper>
             </DetailSection>
@@ -58,8 +58,8 @@ const Details = ({ product }) => {
             <DetailSection>
               <DetailName>Цвета</DetailName>
               <DetailWrapper>
-                {product.colorList.map(item => (
-                  <ColorCircle color={returnHexColor(item)} />
+                {product.colorList.map((item, key) => (
+                  <ColorCircle key={key} color={returnHexColor(item)} />
                 ))}
               </DetailWrapper>
             </DetailSection>
