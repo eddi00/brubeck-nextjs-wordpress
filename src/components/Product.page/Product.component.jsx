@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Details from "./Details/Details.component";
 import Images from "./Images/Images.component";
@@ -12,6 +13,7 @@ import {
 const Product = ({ product }) => {
   return (
     <Layout>
+      <Link href="/shop">Вернутся в магазин</Link>
       <TopSection>
         <Images images={product.images} />
         <Details product={product} />

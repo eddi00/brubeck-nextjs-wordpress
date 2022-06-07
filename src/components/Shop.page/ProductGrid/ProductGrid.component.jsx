@@ -29,7 +29,7 @@ const ProductGrid = () => {
 
   useEffect(() => {
     setFilteredProducts(filteredProductsShop);
-    dispatch(resetPage());
+    // dispatch(resetPage());
   }, [filteredProductsShop]);
 
   return (
@@ -37,7 +37,12 @@ const ProductGrid = () => {
       {filteredProducts && filteredProducts.length > 0 ? (
         <>
           <Pagination productsLength={filteredProducts.length} />
-          <Grid>
+          <Grid
+            emptySpace={
+              filteredProducts.slice((page - 1) * sliceBy, page * sliceBy)
+                .length < 4
+            }
+          >
             {filteredProducts
               .slice((page - 1) * sliceBy, page * sliceBy)
               .map((item, key) => (

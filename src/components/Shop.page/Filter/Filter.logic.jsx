@@ -5,6 +5,7 @@ import {
   applyColor,
   applyGender,
   applySize,
+  resetPage,
 } from "../../../redux/shop/shop.slice";
 import { CheckboxInput } from "./Filter.styles";
 
@@ -51,6 +52,7 @@ export const CheckBox = props => {
         dispatch(applySize(category));
         break;
     }
+    dispatch(resetPage());
   };
 
   return <CheckboxInput {...props} type="checkbox" onChange={handleToggle} />;

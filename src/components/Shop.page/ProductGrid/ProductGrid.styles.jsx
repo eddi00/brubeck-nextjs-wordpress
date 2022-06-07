@@ -16,4 +16,8 @@ export const Grid = styled.div`
     grid-template-columns: repeat(1, 300px);
   }
   margin-bottom: 3rem;
+
+  @media screen and (min-width: 1200px) {
+    ${props => props.emptySpace && "margin-bottom: 480px"}
+  }
 `;
