@@ -10,6 +10,8 @@ export const returnCategoryRuName = word => {
       return "новинки";
     case "sale":
       return "распродажа";
+    case "underware":
+      return "нижнее белье";
     default:
       return word;
   }

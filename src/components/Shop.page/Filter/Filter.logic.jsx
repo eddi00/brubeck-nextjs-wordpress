@@ -4,6 +4,7 @@ import {
   addCategory,
   addColor,
   addGender,
+  applyCategory,
   applyGender,
   removeCategory,
   removeColor,
@@ -29,13 +30,16 @@ export const CheckBox = props => {
     const category = e.target.name.split("-")[1];
 
     switch (type) {
+      // case "cat": {
+      //   if (checked) {
+      //     dispatch(addCategory(category));
+      //   } else {
+      //     dispatch(removeCategory(category));
+      //   }
+      //   break;
+      // }
       case "cat": {
-        if (checked) {
-          dispatch(addCategory(category));
-        } else {
-          dispatch(removeCategory(category));
-        }
-        break;
+        dispatch(applyCategory(category));
       }
       case "color":
         checked

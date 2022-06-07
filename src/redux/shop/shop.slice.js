@@ -45,6 +45,7 @@ export const shopSlice = createSlice({
     setProducts: (state, action) => {
       state.products = action.payload;
       if (state.filteredProducts === null) {
+        // state.productsFilteredByGenderOrCategory = action.payload;
         state.filteredProducts = action.payload;
 
         /* Count products by categories and set the values */
@@ -78,20 +79,76 @@ export const shopSlice = createSlice({
         state.filterByGender[action.payload].checked =
           !state.filterByGender[action.payload].checked;
 
+        // Get products filtered by Gender first
         let genderArray = [];
         Object.entries(current(state.filterByGender)).map(([key, value]) => {
           if (value.checked === true) genderArray.push(key);
         });
 
+        let categoryArray = [];
+        Object.entries(current(state.filterByCategory)).map(([key, value]) => {
+          if (value.checked === true) categoryArray.push(key);
+        });
+
         let temp = current(state.products);
         if (genderArray.length > 0) {
-          temp = returnFilteredProductsByCategory(
-            current(state.products),
-            genderArray
-          );
+          temp = returnFilteredProductsByCategory(temp, genderArray);
         }
+
+        if (categoryArray.length > 0) {
+          temp = returnFilteredProductsByCategory(temp, categoryArray);
+        }
+
+        // Apply results if there are any
         state.productsFilteredByGenderOrCategory = temp;
         state.filteredProducts = temp;
+
+        // Re-assign count values in filters taking into account the new filtered array
+        Object.entries(current(state.filterByCategory)).map(([key, value]) => {
+          state.filterByCategory[key].count = countByCategory(temp, key);
+        });
+        Object.entries(current(state.filterBySize)).map(([key, value]) => {
+          state.filterBySize[key].count = countBySize(temp, key);
+        });
+        state.filterByColor = returnFilterColor(temp);
+      }
+    },
+    applyCategory: (state, action) => {
+      if (state.filterByCategory[action.payload]) {
+        state.filterByCategory[action.payload].checked =
+          !state.filterByCategory[action.payload].checked;
+
+        // First
+        let genderArray = [];
+        Object.entries(current(state.filterByGender)).map(([key, value]) => {
+          if (value.checked === true) genderArray.push(key);
+        });
+
+        let categoryArray = [];
+        Object.entries(current(state.filterByCategory)).map(([key, value]) => {
+          if (value.checked === true) categoryArray.push(key);
+        });
+
+        let temp = current(state.products);
+        if (genderArray.length > 0) {
+          temp = returnFilteredProductsByCategory(temp, genderArray);
+        }
+        if (categoryArray.length > 0) {
+          temp = returnFilteredProductsByCategory(temp, categoryArray);
+        }
+
+        // Apply results if there are any
+        state.productsFilteredByGenderOrCategory = temp;
+        state.filteredProducts = temp;
+
+        // Re-assign count values in filters taking into account the new filtered array
+        // Object.entries(current(state.filterByCategory)).map(([key, value]) => {
+        //   state.filterByCategory[key].count = countByCategory(temp, key);
+        // });
+        Object.entries(current(state.filterBySize)).map(([key, value]) => {
+          state.filterBySize[key].count = countBySize(temp, key);
+        });
+        state.filterByColor = returnFilterColor(temp);
       }
     },
 
@@ -141,6 +198,7 @@ export const {
   setProducts,
   setFilteredProducts,
   applyGender,
+  applyCategory,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;

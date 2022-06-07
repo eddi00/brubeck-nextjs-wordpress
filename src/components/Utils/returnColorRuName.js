@@ -8,6 +8,8 @@ export const returnColorRuName = colorName => {
       return "красный";
     case "dark-blue":
       return "темно-синий";
+    case "beige":
+      return "бежевый";
     default:
       return colorName;
   }
