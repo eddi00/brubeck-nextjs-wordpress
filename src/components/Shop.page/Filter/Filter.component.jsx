@@ -1,21 +1,13 @@
+import { useRouter } from "next/router";
 import React from "react";
 // import { CheckBox } from "./Filter.logic";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addCategory,
-  addColor,
-  addGender,
-  removeCategory,
-  removeColor,
-  removeGender,
-  setFilteredProducts,
-} from "../../../redux/shop/shop.slice";
+import { useSelector } from "react-redux";
+
 import { returnCategoryRuName } from "../../Utils/returnCategoryRuName";
 import { returnColorRuName } from "../../Utils/returnColorRuName";
 import { CheckBox } from "./Filter.logic";
 import {
   BoxText,
-  CheckboxInput,
   ChoiceContainer,
   Container,
   Line,

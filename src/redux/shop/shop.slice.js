@@ -26,6 +26,7 @@ const initialState = {
     new: { checked: false, count: 0 },
     sale: { checked: false, count: 0 },
   },
+
   filterByColor: {},
   filterBySize: {
     XS: { checked: false, count: 0 },
@@ -81,6 +82,8 @@ export const shopSlice = createSlice({
       if (state.filterByGender[action.payload]) {
         state.filterByGender[action.payload].checked =
           !state.filterByGender[action.payload].checked;
+
+        if (state.products.length === 0) return;
 
         // Get products filtered by Gender first
         let genderArray = [];
