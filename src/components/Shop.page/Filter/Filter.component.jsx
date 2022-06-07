@@ -1,5 +1,15 @@
 import React from "react";
-import { CheckBox } from "./Filter.logic";
+// import { CheckBox } from "./Filter.logic";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCategory,
+  addColor,
+  removeCategory,
+  removeColor,
+  setFilteredProducts,
+} from "../../../redux/shop/shop.slice";
+import { returnCategoryRuName } from "../../Utils/returnCategoryRuName";
+import { returnColorRuName } from "../../Utils/returnColorRuName";
 import {
   BoxText,
   CheckboxInput,
@@ -12,6 +22,38 @@ import {
 } from "./Filter.styles";
 
 const Filter = () => {
+  const filterByGender = useSelector(state => state.shop.filterByGender);
+  const filterByCategory = useSelector(state => state.shop.filterByCategory);
+  const filterByColor = useSelector(state => state.shop.filterByColor);
+  const filterBySize = useSelector(state => state.shop.filterBySize);
+  const dispatch = useDispatch();
+
+  const CheckBox = props => {
+    const handleToggle = e => {
+      const checked = e.target.checked;
+      const type = e.target.name.split("-")[0];
+      const category = e.target.name.split("-")[1];
+
+      switch (type) {
+        case "cat": {
+          if (checked) {
+            dispatch(addCategory(category));
+          } else {
+            dispatch(removeCategory(category));
+          }
+          break;
+        }
+        case "color":
+          checked
+            ? dispatch(addColor(category))
+            : dispatch(removeColor(category));
+          break;
+      }
+    };
+
+    return <CheckboxInput {...props} type="checkbox" onChange={handleToggle} />;
+  };
+
   return (
     <Container>
       <h4>Фильтр</h4>
@@ -27,76 +69,64 @@ const Filter = () => {
       <Section>
         <SectionTitle>Пол</SectionTitle>
         <ChoiceContainer>
-          <CheckBox name="cat-men" />
-          <BoxText>Мужчина</BoxText>
+          <CheckBox name="cat-men" checked={filterByGender.men.checked} />
+          <BoxText>Мужчина ({filterByGender.men.count})</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <CheckBox name="cat-women" />
-          <BoxText>Женщина</BoxText>
+          <CheckBox name="cat-women" checked={filterByGender.women.checked} />
+          <BoxText>Женщина ({filterByGender.women.count})</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <CheckBox name="cat-unisex" />
-          <BoxText>Унисекс</BoxText>
+          <CheckBox name="cat-unisex" checked={filterByGender.unisex.checked} />
+          <BoxText>Унисекс ({filterByGender.unisex.count})</BoxText>
         </ChoiceContainer>
       </Section>
       <Section>
         <SectionTitle>Дети</SectionTitle>
         <ChoiceContainer>
-          <CheckBox name="cat-boys" />
-          <BoxText>Мальчики</BoxText>
+          <CheckBox name="cat-boys" checked={filterByGender.boys.checked} />
+          <BoxText>Мальчики ({filterByGender.boys.count})</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <CheckBox name="cat-girls" />
-          <BoxText>Девочки</BoxText>
+          <CheckBox name="cat-girls" checked={filterByGender.girls.checked} />
+          <BoxText>Девочки ({filterByGender.girls.count})</BoxText>
         </ChoiceContainer>
       </Section>
       <Line />
       <Section>
-        <SectionTitle>Категория</SectionTitle>
-        <ChoiceContainer>
-          <CheckBox name="cat-thermal-underware" />
-          <BoxText>Термобелье</BoxText>
-        </ChoiceContainer>
-        <ChoiceContainer>
-          <CheckBox name="cat-fitness-and-running" />
-          <BoxText>Фитнес и бег</BoxText>
-        </ChoiceContainer>
-        <ChoiceContainer>
-          <CheckBox name="cat-underware" />
-          <BoxText>Нижнее белье</BoxText>
-        </ChoiceContainer>
-        <ChoiceContainer>
-          <CheckBox name="cat-accessories" />
-          <BoxText>Аксессуары</BoxText>
-        </ChoiceContainer>
-        <ChoiceContainer>
-          <CheckBox name="cat-new" />
-          <BoxText>Новинки</BoxText>
-        </ChoiceContainer>
-        <ChoiceContainer>
-          <CheckBox name="cat-sale" />
-          <BoxText>Распродажа</BoxText>
-        </ChoiceContainer>
+        <SectionTitle>Категории белья</SectionTitle>
+        {Object.entries(filterByCategory).map(([key, item], index) => (
+          <ChoiceContainer key={index}>
+            <CheckBox name={"cat-" + key} checked={item.checked} />
+            <BoxText>
+              {returnCategoryRuName(key)} ({item.count})
+            </BoxText>
+          </ChoiceContainer>
+        ))}
       </Section>
       <Line />
       <Section>
         <SectionTitle>Цвет</SectionTitle>
-        <ChoiceContainer>
-          <CheckBox name="color-black" />
-          <BoxText>Черный</BoxText>
-        </ChoiceContainer>
-        <ChoiceContainer>
-          <CheckBox name="color-white" />
-          <BoxText>Белый</BoxText>
-        </ChoiceContainer>
-        <ChoiceContainer>
-          <CheckBox name="color-red" />
-          <BoxText>Красный</BoxText>
-        </ChoiceContainer>
-        <ChoiceContainer>
-          <CheckBox name="color-green" />
-          <BoxText>Зелёный</BoxText>
-        </ChoiceContainer>
+        {Object.entries(filterByColor).map(([key, item], index) => (
+          <ChoiceContainer key={index}>
+            <CheckBox name={"color-" + key} checked={item.checked} />
+            <BoxText>
+              {returnColorRuName(key)} ({item.count})
+            </BoxText>
+          </ChoiceContainer>
+        ))}
+      </Section>
+      <Line />
+      <Section>
+        <SectionTitle>Размер</SectionTitle>
+        {Object.entries(filterBySize).map(([key, item], index) => (
+          <ChoiceContainer key={index}>
+            <CheckBox name={"size-" + key} checked={item.checked} />
+            <BoxText>
+              {key} ({item.count})
+            </BoxText>
+          </ChoiceContainer>
+        ))}
       </Section>
       <Line />
       <Section>

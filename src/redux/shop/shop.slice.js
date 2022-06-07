@@ -1,48 +1,100 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
+import { countByCategory, countBySize, returnFilterColor } from "./shop.utils";
 
 const initialState = {
-  filter: {
-    categories: [],
-    sizes: [],
-    colors: [],
+  filterByGender: {
+    men: { checked: false, count: 0 },
+    women: { checked: false, count: 0 },
+    unisex: { checked: false, count: 0 },
+    boys: { checked: false, count: 0 },
+    girls: { checked: false, count: 0 },
+  },
+
+  filterByCategory: {
+    thermal: { checked: false, count: 0 },
+    fitness: { checked: false, count: 0 },
+    underware: { checked: false, count: 0 },
+    accessories: { checked: false, count: 0 },
+    new: { checked: false, count: 0 },
+    sale: { checked: false, count: 0 },
+  },
+  filterByColor: {},
+  filterBySize: {
+    XS: { checked: false, count: 0 },
+    S: { checked: false, count: 0 },
+    M: { checked: false, count: 0 },
+    L: { checked: false, count: 0 },
+    XL: { checked: false, count: 0 },
   },
   page: 1,
   sliceProductsBy: 6,
+  products: [],
+  productsFilteredByGenderOrCategory: null,
+  filteredProducts: null,
 };
 
 export const shopSlice = createSlice({
   name: "shopFilter",
   initialState,
   reducers: {
+    setProducts: (state, action) => {
+      state.products = action.payload;
+      if (state.filteredProducts === null) {
+        state.filteredProducts = action.payload;
+
+        /* Count products by categories and set the values */
+        Object.entries(current(state.filterByGender)).map(([key, value]) => {
+          state.filterByGender[key].count = countByCategory(
+            action.payload,
+            key
+          );
+        });
+
+        Object.entries(current(state.filterByCategory)).map(([key, value]) => {
+          state.filterByCategory[key].count = countByCategory(
+            action.payload,
+            key
+          );
+        });
+
+        Object.entries(current(state.filterBySize)).map(([key, value]) => {
+          state.filterBySize[key].count = countBySize(action.payload, key);
+        });
+
+        state.filterByColor = returnFilterColor(action.payload);
+      }
+    },
+
+    setFilteredProducts: (state, action) => {
+      state.filterProducts = action.payload;
+    },
+
     addCategory: (state, action) => {
-      state.filter.categories.push(action.payload);
+      if (state.filterByCategory[action.payload]) {
+        state.filterByCategory[action.payload].checked = true;
+      }
     },
     removeCategory: (state, action) => {
-      return {
-        ...state,
-        filter: {
-          ...state.filter,
-          categories: state.filter.categories.filter(
-            item => item !== action.payload
-          ),
-        },
-      };
+      if (state.filterByCategory[action.payload]) {
+        state.filterByCategory[action.payload].checked = false;
+      }
     },
+
     addColor: (state, action) => {
-      state.filter.colors.push(action.payload);
+      if (state.filterByColor[action.payload]) {
+        state.filterByColor[action.payload].checked = true;
+      }
     },
     removeColor: (state, action) => {
-      return {
-        ...state,
-        filter: {
-          ...state.filter,
-          colors: state.filter.colors.filter(item => item !== action.payload),
-        },
-      };
+      if (state.filterByColor[action.payload]) {
+        state.filterByColor[action.payload].checked = false;
+      }
     },
+
     resetFilter: state => {
-      return { ...state, filter: initialState.filter };
+      return { ...state, filterByCategory: initialState.filterByCategory };
     },
+
     changePage: (state, action) => {
       state.page = action.payload;
     },
@@ -60,6 +112,8 @@ export const {
   changePage,
   resetPage,
   resetFilter,
+  setProducts,
+  setFilteredProducts,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;

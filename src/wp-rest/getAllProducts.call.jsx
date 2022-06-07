@@ -1,5 +1,5 @@
 import { WC_Api } from "../axios/wp-woocommerce";
-import { returnCategoriesList } from "./wp-rest.utils";
+import { returnAttributeList, returnCategoriesList } from "./wp-rest.utils";
 
 export const getAllProducts = async () => {
   try {
@@ -28,6 +28,8 @@ const processAllProducts = object => {
       tags: item.tags,
       images: item.images,
       attributes: item.attributes,
+      colorList: returnAttributeList(item.attributes, "Color"),
+      sizeList: returnAttributeList(item.attributes, "Size"),
       stockStatus: item.stock_status,
     };
     temp.push(tempProduct);

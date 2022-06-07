@@ -53,4 +53,8 @@ export const BoxText = styled.span`
   font-size: 16px;
   line-height: 24px;
   color: ${props => props.theme.black_1};
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 `;

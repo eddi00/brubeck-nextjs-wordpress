@@ -10,19 +10,27 @@ import {
   resetPage,
 } from "../../../redux/shop/shop.slice";
 
-const ProductGrid = ({ products }) => {
+const ProductGrid = () => {
   const dispatch = useDispatch();
 
-  const shopFilter = useSelector(state => state.shop.filter);
+  const filterByCategory = useSelector(state => state.shop.filterByCategory);
   const page = useSelector(state => state.shop.page);
   const sliceBy = useSelector(state => state.shop.sliceProductsBy);
+  const filteredProductsShop = useSelector(
+    state => state.shop.filteredProducts
+  );
 
   const [filteredProducts, setFilteredProducts] = useState();
 
+  // useEffect(() => {
+  //   setFilteredProducts(filterProducts(products, filterByCategory));
+  //   dispatch(resetPage());
+  // }, [filterByCategory]);
+
   useEffect(() => {
-    setFilteredProducts(filterProducts(products, shopFilter));
+    setFilteredProducts(filteredProductsShop);
     dispatch(resetPage());
-  }, [shopFilter]);
+  }, [filteredProductsShop]);
 
   return (
     <div>
@@ -36,6 +44,7 @@ const ProductGrid = ({ products }) => {
                 <Product key={key} item={item} />
               ))}
           </Grid>
+          <Pagination productsLength={filteredProducts.length} />
         </>
       ) : (
         <h3>Нет продуктов по вашему запросу.</h3>

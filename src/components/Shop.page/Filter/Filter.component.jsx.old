@@ -1,0 +1,178 @@
+
+// import React from "react";
+// import { CheckBox } from "./Filter.logic";
+// import {
+//   BoxText,
+//   ChoiceContainer,
+//   Container,
+//   Line,
+//   Section,
+//   SectionTitle,
+//   Select,
+// } from "./Filter.styles";
+
+// const Filter = () => {
+//   return (
+//     <Container>
+//       <h4>Фильтр</h4>
+//       <Line />
+//       <SectionTitle>Сортировать</SectionTitle>
+//       <Select name="filter-type" id="filter-1">
+//         <option value="volvo">По умолчанию</option>
+//         <option value="saab">1</option>
+//         <option value="mercedes">2</option>
+//         <option value="audi">3</option>
+//       </Select>
+//       <Line />
+//       <Section>
+//         <SectionTitle>Пол</SectionTitle>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-men" />
+//           <BoxText>Мужчина</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-women" />
+//           <BoxText>Женщина</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-unisex" />
+//           <BoxText>Унисекс</BoxText>
+//         </ChoiceContainer>
+//       </Section>
+//       <Section>
+//         <SectionTitle>Дети</SectionTitle>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-boys" />
+//           <BoxText>Мальчики</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-girls" />
+//           <BoxText>Девочки</BoxText>
+//         </ChoiceContainer>
+//       </Section>
+//       <Line />
+//       <Section>
+//         <SectionTitle>Категория</SectionTitle>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-thermal-underware" />
+//           <BoxText>Термобелье</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-fitness-and-running" />
+//           <BoxText>Фитнес и бег</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-underware" />
+//           <BoxText>Нижнее белье</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-accessories" />
+//           <BoxText>Аксессуары</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-new" />
+//           <BoxText>Новинки</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-sale" />
+//           <BoxText>Распродажа</BoxText>
+//         </ChoiceContainer>
+//       </Section>
+//       <Line />
+//       <Section>
+//         <SectionTitle>Цвет</SectionTitle>
+//         <ChoiceContainer>
+//           <CheckBox name="color-black" />
+//           <BoxText>Черный</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="color-white" />
+//           <BoxText>Белый</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="color-red" />
+//           <BoxText>Красный</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="color-green" />
+//           <BoxText>Зелёный</BoxText>
+//         </ChoiceContainer>
+//       </Section>
+//       <Line />
+//       <Section>
+//         <SectionTitle>Фирма</SectionTitle>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-company1" />
+//           <BoxText>Первая</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-company2" />
+//           <BoxText>Вторая</BoxText>
+//         </ChoiceContainer>
+//         <ChoiceContainer>
+//           <CheckBox name="cat-company3" />
+//           <BoxText>Третья</BoxText>
+//         </ChoiceContainer>
+//       </Section>
+//     </Container>
+//   );
+// };
+
+// export default Filter;
+
+
+const setOtherFilters = () => {
+    let filterCategories = [],
+      temp = products;
+    for (const [key, value] of Object.entries(filterByCategoryLocal)) {
+      if (value) filterCategories.push(key);
+    }
+
+    if (filterCategories.length > 0) {
+      // temp = temp.filter(item => {
+      //   if (
+      //     filterCategories.every(element =>
+      //       item.categoriesList.includes(element)
+      //     )
+      //   )
+      //     return true;
+      // });
+
+      temp = temp.filter(item => {
+        if (
+          item.categoriesList.map(element => filterCategories.includes(element))
+        )
+          return true;
+      });
+    }
+
+    // console.log(temp);
+    dispatch(setFilteredProducts(temp));
+
+    const ColorSet = new Set();
+    temp.map(product => {
+      product.colorList.map(item => ColorSet.add(item));
+    });
+
+    let SizeSet = new Set();
+    temp.map(product => {
+      product.sizeList.map(item => SizeSet.add(item));
+    });
+
+    // console.log(ColorSet, SizeSet);
+    //return temp;
+  };
+
+const filterByCategoryLocal = {
+  men: false,
+  women: false,
+  unisex: false,
+  boys: false,
+  girls: false,
+  thermal: false,
+  fitness: false,
+  underware: false,
+  accessories: false,
+  new: false,
+  sale: false,
+};

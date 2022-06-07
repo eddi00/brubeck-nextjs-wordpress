@@ -1,3 +1,5 @@
+import React from "react";
+
 export const returnCategoriesList = categories => {
   let array = [];
   Object.values(categories).forEach(category => array.push(category.slug));
@@ -14,6 +16,5 @@ export const returnAttributeList = (attributes, attributeName) => {
       }
     });
   }
-
   return temp;
 };

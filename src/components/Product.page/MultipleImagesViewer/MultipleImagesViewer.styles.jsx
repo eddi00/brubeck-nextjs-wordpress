@@ -16,9 +16,9 @@ export const ImageGridItem = styled.img`
   border: 1px solid ${props => props.theme.black_4};
   border-radius: 20px;
 
-  &:hover {
+  /* &:hover {
     background-color: ${props => props.theme.black_5};
-  }
+  } */
 `;
 
 export const ImageGridItemContainer = styled.div`
