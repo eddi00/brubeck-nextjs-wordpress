@@ -47,3 +47,19 @@ export const returnFilteredProductsByCategory = (products, filterArray) => {
   });
   return temp;
 };
+
+export const returnFilteredProductsBySize = (products, filterArray) => {
+  let temp = products.filter(item => {
+    if (filterArray.some(element => item.sizeList.includes(element)))
+      return true;
+  });
+  return temp;
+};
+
+export const returnFilteredProductsByColor = (products, filterArray) => {
+  let temp = products.filter(item => {
+    if (filterArray.some(element => item.colorList.includes(element)))
+      return true;
+  });
+  return temp;
+};

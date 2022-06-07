@@ -1,14 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addCategory,
-  addColor,
-  addGender,
   applyCategory,
+  applyColor,
   applyGender,
-  removeCategory,
-  removeColor,
-  removeGender,
+  applySize,
 } from "../../../redux/shop/shop.slice";
 import { CheckboxInput } from "./Filter.styles";
 
@@ -27,7 +23,7 @@ export const CheckBox = props => {
     //const name = e.target.name;
     const checked = e.target.checked;
     const type = e.target.name.split("-")[0];
-    const category = e.target.name.split("-")[1];
+    const category = e.target.name.split("-").slice(1).join("-");
 
     switch (type) {
       // case "cat": {
@@ -38,16 +34,21 @@ export const CheckBox = props => {
       //   }
       //   break;
       // }
-      case "cat": {
-        dispatch(applyCategory(category));
-      }
+      // case "color":
+      //   checked
+      //     ? dispatch(addColor(category))
+      //     : dispatch(removeColor(category));
       case "color":
-        checked
-          ? dispatch(addColor(category))
-          : dispatch(removeColor(category));
+        dispatch(applyColor(category));
+        break;
+      case "cat":
+        dispatch(applyCategory(category));
         break;
       case "gen":
         dispatch(applyGender(category));
+        break;
+      case "size":
+        dispatch(applySize(category));
         break;
     }
   };
