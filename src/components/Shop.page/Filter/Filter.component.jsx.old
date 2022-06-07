@@ -121,6 +121,38 @@
 // export default Filter;
 
 
+const CheckBox = props => {
+    const handleToggle = e => {
+      const checked = e.target.checked;
+      const type = e.target.name.split("-")[0];
+      const category = e.target.name.split("-")[1];
+
+      switch (type) {
+        case "cat": {
+          if (checked) {
+            dispatch(addCategory(category));
+          } else {
+            dispatch(removeCategory(category));
+          }
+          break;
+        }
+        case "color":
+          checked
+            ? dispatch(addColor(category))
+            : dispatch(removeColor(category));
+          break;
+        case "gen":
+          checked
+            ? dispatch(addGender(category))
+            : dispatch(removeGender(category));
+          break;
+      }
+    };
+
+    return <CheckboxInput {...props} type="checkbox" onChange={handleToggle} />;
+  };
+
+
 const setOtherFilters = () => {
     let filterCategories = [],
       temp = products;

@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addCategory,
   addColor,
+  addGender,
   removeCategory,
   removeColor,
+  removeGender,
   setFilteredProducts,
 } from "../../../redux/shop/shop.slice";
 import { returnCategoryRuName } from "../../Utils/returnCategoryRuName";
 import { returnColorRuName } from "../../Utils/returnColorRuName";
+import { CheckBox } from "./Filter.logic";
 import {
   BoxText,
   CheckboxInput,
@@ -26,33 +29,6 @@ const Filter = () => {
   const filterByCategory = useSelector(state => state.shop.filterByCategory);
   const filterByColor = useSelector(state => state.shop.filterByColor);
   const filterBySize = useSelector(state => state.shop.filterBySize);
-  const dispatch = useDispatch();
-
-  const CheckBox = props => {
-    const handleToggle = e => {
-      const checked = e.target.checked;
-      const type = e.target.name.split("-")[0];
-      const category = e.target.name.split("-")[1];
-
-      switch (type) {
-        case "cat": {
-          if (checked) {
-            dispatch(addCategory(category));
-          } else {
-            dispatch(removeCategory(category));
-          }
-          break;
-        }
-        case "color":
-          checked
-            ? dispatch(addColor(category))
-            : dispatch(removeColor(category));
-          break;
-      }
-    };
-
-    return <CheckboxInput {...props} type="checkbox" onChange={handleToggle} />;
-  };
 
   return (
     <Container>
@@ -69,26 +45,26 @@ const Filter = () => {
       <Section>
         <SectionTitle>Пол</SectionTitle>
         <ChoiceContainer>
-          <CheckBox name="cat-men" checked={filterByGender.men.checked} />
+          <CheckBox name="gen-men" checked={filterByGender.men.checked} />
           <BoxText>Мужчина ({filterByGender.men.count})</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <CheckBox name="cat-women" checked={filterByGender.women.checked} />
+          <CheckBox name="gen-women" checked={filterByGender.women.checked} />
           <BoxText>Женщина ({filterByGender.women.count})</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <CheckBox name="cat-unisex" checked={filterByGender.unisex.checked} />
+          <CheckBox name="gen-unisex" checked={filterByGender.unisex.checked} />
           <BoxText>Унисекс ({filterByGender.unisex.count})</BoxText>
         </ChoiceContainer>
       </Section>
       <Section>
         <SectionTitle>Дети</SectionTitle>
         <ChoiceContainer>
-          <CheckBox name="cat-boys" checked={filterByGender.boys.checked} />
+          <CheckBox name="gen-boys" checked={filterByGender.boys.checked} />
           <BoxText>Мальчики ({filterByGender.boys.count})</BoxText>
         </ChoiceContainer>
         <ChoiceContainer>
-          <CheckBox name="cat-girls" checked={filterByGender.girls.checked} />
+          <CheckBox name="gen-girls" checked={filterByGender.girls.checked} />
           <BoxText>Девочки ({filterByGender.girls.count})</BoxText>
         </ChoiceContainer>
       </Section>

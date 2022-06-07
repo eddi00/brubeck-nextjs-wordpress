@@ -1,5 +1,10 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import { countByCategory, countBySize, returnFilterColor } from "./shop.utils";
+import {
+  countByCategory,
+  countBySize,
+  returnFilterColor,
+  returnFilteredProductsByCategory,
+} from "./shop.utils";
 
 const initialState = {
   filterByGender: {
@@ -68,6 +73,27 @@ export const shopSlice = createSlice({
     setFilteredProducts: (state, action) => {
       state.filterProducts = action.payload;
     },
+    applyGender: (state, action) => {
+      if (state.filterByGender[action.payload]) {
+        state.filterByGender[action.payload].checked =
+          !state.filterByGender[action.payload].checked;
+
+        let genderArray = [];
+        Object.entries(current(state.filterByGender)).map(([key, value]) => {
+          if (value.checked === true) genderArray.push(key);
+        });
+
+        let temp = current(state.products);
+        if (genderArray.length > 0) {
+          temp = returnFilteredProductsByCategory(
+            current(state.products),
+            genderArray
+          );
+        }
+        state.productsFilteredByGenderOrCategory = temp;
+        state.filteredProducts = temp;
+      }
+    },
 
     addCategory: (state, action) => {
       if (state.filterByCategory[action.payload]) {
@@ -114,6 +140,7 @@ export const {
   resetFilter,
   setProducts,
   setFilteredProducts,
+  applyGender,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;

@@ -33,3 +33,11 @@ export const returnFilterColor = products => {
 
   return filterColor;
 };
+
+export const returnFilteredProductsByCategory = (products, filterArray) => {
+  let temp = products.filter(item => {
+    if (filterArray.some(element => item.categoriesList.includes(element)))
+      return true;
+  });
+  return temp;
+};
