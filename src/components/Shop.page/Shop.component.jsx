@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import {
   applyCategory,
   applyGender,
+  recount,
+  resetFilter,
   setProducts,
 } from "../../redux/shop/shop.slice";
 import Filter from "./Filter/Filter.component";
@@ -16,17 +18,19 @@ const ShopPage = ({ products }) => {
 
   const router = useRouter();
   const { category } = router.query;
-  console.log({ category });
   dispatch(setProducts(products));
 
   useEffect(() => {
+    console.log({ category });
     if (!router.isReady) return;
 
     if (category) {
+      dispatch(resetFilter());
       dispatch(applyGender(category));
       dispatch(applyCategory(category));
+      dispatch(recount());
     }
-  }, [router.isReady]);
+  }, [router]);
 
   return (
     <Layout>

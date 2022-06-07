@@ -248,6 +248,20 @@ export const shopSlice = createSlice({
         state.filteredProducts = temp;
       }
     },
+    recount: (state, action) => {
+      let temp = current(state.products);
+      // Re-assign count values in filters taking into account the new filtered array
+      Object.entries(current(state.filterByGender)).map(([key, value]) => {
+        state.filterByGender[key].count = countByGender(temp, key);
+      });
+      Object.entries(current(state.filterByCategory)).map(([key, value]) => {
+        state.filterByCategory[key].count = countByCategory(temp, key);
+      });
+      Object.entries(current(state.filterBySize)).map(([key, value]) => {
+        state.filterBySize[key].count = countBySize(temp, key);
+      });
+      state.filterByColor = returnFilterColor(temp);
+    },
 
     addCategory: (state, action) => {
       if (state.filterByCategory[action.payload]) {
@@ -272,7 +286,13 @@ export const shopSlice = createSlice({
     },
 
     resetFilter: state => {
-      return { ...state, filterByCategory: initialState.filterByCategory };
+      return {
+        ...state,
+        filterByCategory: initialState.filterByCategory,
+        filterBySize: initialState.filterBySize,
+        filterByGender: initialState.filterByGender,
+        filterByColor: {},
+      };
     },
 
     changePage: (state, action) => {
@@ -298,6 +318,7 @@ export const {
   applyCategory,
   applySize,
   applyColor,
+  recount,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;
