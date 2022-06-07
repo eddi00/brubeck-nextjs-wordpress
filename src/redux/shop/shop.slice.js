@@ -1,6 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import {
   countByCategory,
+  countByGender,
   countBySize,
   returnFilterColor,
   returnFilteredProductsByCategory,
@@ -104,6 +105,9 @@ export const shopSlice = createSlice({
         state.filteredProducts = temp;
 
         // Re-assign count values in filters taking into account the new filtered array
+        // Object.entries(current(state.filterByGender)).map(([key, value]) => {
+        //   state.filterByGender[key].count = countByGender(temp, key);
+        // });
         Object.entries(current(state.filterByCategory)).map(([key, value]) => {
           state.filterByCategory[key].count = countByCategory(temp, key);
         });
@@ -142,6 +146,9 @@ export const shopSlice = createSlice({
         state.filteredProducts = temp;
 
         // Re-assign count values in filters taking into account the new filtered array
+        Object.entries(current(state.filterByGender)).map(([key, value]) => {
+          state.filterByGender[key].count = countByGender(temp, key);
+        });
         // Object.entries(current(state.filterByCategory)).map(([key, value]) => {
         //   state.filterByCategory[key].count = countByCategory(temp, key);
         // });

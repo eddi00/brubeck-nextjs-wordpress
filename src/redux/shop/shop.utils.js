@@ -1,3 +1,9 @@
+export const countByGender = (products, gender) => {
+  let temp = products.filter(item => item.categoriesList.includes(gender));
+
+  return temp.length;
+};
+
 export const countByCategory = (products, category) => {
   let temp = products.filter(item => item.categoriesList.includes(category));
 
