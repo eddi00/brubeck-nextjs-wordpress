@@ -294,7 +294,18 @@ export const shopSlice = createSlice({
         filterByColor: {},
       };
     },
+    resetFilterWithProducts: (state, action) => {
+      state.filterByCategory = initialState.filterByCategory;
+      state.filterByColor = {};
+      state.filterByGender = initialState.filterByGender;
+      state.filterBySize = initialState.filterBySize;
 
+      state.products = action.payload;
+      state.productsFilteredByGenCatSize = action.payload;
+      state.filteredProducts = action.payload;
+
+      state.page = 1;
+    },
     changePage: (state, action) => {
       state.page = action.payload;
     },
@@ -319,6 +330,7 @@ export const {
   applySize,
   applyColor,
   recount,
+  resetFilterWithProducts,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;

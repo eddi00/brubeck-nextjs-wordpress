@@ -6,6 +6,7 @@ import {
   applyGender,
   recount,
   resetFilter,
+  resetFilterWithProducts,
   resetPage,
   setProducts,
 } from "../../redux/shop/shop.slice";
@@ -26,11 +27,10 @@ const ShopPage = ({ products }) => {
     if (!router.isReady) return;
 
     if (category) {
-      dispatch(resetFilter());
+      dispatch(resetFilterWithProducts(products));
+      dispatch(recount());
       dispatch(applyGender(category));
       dispatch(applyCategory(category));
-      dispatch(recount());
-      dispatch(resetPage());
     }
   }, [router]);
 
