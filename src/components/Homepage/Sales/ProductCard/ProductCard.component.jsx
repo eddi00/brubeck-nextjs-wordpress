@@ -12,14 +12,13 @@ import {
   NoImage,
   PriceContainer,
   ProductBottom,
-  ProductCard,
   ProductImage,
   ProductName,
   WithDiscount,
   WithoutDiscount,
-} from "./Product.styles";
+} from "./ProductCard.styles";
 
-const Product = ({ item }) => {
+const ProductCard = ({ product }) => {
   const [addedToCart, setAddedToCart] = useState(false);
   const [addedToFavorites, setAddedToFavorites] = useState(false);
 
@@ -39,57 +38,58 @@ const Product = ({ item }) => {
   };
 
   return (
-    <ProductCard>
-      <Link href={"/products/" + item.id}>
+    <Card>
+      <Link href={"/products/" + product.id}>
         <ImageContainer>
-          {item.images.length > 0 ? (
-            <ProductImage src={item.images[0].src} layout="fill" />
+          {product.images.length > 0 ? (
+            <ProductImage src={product.images[0].src} layout="fill" />
           ) : (
             <NoImage size="144" />
           )}
         </ImageContainer>
       </Link>
       <Line />
-      <ProductName>
-        <Link href={"/products/" + item.id}>{item.name}</Link>
-      </ProductName>
+      <Link href={"/products/" + product.id}>
+        <ProductName>{product.name}</ProductName>
+      </Link>
+
       <ProductBottom>
         <PriceContainer>
           <CurrencySymbol size="20" />
-          {item.onSale ? (
+          {product.onSale ? (
             <>
-              <WithDiscount>{item.salePrice}</WithDiscount>
-              <WithoutDiscount>{item.regularPrice}</WithoutDiscount>
+              <WithDiscount>{product.salePrice}</WithDiscount>
+              <WithoutDiscount>{product.regularPrice}</WithoutDiscount>
             </>
           ) : (
-            <>{item.price}</>
+            <>{product.price}</>
           )}
         </PriceContainer>
         <div>
           <CartIconOutline
-            size="26"
+            size="24"
             onClick={handleAddToCart}
             addedToCart={addedToCart}
           />
           <CartIconFilled
-            size="26"
+            size="24"
             onClick={handleAddToCart}
             addedToCart={addedToCart}
           />
         </div>
       </ProductBottom>
       <HeartIconOutline
-        size="26"
+        size="24"
         onClick={handleAddToFavorites}
         addedToFavorites={addedToFavorites}
       />
       <HeartIconFilled
-        size="26"
+        size="24"
         onClick={handleAddToFavorites}
         addedToFavorites={addedToFavorites}
       />
-    </ProductCard>
+    </Card>
   );
 };
 
-export default Product;
+export default ProductCard;

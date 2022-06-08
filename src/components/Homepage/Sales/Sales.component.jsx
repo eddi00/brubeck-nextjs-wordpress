@@ -1,24 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import {
-  ButtonShop,
-  CartIconOutline,
-  CurrencySymbol,
-  HeartIconOutline,
-  ImageContainer,
-  Layout,
-  Line,
-  NoImage,
-  PriceContainer,
-  ProductBottom,
-  ProductCard,
-  ProductGrid,
-  ProductImage,
-  ProductName,
-  Title,
-  WithDiscount,
-  WithoutDiscount,
-} from "./Sales.styles";
+import { ButtonShop, Layout, ProductGrid, Title } from "./Sales.styles";
+import ProductCard from "./ProductCard/ProductCard.component";
 
 const SalesHomepage = ({ products }) => {
   return (
@@ -26,34 +9,9 @@ const SalesHomepage = ({ products }) => {
       <Title>Распродажа</Title>
       <ProductGrid>
         {products &&
-          products.slice(0, 8).map((item, index) => (
-            <ProductCard key={index}>
-              <ImageContainer>
-                {item.images.length > 0 ? (
-                  <ProductImage src={item.images[0].src} layout="fill" />
-                ) : (
-                  <NoImage size="144" />
-                )}
-              </ImageContainer>
-              <Line />
-              <ProductName>{item.name}</ProductName>
-              <ProductBottom>
-                <PriceContainer>
-                  <CurrencySymbol size="16" />
-                  {item.onSale ? (
-                    <>
-                      <WithDiscount>{item.salePrice}</WithDiscount>
-                      <WithoutDiscount>{item.regularPrice}</WithoutDiscount>
-                    </>
-                  ) : (
-                    <>{item.price}</>
-                  )}
-                </PriceContainer>
-                <CartIconOutline size="20" />
-              </ProductBottom>
-              <HeartIconOutline size="20" />
-            </ProductCard>
-          ))}
+          products
+            .slice(0, 8)
+            .map((item, index) => <ProductCard key={index} product={item} />)}
       </ProductGrid>
       <Link href="/shop">
         <ButtonShop>

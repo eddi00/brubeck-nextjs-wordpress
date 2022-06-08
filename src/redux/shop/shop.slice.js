@@ -262,29 +262,6 @@ export const shopSlice = createSlice({
       });
       state.filterByColor = returnFilterColor(temp);
     },
-
-    addCategory: (state, action) => {
-      if (state.filterByCategory[action.payload]) {
-        state.filterByCategory[action.payload].checked = true;
-      }
-    },
-    removeCategory: (state, action) => {
-      if (state.filterByCategory[action.payload]) {
-        state.filterByCategory[action.payload].checked = false;
-      }
-    },
-
-    addColor: (state, action) => {
-      if (state.filterByColor[action.payload]) {
-        state.filterByColor[action.payload].checked = true;
-      }
-    },
-    removeColor: (state, action) => {
-      if (state.filterByColor[action.payload]) {
-        state.filterByColor[action.payload].checked = false;
-      }
-    },
-
     resetFilter: state => {
       return {
         ...state,
@@ -316,10 +293,6 @@ export const shopSlice = createSlice({
 });
 
 export const {
-  addCategory,
-  removeCategory,
-  addColor,
-  removeColor,
   changePage,
   resetPage,
   resetFilter,

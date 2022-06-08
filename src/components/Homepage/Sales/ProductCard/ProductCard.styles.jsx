@@ -5,17 +5,10 @@ import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { GiClothes } from "react-icons/gi";
 
-// export const Card = styled.div`
-//   /* height: 360px;
-//   width: 240px; */
-//   height: 450px;
-//   width: 300px;
-//   border: 1px solid black;
-// `;
-
-export const ProductCard = styled.div`
-  width: 300px;
-  height: 450px;
+// See https://getcssscan.com/css-box-shadow-examples
+export const Card = styled.div`
+  width: 266px;
+  height: 400px;
 
   /* width: 240px;
   height: 360px; */
@@ -37,7 +30,7 @@ export const ProductCard = styled.div`
 
 export const ImageContainer = styled.div`
   /* height: 200px; */
-  height: 300px;
+  height: 250px;
   width: 100%;
   position: relative;
 
@@ -65,6 +58,7 @@ export const ProductName = styled.span`
   font-weight: 500;
   line-height: 20px;
   text-align: left;
+  cursor: pointer;
 `;
 
 export const ProductBottom = styled.div`
@@ -78,7 +72,7 @@ export const ProductBottom = styled.div`
 `;
 
 export const PriceContainer = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 600;
@@ -102,11 +96,11 @@ export const CurrencySymbol = styled(BiRuble)`
 `;
 
 export const CartIconOutline = styled(MdOutlineShoppingCart)`
-  color: ${props => props.theme.primary_color_2};
+  color: ${props => props.theme.black_1};
   cursor: pointer;
   transition: all 0.1s ease;
-
   &:hover {
+    color: ${props => props.theme.primary_color_2};
     transform: scale(1.25);
   }
 
@@ -129,8 +123,8 @@ export const HeartIconOutline = styled(IoMdHeartEmpty)`
   top: 1rem;
   right: 1rem;
   color: ${props => props.theme.black_1};
-  transition: all 0.1s ease;
   cursor: pointer;
+  transition: all 0.1s ease;
 
   &:hover {
     color: ${props => props.theme.primary_color_2};

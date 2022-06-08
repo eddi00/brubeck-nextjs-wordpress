@@ -6,6 +6,7 @@ import {
   Description,
   DescriptionContent,
   DescriptionTitle,
+  GoBackButton,
   Layout,
   TopSection,
 } from "./Product.styles";
@@ -13,7 +14,9 @@ import {
 const Product = ({ product }) => {
   return (
     <Layout>
-      <Link href="/shop">Вернутся в магазин</Link>
+      <Link href="/shop">
+        <GoBackButton>Вернутся в магазин</GoBackButton>
+      </Link>
       <TopSection>
         <Images images={product.images} />
         <Details product={product} />
