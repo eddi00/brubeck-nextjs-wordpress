@@ -102,7 +102,7 @@ export const CurrencySymbol = styled(BiRuble)`
 `;
 
 export const CartIconOutline = styled(MdOutlineShoppingCart)`
-  color: ${props => props.theme.primary_color_2};
+  color: ${props => props.theme.black_1};
   cursor: pointer;
   transition: all 0.1s ease;
 

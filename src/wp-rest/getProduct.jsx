@@ -1,5 +1,5 @@
 import { WC_Api } from "../axios/wp-woocommerce";
-import { returnAttributeList, returnCategoriesList } from "./wp-rest.utils";
+import { returnCategoriesList, returnAttributeList } from "./wp-rest.utils";
 
 export const getProduct = async productId => {
   try {

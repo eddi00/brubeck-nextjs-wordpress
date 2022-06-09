@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import { getHomepageData } from "../../src/wp-rest/getHomepageData.call";
 import { getMenuCategoriesData } from "../../src/wp-rest/getMenuCategoriesData.call";
-import { getProduct } from "../../src/wp-rest/getProduct.call";
+import { getProduct } from "../../src/wp-rest/getProduct";
 import { getAllProducts } from "../../src/wp-rest/getAllProducts.call";
 
 import { Header } from "../../src/components/Header/Header.components";

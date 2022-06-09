@@ -140,7 +140,7 @@ export const PriceContainer = styled.div`
 `;
 
 export const PriceIcon = styled(FaRubleSign)`
-  color: ${props => props.theme.black_2};
+  color: ${props => props.theme.black_1};
   margin-right: 0.5rem;
 `;
 
