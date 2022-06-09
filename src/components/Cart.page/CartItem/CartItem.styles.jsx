@@ -25,7 +25,9 @@ export const LoadingCartItem = styled(MyLoader)`
 export const ItemContainer = styled.div`
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid ${props => props.theme.black_5};
+  margin-bottom: 1rem;
 `;
 
 export const LeftSide = styled.div`
@@ -79,8 +81,8 @@ export const RemoveFromCart = styled.div`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: 180px auto;
-  column-gap: 4rem;
+  grid-template-columns: 220px auto;
+  column-gap: 2rem;
 `;
 export const LeftSideGrid = styled.div``;
 
@@ -93,7 +95,6 @@ export const FlexWrapper = styled.div`
 `;
 
 export const FlexWrapperShort = styled(FlexWrapper)`
-  max-width: 180px;
   margin-bottom: 1rem;
 `;
 
