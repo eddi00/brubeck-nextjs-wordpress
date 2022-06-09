@@ -35,6 +35,7 @@ const AddToCartBox = ({ product, setShowSuccess }) => {
         categoriesList: product.categoriesList,
         price: product.price,
         sku: product.sku,
+        quantity: 1,
       };
       dispatch(addItem(tempProduct));
       setShowSuccess(true);

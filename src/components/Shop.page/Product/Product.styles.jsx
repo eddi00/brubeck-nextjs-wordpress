@@ -71,7 +71,7 @@ export const ProductBottom = styled.div`
   border-top: 1px solid ${props => props.theme.black_4};
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
   height: 2rem;
   margin-top: auto;

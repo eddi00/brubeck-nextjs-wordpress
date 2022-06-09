@@ -7,7 +7,7 @@ import {
   FlexWrapper,
   Layout,
 } from "./Cart.styles";
-import CartItem from "./CartItem/CartItem.component";
+import CartItemWrapper from "./CartItem/CartItem.wrapper";
 
 const Cart = () => {
   const cart = useSelector(state => state.cart.cartItems);
@@ -20,7 +20,7 @@ const Cart = () => {
         <FlexWrapper>
           <CartList>
             {cart.map((item, index) => (
-              <CartItem cartItem={item} key={index} index={index} />
+              <CartItemWrapper cartItem={item} key={index} index={index} />
             ))}
           </CartList>
           <CheckoutContainer></CheckoutContainer>

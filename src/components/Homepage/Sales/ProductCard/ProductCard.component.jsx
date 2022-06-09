@@ -65,7 +65,7 @@ const ProductCard = ({ product }) => {
             <>{product.price}</>
           )}
         </PriceContainer>
-        <div>
+        {/* <div>
           <CartIconOutline
             size="24"
             onClick={handleAddToCart}
@@ -76,7 +76,7 @@ const ProductCard = ({ product }) => {
             onClick={handleAddToCart}
             addedToCart={addedToCart}
           />
-        </div>
+        </div> */}
       </ProductBottom>
       <HeartIconOutline
         size="24"

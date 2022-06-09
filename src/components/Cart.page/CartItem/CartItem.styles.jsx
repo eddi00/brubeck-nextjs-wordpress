@@ -30,10 +30,12 @@ export const ItemContainer = styled.div`
 
 export const LeftSide = styled.div`
   flex: 1;
+`;
+
+export const LeftSideWrapper = styled.div`
   & > * {
     display: inline-block;
   }
-  position: relative;
 `;
 
 export const RightSide = styled.div`
@@ -46,6 +48,7 @@ export const RightSide = styled.div`
 
 export const ImageContainer = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   max-height: 150px;
@@ -55,10 +58,29 @@ export const NoImage = styled(GiClothes)`
   color: ${props => props.theme.black_5};
 `;
 
+export const RemoveFromCart = styled.div`
+  margin-top: 1rem;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: 500;
+  /* box-sizing: border-box; */
+  padding: 0.25em 0.5em;
+  border-radius: 20px;
+  width: 80%;
+  cursor: pointer;
+
+  background-color: ${props => props.theme.secondary_1_color_4_25A};
+  color: ${props => props.theme.secondary_1_color_2};
+  &:hover {
+    background-color: ${props => props.theme.secondary_1_color_5};
+  }
+`;
+
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 1rem;
+  grid-template-columns: 180px auto;
+  column-gap: 4rem;
 `;
 export const LeftSideGrid = styled.div``;
 
@@ -87,8 +109,8 @@ export const FlexWrapperStart = styled(FlexWrapper)`
 export const DetailName = styled.div`
   font-family: "Open Sans";
   font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 14px;
   color: ${props => props.theme.black_1};
 `;
 
@@ -102,8 +124,8 @@ export const DetailBox = styled.div`
 
   font-family: "Open Sans";
   font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 14px;
   color: ${props => props.theme.black_1};
 
   &::first-letter {
@@ -123,4 +145,32 @@ export const PriceContainer = styled.div`
 export const PriceIcon = styled(FaRubleSign)`
   color: ${props => props.theme.black_1};
   margin-right: 0.5rem;
+`;
+
+export const Quantity = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const QuantityBox = styled.div`
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  background-color: ${props => props.theme.black_5};
+  padding: 0.5em 1.5em;
+  border-radius: 20px;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: ${props => props.theme.black_1};
+`;
+
+export const QuantityBoxClick = styled(QuantityBox)`
+  cursor: pointer;
+  &:hover {
+    background-color: ${props => props.theme.black_4};
+  }
 `;

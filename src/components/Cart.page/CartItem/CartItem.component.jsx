@@ -1,10 +1,9 @@
 import Image from "next/image";
-import React from "react";
-import useSWR from "swr";
+import React, { useState } from "react";
 import {
   DetailBox,
   DetailName,
-  FlexWrapperMargin,
+  QuantityBoxClick,
   FlexWrapperShort,
   FlexWrapperStart,
   Grid,
@@ -16,39 +15,40 @@ import {
   NoImage,
   PriceContainer,
   PriceIcon,
+  Quantity,
+  QuantityBox,
   RightSide,
   RightSideGrid,
+  LeftSideWrapper,
+  RemoveFromCart,
 } from "./CartItem.styles";
 
 import { returnColorRuName } from "../../Utils/returnColorRuName";
-// const fetcher = async () => {
-//   const res = await axios.post("/api/getProduct", {
-//     param: cartItem.id,
-//   });
-//   const data = await res.data;
-//   return data;
-// };
-
-const fetcher = url => fetch(url).then(res => res.json());
 
 const CartItem = ({ cartItem, index }) => {
-  const { data, error } = useSWR(`/api/product/${cartItem.id}`, fetcher);
+  const [quantity, setQuantity] = useState(cartItem.quantity);
 
-  if (error) return <div>An error has occured</div>;
-  if (!data) return <LoadingCartItem />;
+  const handleAddQty = () => {
+    setQuantity(++quantity);
+  };
+  const handleRemoveQty = () => {
+    if (quantity > 1) setQuantity(--quantity);
+  };
 
-  console.log(data, index);
   return (
     <ItemContainer>
       <LeftSide>
-        <h4>{index + 1}.</h4>
-        <ImageContainer>
-          {cartItem.imagesSrc ? (
-            <Image src={cartItem.imagesSrc} width="150px" height="150px" />
-          ) : (
-            <NoImage size="90" />
-          )}
-        </ImageContainer>
+        <LeftSideWrapper>
+          <h4>{index + 1}.</h4>
+          <ImageContainer>
+            {cartItem.imagesSrc ? (
+              <Image src={cartItem.imagesSrc} width="150px" height="150px" />
+            ) : (
+              <NoImage size="90" />
+            )}
+          </ImageContainer>
+        </LeftSideWrapper>
+        <RemoveFromCart>Убрать с корзины</RemoveFromCart>
       </LeftSide>
       <RightSide>
         <h4>{cartItem.name}</h4>
@@ -69,6 +69,14 @@ const CartItem = ({ cartItem, index }) => {
           </LeftSideGrid>
           <RightSideGrid>
             <FlexWrapperStart>
+              <DetailName>Количество:</DetailName>
+              <Quantity>
+                <QuantityBoxClick onClick={handleRemoveQty}>-</QuantityBoxClick>
+                <QuantityBox>{quantity}</QuantityBox>
+                <QuantityBoxClick onClick={handleAddQty}>+</QuantityBoxClick>
+              </Quantity>
+            </FlexWrapperStart>
+            <FlexWrapperStart>
               <DetailName>Цена за 1 шт.:</DetailName>
               <PriceContainer>
                 <PriceIcon size="16" />
@@ -79,7 +87,7 @@ const CartItem = ({ cartItem, index }) => {
               <DetailName>Продукт * Количество:</DetailName>
               <PriceContainer>
                 <PriceIcon size="16" />
-                <h4>{cartItem.price}</h4>
+                <h4>{cartItem.price * quantity}</h4>
               </PriceContainer>
             </FlexWrapperStart>
           </RightSideGrid>
