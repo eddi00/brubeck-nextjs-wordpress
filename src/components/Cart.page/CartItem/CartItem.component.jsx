@@ -11,7 +11,6 @@ import {
   ItemContainer,
   LeftSide,
   LeftSideGrid,
-  LoadingCartItem,
   NoImage,
   PriceContainer,
   PriceIcon,
@@ -25,17 +24,17 @@ import {
 
 import { returnColorRuName } from "../../Utils/returnColorRuName";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../../../redux/cart/cart.actions";
+import { removeItem, addItem } from "../../../redux/cart/cart.actions";
 
 const CartItem = ({ cartItem, index }) => {
-  const [quantity, setQuantity] = useState(cartItem.quantity);
+  // const [quantity, setQuantity] = useState(cartItem.quantity);
   const dispatch = useDispatch();
 
-  const handleAddQty = () => {
-    setQuantity(++quantity);
-  };
+  // const handleAddQty = () => {
+  //   setQuantity(++quantity);
+  // };
   const handleRemoveQty = () => {
-    if (quantity > 1) setQuantity(--quantity);
+    if (cartItem.quantity > 1) dispatch(removeItem(cartItem));
   };
 
   return (
@@ -77,8 +76,10 @@ const CartItem = ({ cartItem, index }) => {
               <DetailName>Количество:</DetailName>
               <Quantity>
                 <QuantityBoxClick onClick={handleRemoveQty}>-</QuantityBoxClick>
-                <QuantityBox>{quantity}</QuantityBox>
-                <QuantityBoxClick onClick={handleAddQty}>+</QuantityBoxClick>
+                <QuantityBox>{cartItem.quantity}</QuantityBox>
+                <QuantityBoxClick onClick={() => dispatch(addItem(cartItem))}>
+                  +
+                </QuantityBoxClick>
               </Quantity>
             </FlexWrapperStart>
             <FlexWrapperStart>
@@ -92,7 +93,7 @@ const CartItem = ({ cartItem, index }) => {
               <DetailName>Продукт * Количество:</DetailName>
               <PriceContainer>
                 <PriceIcon size="16" />
-                <h4>{cartItem.price * quantity}</h4>
+                <h4>{cartItem.price * cartItem.quantity}</h4>
               </PriceContainer>
             </FlexWrapperStart>
           </RightSideGrid>

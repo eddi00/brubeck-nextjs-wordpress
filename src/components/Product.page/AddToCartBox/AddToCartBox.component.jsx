@@ -18,6 +18,7 @@ const AddToCartBox = ({ product, setShowSuccess }) => {
   const { colorList, sizeList } = product;
   const [color, setColor] = useState(null);
   const [size, setSize] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   const [showError, setShowError] = useState(false);
 
@@ -35,11 +36,15 @@ const AddToCartBox = ({ product, setShowSuccess }) => {
         categoriesList: product.categoriesList,
         price: product.price,
         sku: product.sku,
-        quantity: 1,
+        quantity: quantity,
       };
       dispatch(addItem(tempProduct));
       setShowSuccess(true);
     }
+  };
+
+  const handleQuantity = e => {
+    setQuantity(parseInt(e.target.value));
   };
 
   return (
@@ -64,8 +69,20 @@ const AddToCartBox = ({ product, setShowSuccess }) => {
         </TextGroup>
       )}
 
+      <TextGroup>
+        <div>Количество:</div>
+        <select onChange={e => handleQuantity(e)}>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </TextGroup>
+
       <AddToCart
-        showMargin={colorList.length > 0 || sizeList > 0}
+        // showMargin={colorList.length > 0 || sizeList > 0}
+        showMargin
         onClick={() => handleAddToCart(product)}
       >
         <AddToCartIcon size="20" />
