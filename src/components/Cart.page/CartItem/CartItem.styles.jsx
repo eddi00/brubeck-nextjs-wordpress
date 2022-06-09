@@ -70,10 +70,10 @@ export const RemoveFromCart = styled.div`
   width: 80%;
   cursor: pointer;
 
-  background-color: ${props => props.theme.secondary_1_color_4_25A};
-  color: ${props => props.theme.secondary_1_color_2};
+  background-color: ${props => props.theme.black_5};
+  color: ${props => props.theme.black_1};
   &:hover {
-    background-color: ${props => props.theme.secondary_1_color_5};
+    background-color: ${props => props.theme.black_4};
   }
 `;
 
@@ -137,7 +137,7 @@ export const PriceContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.theme.black_5};
+  background-color: ${props => props.theme.primary_color_5};
   padding: 0.25em 1.25em;
   border-radius: 20px;
 `;

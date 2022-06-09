@@ -24,9 +24,12 @@ import {
 } from "./CartItem.styles";
 
 import { returnColorRuName } from "../../Utils/returnColorRuName";
+import { useDispatch } from "react-redux";
+import { removeItem } from "../../../redux/cart/cart.actions";
 
 const CartItem = ({ cartItem, index }) => {
   const [quantity, setQuantity] = useState(cartItem.quantity);
+  const dispatch = useDispatch();
 
   const handleAddQty = () => {
     setQuantity(++quantity);
@@ -48,7 +51,9 @@ const CartItem = ({ cartItem, index }) => {
             )}
           </ImageContainer>
         </LeftSideWrapper>
-        <RemoveFromCart>Убрать с корзины</RemoveFromCart>
+        <RemoveFromCart onClick={() => dispatch(removeItem(cartItem))}>
+          Убрать с корзины
+        </RemoveFromCart>
       </LeftSide>
       <RightSide>
         <h4>{cartItem.name}</h4>
