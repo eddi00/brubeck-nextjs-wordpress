@@ -19,6 +19,7 @@ import {
   Categories,
   AllCategories,
   CartIconRef,
+  HeartIconRef,
 } from "./Header.styles";
 
 export const Header = ({ data, categories }) => {
@@ -56,7 +57,10 @@ export const Header = ({ data, categories }) => {
             <Link href="/cart" passHref>
               <CartIconRef size="24" />
             </Link>
-            <HeartIcon size="24" />
+            <Link href="/favorites" passHref>
+              <HeartIconRef size="24" />
+            </Link>
+
             <LoginText>Войти</LoginText>
           </Wrapper>
         </MainMenuGrid>

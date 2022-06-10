@@ -125,6 +125,14 @@ export const HeartIcon = styled(IoMdHeart)`
   margin-right: 1rem;
   cursor: pointer;
 `;
+export const HeartIconRef = React.forwardRef(({ onClick, href, size }, ref) => {
+  return (
+    <a href={href} onClick={onClick} ref={ref}>
+      <HeartIcon size={size} />
+    </a>
+  );
+});
+HeartIconRef.displayName = "HeartIconRef";
 
 export const LoginText = styled.span`
   font-family: "Open Sans";
@@ -140,8 +148,6 @@ export const CategoriesLayout = styled.div`
   width: 1400px;
   height: 40px;
   border-bottom: 1px solid ${props => props.theme.black_4};
-  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-  /* z-index: 5; */
 `;
 
 export const Categories = styled.div`

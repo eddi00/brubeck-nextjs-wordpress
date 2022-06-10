@@ -1,36 +1,8 @@
-import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import useSWR from "swr";
-import {
-  DetailBox,
-  DetailName,
-  QuantityBoxClick,
-  FlexWrapperShort,
-  FlexWrapperStart,
-  Grid,
-  ImageContainer,
-  ItemContainer,
-  LeftSide,
-  LeftSideGrid,
-  LoadingCartItem,
-  NoImage,
-  PriceContainer,
-  PriceIcon,
-  Quantity,
-  QuantityBox,
-  RightSide,
-  RightSideGrid,
-} from "./CartItem.styles";
+import { LoadingCartItem } from "./CartItem.styles";
 
-import { returnColorRuName } from "../../Utils/returnColorRuName";
 import CartItem from "./CartItem.component";
-// const fetcher = async () => {
-//   const res = await axios.post("/api/getProduct", {
-//     param: cartItem.id,
-//   });
-//   const data = await res.data;
-//   return data;
-// };
 
 const fetcher = url => fetch(url).then(res => res.json());
 
