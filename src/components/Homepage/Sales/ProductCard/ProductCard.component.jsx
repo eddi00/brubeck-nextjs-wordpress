@@ -1,5 +1,10 @@
 import Link from "next/link";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  removeItem,
+} from "../../../../redux/favorites/favorites.slice";
 import {
   Card,
   CartIconFilled,
@@ -19,23 +24,10 @@ import {
 } from "./ProductCard.styles";
 
 const ProductCard = ({ product }) => {
-  const [addedToCart, setAddedToCart] = useState(false);
-  const [addedToFavorites, setAddedToFavorites] = useState(false);
-
-  const handleAddToCart = () => {
-    if (addedToCart) {
-      setAddedToCart(false);
-    } else {
-      setAddedToCart(true);
-    }
-  };
-  const handleAddToFavorites = () => {
-    if (addedToFavorites) {
-      setAddedToFavorites(false);
-    } else {
-      setAddedToFavorites(true);
-    }
-  };
+  const dispatch = useDispatch();
+  const favorite = useSelector(state => state.favorites.favoriteItems)[
+    product.id
+  ];
 
   return (
     <Card>
@@ -65,28 +57,16 @@ const ProductCard = ({ product }) => {
             <>{product.price}</>
           )}
         </PriceContainer>
-        {/* <div>
-          <CartIconOutline
-            size="24"
-            onClick={handleAddToCart}
-            addedToCart={addedToCart}
-          />
-          <CartIconFilled
-            size="24"
-            onClick={handleAddToCart}
-            addedToCart={addedToCart}
-          />
-        </div> */}
       </ProductBottom>
       <HeartIconOutline
         size="24"
-        onClick={handleAddToFavorites}
-        addedToFavorites={addedToFavorites}
+        addedToFavorites={favorite}
+        onClick={() => dispatch(addItem(product.id))}
       />
       <HeartIconFilled
         size="24"
-        onClick={handleAddToFavorites}
-        addedToFavorites={addedToFavorites}
+        addedToFavorites={favorite}
+        onClick={() => dispatch(removeItem(product.id))}
       />
     </Card>
   );

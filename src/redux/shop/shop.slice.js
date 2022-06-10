@@ -43,7 +43,7 @@ const initialState = {
 };
 
 export const shopSlice = createSlice({
-  name: "shopFilter",
+  name: "shop",
   initialState,
   reducers: {
     setProducts: (state, action) => {

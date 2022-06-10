@@ -23,7 +23,6 @@ const ShopPage = ({ products }) => {
   dispatch(setProducts(products));
 
   useEffect(() => {
-    console.log({ category });
     if (!router.isReady) return;
 
     if (category) {
