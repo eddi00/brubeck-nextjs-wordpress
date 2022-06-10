@@ -24,15 +24,15 @@ import {
 
 import { returnColorRuName } from "../../Utils/returnColorRuName";
 import { useDispatch } from "react-redux";
-import { removeItem, addItem } from "../../../redux/cart/cart.actions";
+import {
+  removeItem,
+  addItem,
+  clearItemFromCart,
+} from "../../../redux/cart/cart.actions";
 
 const CartItem = ({ cartItem, index }) => {
-  // const [quantity, setQuantity] = useState(cartItem.quantity);
   const dispatch = useDispatch();
 
-  // const handleAddQty = () => {
-  //   setQuantity(++quantity);
-  // };
   const handleRemoveQty = () => {
     if (cartItem.quantity > 1) dispatch(removeItem(cartItem));
   };
@@ -43,14 +43,14 @@ const CartItem = ({ cartItem, index }) => {
         <LeftSideWrapper>
           <h4>{index + 1}.</h4>
           <ImageContainer>
-            {cartItem.imagesSrc ? (
-              <Image src={cartItem.imagesSrc} width="150px" height="150px" />
+            {cartItem.imageSrc ? (
+              <Image src={cartItem.imageSrc} width="150px" height="150px" />
             ) : (
               <NoImage size="90" />
             )}
           </ImageContainer>
         </LeftSideWrapper>
-        <RemoveFromCart onClick={() => dispatch(removeItem(cartItem))}>
+        <RemoveFromCart onClick={() => dispatch(clearItemFromCart(cartItem))}>
           Убрать с корзины
         </RemoveFromCart>
       </LeftSide>

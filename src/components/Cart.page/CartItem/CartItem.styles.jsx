@@ -25,9 +25,9 @@ export const LoadingCartItem = styled(MyLoader)`
 export const ItemContainer = styled.div`
   display: flex;
   gap: 1rem;
-  padding-top: 1rem;
+
   border-bottom: 1px solid ${props => props.theme.black_5};
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 `;
 
 export const LeftSide = styled.div`
@@ -35,9 +35,8 @@ export const LeftSide = styled.div`
 `;
 
 export const LeftSideWrapper = styled.div`
-  & > * {
-    display: inline-block;
-  }
+  display: flex;
+  position: relative;
 `;
 
 export const RightSide = styled.div`
@@ -50,10 +49,13 @@ export const RightSide = styled.div`
 
 export const ImageContainer = styled.div`
   display: flex;
-  position: relative;
   align-items: center;
   justify-content: center;
   max-height: 150px;
+
+  img {
+    object-fit: contain;
+  }
 `;
 
 export const NoImage = styled(GiClothes)`
@@ -62,6 +64,7 @@ export const NoImage = styled(GiClothes)`
 
 export const RemoveFromCart = styled.div`
   margin-top: 1rem;
+  margin-bottom: 1rem;
   text-align: center;
   font-family: "Open Sans";
   font-size: 14px;

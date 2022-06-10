@@ -8,6 +8,7 @@ import {
   Layout,
 } from "./Cart.styles";
 import CartItemWrapper from "./CartItem/CartItem.wrapper";
+import CheckoutBox from "./CheckoutBox/CheckoutBox.component";
 
 const Cart = () => {
   const cart = useSelector(state => state.cart.cartItems);
@@ -23,7 +24,9 @@ const Cart = () => {
               <CartItemWrapper cartItem={item} key={index} index={index} />
             ))}
           </CartList>
-          <CheckoutContainer></CheckoutContainer>
+          <CheckoutContainer>
+            <CheckoutBox />
+          </CheckoutContainer>
         </FlexWrapper>
       ) : (
         <h4>Ваша корзина пустая.</h4>

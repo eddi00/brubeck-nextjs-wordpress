@@ -70,7 +70,7 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   );
 };
 
-const compareItems = (item1, item2) => {
+export const compareItems = (item1, item2) => {
   return (
     item1.id === item2.id &&
     item1.size === item2.size &&
@@ -78,10 +78,10 @@ const compareItems = (item1, item2) => {
   );
 };
 
-const differentItems = (item1, item2) => {
+export const differentItems = (item1, item2) => {
   return (
-    item1.id !== item2.id &&
-    item1.size !== item2.size &&
+    item1.id !== item2.id ||
+    item1.size !== item2.size ||
     item1.color !== item2.color
   );
 };

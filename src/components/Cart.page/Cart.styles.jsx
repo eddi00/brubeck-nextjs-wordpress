@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const Layout = styled.div`
   width: 1168px;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
   margin: 0 auto;
 
   & > h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 
   & > h4 {

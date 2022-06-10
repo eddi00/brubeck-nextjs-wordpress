@@ -35,7 +35,7 @@ export const SuccessMessage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 240px;
+  /* width: 240px; */
   height: 64px;
 `;
 
@@ -52,7 +52,9 @@ export const SuccessText = styled.span`
 
 export const GoToCart = styled.div`
   border-radius: 10px;
-  width: 240px;
+  /* width: 240px; */
+  width: 100%;
+
   height: 48px;
   display: flex;
   justify-content: center;

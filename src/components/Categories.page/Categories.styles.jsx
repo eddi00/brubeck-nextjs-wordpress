@@ -3,10 +3,10 @@ import { MdChevronRight } from "react-icons/md";
 
 export const Layout = styled.main`
   width: 1168px;
-  margin: 2rem auto;
+  margin: 3rem auto;
   padding: 0 1rem;
   h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 `;
 
