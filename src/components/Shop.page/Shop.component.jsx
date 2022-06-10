@@ -22,14 +22,24 @@ const ShopPage = ({ products }) => {
   const { category } = router.query;
   dispatch(setProducts(products));
 
+  console.log(category);
+
   useEffect(() => {
     if (!router.isReady) return;
 
     if (category) {
       dispatch(resetFilterWithProducts(products));
       dispatch(recount());
-      dispatch(applyGender(category));
-      dispatch(applyCategory(category));
+
+      if (Array.isArray(category)) {
+        category.forEach(item => {
+          dispatch(applyGender(item));
+          dispatch(applyCategory(item));
+        });
+      } else {
+        dispatch(applyGender(category));
+        dispatch(applyCategory(category));
+      }
     }
   }, [router]);
 
