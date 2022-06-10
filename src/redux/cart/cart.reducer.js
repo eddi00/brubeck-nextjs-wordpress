@@ -3,6 +3,7 @@ import {
   addItemToCart,
   removeItemFromCart,
   differentItems,
+  modifyItemFromCart,
 } from "./cart.utils";
 
 const INITIAL_STATE = {
@@ -33,6 +34,15 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.payload),
+      };
+    case CartActionTypes.MODIFY_ITEM:
+      return {
+        ...state,
+        cartItems: modifyItemFromCart(
+          state.cartItems,
+          action.payload.oldItem,
+          action.payload.newItem
+        ),
       };
     case CartActionTypes.EMPTY_CART:
       return INITIAL_STATE;

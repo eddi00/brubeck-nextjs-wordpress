@@ -10,10 +10,10 @@ const FavoriteItemWrapper = props => {
   const { id } = props;
   const { data, error } = useSWR(`/api/product/${id}`, fetcher);
 
-  if (error) return <div>An error has occured</div>;
+  if (error) console.log(error);
   if (!data) return <LoadingCartItem />;
 
-  console.log(data);
+  // console.log(data);
 
   return <FavoriteItem {...props} cartItem={data} />;
 };

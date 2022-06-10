@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ContentLoader from "react-content-loader";
 import { GiClothes } from "react-icons/gi";
 import { FaRubleSign } from "react-icons/fa";
+import { MdWarning } from "react-icons/md";
 
 const MyLoader = () => (
   <ContentLoader
@@ -20,6 +21,27 @@ const MyLoader = () => (
 
 export const LoadingCartItem = styled(MyLoader)`
   margin: 2rem 0;
+`;
+
+export const WarningBox = styled.div`
+  background-color: ${props => props.theme.secondary_2_color_3_10A};
+  color: ${props => props.theme.secondary_2_color_3};
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* max-width: 180px; */
+
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+export const WarningIcon = styled(MdWarning)`
+  margin-right: 0.5rem;
 `;
 
 export const ItemContainer = styled.div`

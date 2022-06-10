@@ -5,7 +5,6 @@ import { Layout } from "./Favorites.styles";
 
 const Favorites = () => {
   const favorites = useSelector(state => state.favorites.favoriteItems);
-  console.log(favorites);
 
   return (
     <Layout>

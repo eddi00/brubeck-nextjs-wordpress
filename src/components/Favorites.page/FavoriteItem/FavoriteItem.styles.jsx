@@ -44,6 +44,11 @@ export const RightSide = styled.div`
 
   & > h4 {
     margin-bottom: 1rem;
+    cursor: pointer;
+  }
+
+  & > h4:hover {
+    color: ${props => props.theme.primary_color_3};
   }
 `;
 
@@ -51,8 +56,8 @@ export const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 150px;
-
+  /* max-height: 150px; */
+  cursor: pointer;
   img {
     object-fit: contain;
   }
@@ -63,8 +68,8 @@ export const NoImage = styled(GiClothes)`
 `;
 
 export const RemoveFromCart = styled.div`
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem auto;
+  /* width: 180px; */
   text-align: center;
   font-family: "Open Sans";
   font-size: 14px;
@@ -72,7 +77,7 @@ export const RemoveFromCart = styled.div`
   /* box-sizing: border-box; */
   padding: 0.25em 0.5em;
   border-radius: 20px;
-  width: 80%;
+  width: 70%;
   cursor: pointer;
 
   background-color: ${props => props.theme.black_5};

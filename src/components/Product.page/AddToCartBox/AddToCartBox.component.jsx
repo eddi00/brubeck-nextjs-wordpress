@@ -12,6 +12,7 @@ import {
 import DropdownColor from "./DropdownColor/DropdownColor.component";
 import DropDownSize from "./DropdownSize/DropdownSize.component";
 import { addItem } from "../../../redux/cart/cart.actions";
+import { returnAddToCartObject } from "../../Utils/returnAddtoCartObject";
 
 const AddToCartBox = ({ product, setShowSuccess }) => {
   const dispatch = useDispatch();
@@ -28,17 +29,7 @@ const AddToCartBox = ({ product, setShowSuccess }) => {
     } else if (sizeList.length > 0 && size === null) {
       setShowError(true);
     } else {
-      let tempProduct = {
-        id: product.id,
-        name: product.name,
-        size: size,
-        color: color,
-        categoriesList: product.categoriesList,
-        price: product.price,
-        sku: product.sku,
-        quantity: quantity,
-        imageSrc: product.images.length > 0 ? product.images[0].src : null,
-      };
+      let tempProduct = returnAddToCartObject(product, size, color, quantity);
       dispatch(addItem(tempProduct));
       setShowSuccess(true);
     }

@@ -19,6 +19,7 @@ import {
 
 import { useDispatch } from "react-redux";
 import { removeItem } from "../../../redux/favorites/favorites.slice";
+import Link from "next/link";
 
 const FavoriteItem = ({ cartItem, index, id }) => {
   const dispatch = useDispatch();
@@ -28,24 +29,28 @@ const FavoriteItem = ({ cartItem, index, id }) => {
       <LeftSide>
         <LeftSideWrapper>
           <h4>{index + 1}.</h4>
-          <ImageContainer>
-            {cartItem.images.length > 0 ? (
-              <Image
-                src={cartItem.images[0].src}
-                width="150px"
-                height="150px"
-              />
-            ) : (
-              <NoImage size="90" />
-            )}
-          </ImageContainer>
+          <Link href={`/products/${id}`}>
+            <ImageContainer>
+              {cartItem.images.length > 0 ? (
+                <Image
+                  src={cartItem.images[0].src}
+                  width="300px"
+                  height="300px"
+                />
+              ) : (
+                <NoImage size="90" />
+              )}
+            </ImageContainer>
+          </Link>
         </LeftSideWrapper>
         <RemoveFromCart onClick={() => dispatch(removeItem(id))}>
           Убрать
         </RemoveFromCart>
       </LeftSide>
       <RightSide>
-        <h4>{cartItem.name}</h4>
+        <Link href={`/products/${id}`}>
+          <h4>{cartItem.name}</h4>
+        </Link>
         <Grid>
           <LeftSideGrid>
             <FlexWrapperStart>

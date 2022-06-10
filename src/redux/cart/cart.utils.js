@@ -35,6 +35,23 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   );
 };
 
+export const modifyItemFromCart = (cartItems, cartItemToModify, newItem) => {
+  // const existingCartItem = cartItems.find(cartItem =>
+  //   compareItems(cartItem, cartItemToModify)
+  // );
+
+  // if (existingCartItem.quantity === 1) {
+  return cartItems.map(cartItem =>
+    compareItems(cartItem, cartItemToModify)
+      ? {
+          // ...cartItem,
+          ...newItem,
+        }
+      : cartItem
+  );
+  // }
+};
+
 export const compareItems = (item1, item2) => {
   return (
     item1.id === item2.id &&
