@@ -1,4 +1,4 @@
-import { getProduct } from "../../src/wp-rest/getProduct";
+import { getProduct } from "../../../src/wp-rest/getProduct";
 
 export default async function handler(req, res) {
   try {

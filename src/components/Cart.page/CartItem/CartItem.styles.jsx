@@ -46,7 +46,7 @@ export const WarningIcon = styled(MdWarning)`
 
 export const ItemContainer = styled.div`
   display: flex;
-  gap: 1rem;
+  /* gap: 1rem; */
 
   border-bottom: 1px solid ${props => props.theme.black_5};
   margin-bottom: 2rem;

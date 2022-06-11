@@ -10,7 +10,7 @@ import {
   TextGrid,
 } from "./Hero.styles";
 
-const HeroHomepage = ({ data }) => {
+const Hero = ({ data }) => {
   return (
     <Layout>
       <HorizontalGrid>
@@ -37,4 +37,4 @@ const HeroHomepage = ({ data }) => {
   );
 };
 
-export default HeroHomepage;
+export default Hero;

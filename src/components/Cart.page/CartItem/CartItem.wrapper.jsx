@@ -16,10 +16,7 @@ const CartItemWrapper = props => {
   if (error) return <div>An error has occured</div>;
   if (!data) return <LoadingCartItem />;
 
-  let changedPrice = false;
   if (cartItem.price != data.price) {
-    changedPrice = true;
-
     let newItem = cartItem;
     newItem.price = data.price;
     newItem.changedPrice = true;

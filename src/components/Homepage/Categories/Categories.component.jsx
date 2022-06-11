@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { Button, Category, Layout } from "./Categories.styles";
 
-const CategoriesHomepage = ({ data }) => {
+const Categories = ({ data }) => {
   return (
     <Layout>
       <Category src={data.category_one_image}>
@@ -24,4 +24,4 @@ const CategoriesHomepage = ({ data }) => {
   );
 };
 
-export default CategoriesHomepage;
+export default Categories;

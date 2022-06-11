@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { Layout, Text } from "./Section.styles";
 
-const SectionHomepage = ({ data }) => {
+const Section = ({ data }) => {
   return (
     <Layout>
       {data.about_image != null && (
@@ -18,4 +18,4 @@ const SectionHomepage = ({ data }) => {
   );
 };
 
-export default SectionHomepage;
+export default Section;

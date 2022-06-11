@@ -2,14 +2,14 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export const Layout = styled.div`
-  margin: 0 auto;
+  margin: 2rem auto;
   width: 1168px;
   padding: 1rem 1rem 0rem 1rem;
 `;
 
 export const Title = styled.h3`
   text-align: center;
-  padding: 3rem 0;
+  padding-bottom: 3rem;
 `;
 
 export const ProductGrid = styled.div`
@@ -34,4 +34,11 @@ export const ButtonShop = styled.button`
   h5 {
     margin: 0;
   }
+`;
+
+export const ShortLine = styled.div`
+  margin: 1rem auto;
+  width: 280px;
+  height: 0px;
+  border-bottom: 1px solid ${props => props.theme.black_4};
 `;

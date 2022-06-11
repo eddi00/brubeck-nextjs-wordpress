@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { Header } from "../src/components/Header/Header.components";
-import HeroHomepage from "../src/components/Homepage/Hero/Hero.component";
-import SalesHomepage from "../src/components/Homepage/Sales/Sales.component";
-import SectionHomepage from "../src/components/Homepage/Section/Section.component";
+import Hero from "../src/components/Homepage/Hero/Hero.component";
+import Sales from "../src/components/Homepage/Sales/Sales.component";
+import Section from "../src/components/Homepage/Section/Section.component";
 import {
   getHomepageData,
   processHomepageData,
@@ -10,7 +10,7 @@ import {
 import { getMenuCategoriesData } from "../src/wp-rest/getMenuCategoriesData.call";
 import { getProductsByCategoryId } from "../src/wp-rest/getProductsByCategoryId.call";
 import styled from "styled-components";
-import CategoriesHomepage from "../src/components/Homepage/Categories/Categories.component";
+import Categories from "../src/components/Homepage/Categories/Categories.component";
 import Footer from "../src/components/Footer/Footer.component";
 
 const Line = styled.div`
@@ -21,7 +21,6 @@ const Line = styled.div`
 `;
 
 export default function Home({ data, categoriesLinkList, salesProducts }) {
-  // console.log(salesProducts);
   return (
     <div>
       <Head>
@@ -32,12 +31,12 @@ export default function Home({ data, categoriesLinkList, salesProducts }) {
       <Header data={data} categories={categoriesLinkList} />
 
       <main>
-        <HeroHomepage data={data} />
-        <SalesHomepage products={salesProducts} />
+        <Hero data={data} />
+        <Sales products={salesProducts} />
         <Line />
-        <SectionHomepage data={data} />
+        <Section data={data} />
         <Line />
-        <CategoriesHomepage data={data} />
+        <Categories data={data} />
         <Line />
       </main>
 

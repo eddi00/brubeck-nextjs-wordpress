@@ -1,11 +1,18 @@
 import Link from "next/link";
 import React from "react";
-import { ButtonShop, Layout, ProductGrid, Title } from "./Sales.styles";
+import {
+  ButtonShop,
+  Layout,
+  ProductGrid,
+  ShortLine,
+  Title,
+} from "./Sales.styles";
 import ProductCard from "./ProductCard/ProductCard.component";
 
-const SalesHomepage = ({ products }) => {
+const Sales = ({ products }) => {
   return (
     <Layout>
+      <ShortLine />
       <Title>Распродажа</Title>
       <ProductGrid>
         {products &&
@@ -22,4 +29,4 @@ const SalesHomepage = ({ products }) => {
   );
 };
 
-export default SalesHomepage;
+export default Sales;
