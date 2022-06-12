@@ -22,6 +22,7 @@ const Product = ({ item }) => {
   const dispatch = useDispatch();
   const favorite = useSelector(state => state.favorites.favoriteItems)[item.id];
 
+  console.log(item);
   return (
     <ProductCard>
       <Link href={"/products/" + item.id}>
@@ -40,7 +41,7 @@ const Product = ({ item }) => {
       <ProductBottom>
         <PriceContainer>
           <CurrencySymbol size="20" />
-          {item.onSale ? (
+          {item.onSale && item.salePrice !== "" ? (
             <>
               <WithDiscount>{item.salePrice}</WithDiscount>
               <WithoutDiscount>{item.regularPrice}</WithoutDiscount>

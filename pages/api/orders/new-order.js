@@ -1,11 +1,47 @@
-import { getProduct } from "../../../src/wp-rest/getProduct";
+import { WC_Api } from "../../../src/axios/wp-woocommerce";
 
-export default async function handler(req, res) {
-  try {
-    const data = await getProduct(req.body.param);
-    res.status(200).json(data);
-  } catch (error) {
-    console.error(error);
-    return res.status(error.status || 500).end(error.message);
-  }
+export default async function handlesGuestOrder(req, res) {
+  const { cart, customer } = req.body;
+  console.log(customer);
+
+  const line_items = [];
+
+  cart.forEach(item => {
+    line_items.push({ product_id: item.id, quantity: item.quantity });
+  });
+
+  console.log(line_items);
+
+  const data = {
+    payment_method: "bacs",
+    payment_method_title: "Direct Bank Transfer",
+    set_paid: false,
+    billing: {
+      first_name: customer.firstName,
+      last_name: customer.lastname,
+      country: "RU",
+      email: customer.email,
+      phone: customer.phone,
+    },
+    line_items,
+    // shipping_lines: [
+    //   {
+    //     method_id: "flat_rate",
+    //     method_title: "Flat Rate",
+    //     total: "10.00",
+    //   },
+    // ],
+  };
+
+  WC_Api.post("orders", data)
+    .then(response => {
+      console.log(response.data);
+      res.status(200).json({ response: response.data });
+    })
+    .catch(error => {
+      console.log(error.data);
+      res.status(400).json({ response: error.data });
+    });
+
+  // res.status(200).json({ body: req.body });
 }

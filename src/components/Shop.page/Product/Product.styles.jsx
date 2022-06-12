@@ -4,6 +4,7 @@ import { BiRuble } from "react-icons/bi";
 import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { GiClothes } from "react-icons/gi";
+import { FaRubleSign } from "react-icons/fa";
 
 // export const Card = styled.div`
 //   /* height: 360px;
@@ -97,6 +98,7 @@ export const WithDiscount = styled.span`
 `;
 
 export const CurrencySymbol = styled(BiRuble)`
+  margin-left: 0.5rem;
   margin-right: 0.25rem;
   color: ${props => props.theme.black_1};
 `;

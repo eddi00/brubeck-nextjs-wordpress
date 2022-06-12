@@ -1,25 +1,14 @@
 import React, { useState } from "react";
-import { Layout } from "./Checkout.styles";
-import CheckoutForm from "./CheckoutForm/CheckoutForm.component";
+import { FlexWrapper, Layout } from "./Checkout.styles";
+import GuestForm from "./GuestForm/GuestForm.component";
 
 const Checkout = () => {
-  const [firstView, setFirstView] = useState(true);
-
   return (
     <Layout>
-      <h2>Оформление заказа</h2>
-
-      {firstView ? (
-        <div>
-          <button onClick={() => setFirstView(false)}>
-            Оформить без создания аккаунта
-          </button>
-
-          <button>Войти или зарегистрироваться</button>
-        </div>
-      ) : (
-        <CheckoutForm />
-      )}
+      {/* <h2>Оформление заказа</h2> */}
+      <FlexWrapper>
+        <GuestForm />
+      </FlexWrapper>
     </Layout>
   );
 };

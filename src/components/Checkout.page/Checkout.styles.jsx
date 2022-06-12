@@ -13,3 +13,7 @@ export const Layout = styled.div`
     width: 100%;
   }
 `;
+
+export const FlexWrapper = styled.div`
+  display: flex;
+`;
