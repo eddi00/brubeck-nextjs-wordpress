@@ -7,7 +7,11 @@ export default async function handlesGuestOrder(req, res) {
   const line_items = [];
 
   cart.forEach(item => {
-    line_items.push({ product_id: item.id, quantity: item.quantity });
+    let temp = { product_id: item.id, quantity: item.quantity };
+
+    if (item.variationId !== null) temp.variation_id = item.variationId;
+
+    line_items.push(temp);
   });
 
   console.log(line_items);
@@ -18,7 +22,7 @@ export default async function handlesGuestOrder(req, res) {
     set_paid: false,
     billing: {
       first_name: customer.firstName,
-      last_name: customer.lastname,
+      last_name: customer.lastName,
       country: "RU",
       email: customer.email,
       phone: customer.phone,

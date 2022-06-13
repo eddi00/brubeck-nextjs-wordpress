@@ -28,15 +28,21 @@ export const InputGroup = styled.div`
     border-radius: 5px;
     width: 280px;
     border: none;
-    outline: none;
+
     box-sizing: border-box;
     padding-left: 1rem;
-    transition: all 0.3s;
+    /* transition: all 0.1s; */
+
+    outline: none;
+    /* outline-color: ${props => props.theme.primary_color_3};
+    outline-width: 2px; */
 
     font-weight: 400;
 
+    &:hover,
     &:focus {
-      background-color: rgba(0, 0, 0, 0.2);
+      /* background-color: rgba(0, 0, 0, 0.2); */
+      outline: ${props => props.theme.primary_color_3} solid 2px;
     }
   }
 `;
@@ -69,4 +75,14 @@ export const SubmitButton = styled.button`
   &:hover {
     background-color: ${props => props.theme.primary_color_2};
   }
+`;
+
+export const LoadingContainer = styled.div`
+  margin-top: 0.5rem;
+  width: 280px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

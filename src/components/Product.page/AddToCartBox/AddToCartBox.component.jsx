@@ -30,6 +30,7 @@ const AddToCartBox = ({ product, setShowSuccess }) => {
       setShowError(true);
     } else {
       let tempProduct = returnAddToCartObject(product, size, color, quantity);
+
       dispatch(addItem(tempProduct));
       setShowSuccess(true);
     }
