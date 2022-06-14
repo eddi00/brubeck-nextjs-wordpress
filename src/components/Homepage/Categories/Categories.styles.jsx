@@ -9,11 +9,20 @@ export const Layout = styled.div`
   column-gap: 2rem;
 `;
 
-export const Category = styled.div`
+export const ImageContainer = styled.div`
+  position: relative;
   height: 400px;
   width: 366px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
+
+  span,
+  img {
+    z-index: 1;
+  }
+`;
+
+export const Category = styled.div`
   background-image: url(${props => props.src});
 `;
 
@@ -34,4 +43,7 @@ export const Button = styled.div`
   font-family: "Ubuntu";
   font-size: 14px;
   font-weight: 500;
+
+  z-index: 5;
+  position: relative;
 `;

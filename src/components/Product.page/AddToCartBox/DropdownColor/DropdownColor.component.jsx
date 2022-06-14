@@ -12,7 +12,7 @@ import {
   PaletteIcon,
 } from "./DropdownColor.styles";
 
-const DropdownColor = ({ setColor, colorList }) => {
+const DropdownColor = ({ setColor, colorList, colorTable }) => {
   const [show, setShow] = useState(false);
   const handleClickListItem = item => {
     setColor(item);
@@ -26,7 +26,7 @@ const DropdownColor = ({ setColor, colorList }) => {
       <List show={show}>
         {colorList.map((item, key) => (
           <ListItem key={key} onClick={() => handleClickListItem(item)}>
-            <ColorCircle color={returnHexColor(item)} />
+            <ColorCircle color={returnHexColor(colorTable, item)} />
             <ColorText>{returnColorRuName(item)}</ColorText>
           </ListItem>
         ))}

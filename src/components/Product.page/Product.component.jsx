@@ -11,7 +11,7 @@ import {
   TopSection,
 } from "./Product.styles";
 
-const Product = ({ product }) => {
+const Product = ({ product, colorTable }) => {
   return (
     <Layout>
       <Link href="/shop">
@@ -19,7 +19,7 @@ const Product = ({ product }) => {
       </Link>
       <TopSection>
         <Images images={product.images} />
-        <Details product={product} />
+        <Details product={product} colorTable={colorTable} />
       </TopSection>
       <Description>
         <DescriptionTitle>Описание и характеристики</DescriptionTitle>

@@ -49,7 +49,8 @@ export const List = styled.ul`
   left: 0px;
   /* margin-top: 10px; */
   border: 1px solid #ededee;
-  box-shadow: 0px 1px 1px 1px #ededee;
+  /* box-shadow: 0px 1px 1px 1px #ededee; */
+  border-radius: 10px;
 
   li {
     border-bottom: 1px solid ${props => props.theme.black_5};

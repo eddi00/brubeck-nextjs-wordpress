@@ -14,7 +14,7 @@ import DropDownSize from "./DropdownSize/DropdownSize.component";
 import { addItem } from "../../../redux/cart/cart.actions";
 import { returnAddToCartObject } from "../../Utils/returnAddtoCartObject";
 
-const AddToCartBox = ({ product, setShowSuccess }) => {
+const AddToCartBox = ({ product, setShowSuccess, colorTable }) => {
   const dispatch = useDispatch();
   const { colorList, sizeList } = product;
   const [color, setColor] = useState(null);
@@ -43,7 +43,11 @@ const AddToCartBox = ({ product, setShowSuccess }) => {
   return (
     <Container>
       {colorList.length > 0 && (
-        <DropdownColor colorList={colorList} setColor={setColor} />
+        <DropdownColor
+          colorList={colorList}
+          setColor={setColor}
+          colorTable={colorTable}
+        />
       )}
       {sizeList.length > 0 && (
         <DropDownSize sizeList={sizeList} setSize={setSize} />

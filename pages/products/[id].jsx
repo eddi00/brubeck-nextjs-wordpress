@@ -8,8 +8,14 @@ import { getAllProducts } from "../../src/wp-rest/getAllProducts.call";
 import { Header } from "../../src/components/Header/Header.components";
 import Footer from "../../src/components/Footer/Footer.component";
 import Product from "../../src/components/Product.page/Product.component";
+import { getColorTable } from "../../src/wp-rest/getColorTable.call";
 
-export default function ProductId({ data, categoriesLinkList, product }) {
+export default function ProductId({
+  data,
+  categoriesLinkList,
+  product,
+  colorTable,
+}) {
   return (
     <div>
       <Head>
@@ -19,7 +25,7 @@ export default function ProductId({ data, categoriesLinkList, product }) {
       </Head>
       <Header data={data} categories={categoriesLinkList} />
 
-      <Product product={product} />
+      <Product product={product} colorTable={colorTable} />
 
       <Footer data={data} />
     </div>
@@ -44,16 +50,17 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
-  console.log(params);
   const data = await getHomepageData();
   const categoriesLinkList = await getMenuCategoriesData();
   const product = await getProduct(params.id);
+  const colorTable = await getColorTable();
 
   return {
     props: {
       data,
       categoriesLinkList,
       product,
+      colorTable,
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in

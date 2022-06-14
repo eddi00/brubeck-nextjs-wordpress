@@ -12,6 +12,11 @@ export const Layout = styled.div`
   object-fit: contain;
 `;
 
+export const ImageContainer = styled.div`
+  position: relative;
+  height: 500px;
+`;
+
 export const Text = styled.div`
   font-family: "Ubuntu";
   font-style: normal;

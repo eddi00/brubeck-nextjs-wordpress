@@ -26,9 +26,10 @@ import {
   Wrapper,
 } from "./Details.styles";
 
-const Details = ({ product }) => {
+const Details = ({ product, colorTable }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   console.log(product);
+  console.log(colorTable);
   return (
     <Container>
       <h3>{product.name}</h3>
@@ -59,7 +60,10 @@ const Details = ({ product }) => {
               <DetailName>Цвета</DetailName>
               <DetailWrapper>
                 {product.colorList.map((item, key) => (
-                  <ColorCircle key={key} color={returnHexColor(item)} />
+                  <ColorCircle
+                    key={key}
+                    color={returnHexColor(colorTable, item)}
+                  />
                 ))}
               </DetailWrapper>
             </DetailSection>
@@ -84,7 +88,11 @@ const Details = ({ product }) => {
         </DetailsContainer>
         <AddToCartContainer>
           {!showSuccess ? (
-            <AddToCartBox product={product} setShowSuccess={setShowSuccess} />
+            <AddToCartBox
+              product={product}
+              setShowSuccess={setShowSuccess}
+              colorTable={colorTable}
+            />
           ) : (
             <SuccessContainer>
               <SuccessMessage>
