@@ -16,4 +16,5 @@ export const Layout = styled.div`
 
 export const FlexWrapper = styled.div`
   display: flex;
+  gap: 1rem;
 `;

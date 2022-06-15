@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../../redux/user/user.slice";
 import {
   AddressIcon,
   LogoText,
@@ -23,6 +25,8 @@ import {
 } from "./Header.styles";
 
 export const Header = ({ data, categories }) => {
+  const loggedUser = !!useSelector(state => state.user.currentUser);
+  const dispatch = useDispatch();
   return (
     <header>
       <TopBarLayout>
@@ -60,8 +64,15 @@ export const Header = ({ data, categories }) => {
             <Link href="/favorites" passHref>
               <HeartIconRef size="24" />
             </Link>
-
-            <LoginText>Войти</LoginText>
+            {!loggedUser ? (
+              <Link href="/login">
+                <LoginText>Войти</LoginText>
+              </Link>
+            ) : (
+              <Link href="/">
+                <LoginText onClick={() => dispatch(signOut())}>Выйти</LoginText>
+              </Link>
+            )}
           </Wrapper>
         </MainMenuGrid>
       </MainMenuLayout>

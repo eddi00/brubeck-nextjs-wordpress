@@ -24,7 +24,7 @@ const Product = ({ item }) => {
 
   console.log(item);
   return (
-    <ProductCard>
+    <ProductCard data-aos="fade">
       <Link href={"/products/" + item.id}>
         <ImageContainer>
           {item.images.length > 0 ? (
