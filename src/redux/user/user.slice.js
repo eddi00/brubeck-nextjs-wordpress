@@ -44,6 +44,8 @@ export const userSlice = createSlice({
       return { ...initialState };
     },
     setRedirectFalse: (state, action) => {
+      state.loginLoading = false;
+      state.registerLoading = false;
       state.redirect = false;
     },
   },
@@ -61,7 +63,6 @@ export const userSlice = createSlice({
         maxAge: 60 * 60 * 24 * 14,
       });
       state.currentUser = jwt_decode(data.jwt);
-      state.loginLoading = false;
       state.redirect = true;
     });
     builder.addCase(signInWithEmail.rejected, (state, action) => {
@@ -84,7 +85,6 @@ export const userSlice = createSlice({
       });
       state.currentUser = jwt_decode(data.jwt);
 
-      state.registerLoading = false;
       state.redirect = true;
     });
     builder.addCase(createCustomer.rejected, (state, action) => {
