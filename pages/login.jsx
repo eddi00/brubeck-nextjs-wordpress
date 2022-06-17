@@ -1,10 +1,25 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../src/components/Footer/Footer.component";
 import { Header } from "../src/components/Header/Header.components";
+import Login from "../src/components/Login.page/Login.component";
+import { setRedirectFalse } from "../src/redux/user/user.slice";
 import { getHomepageData } from "../src/wp-rest/getHomepageData.call";
 import { getMenuCategoriesData } from "../src/wp-rest/getMenuCategoriesData.call";
 
 export default function LoginPage({ data, categoriesLinkList }) {
+  const redirect = useSelector(state => state.user.redirect);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (redirect) {
+      router.push("/dashboard");
+      dispatch(setRedirectFalse());
+    }
+  }, [redirect]);
+
   return (
     <div>
       <Head>
@@ -13,7 +28,9 @@ export default function LoginPage({ data, categoriesLinkList }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header data={data} categories={categoriesLinkList} />
-      <h1>Login Page</h1>
+
+      <Login />
+
       <Footer data={data} />
     </div>
   );

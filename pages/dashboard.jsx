@@ -1,6 +1,6 @@
-import axios from "axios";
-import { getCookie } from "cookies-next";
+import { getCookie, removeCookies, setCookies } from "cookies-next";
 import Head from "next/head";
+import { WP_BaseHttp } from "../src/axios/wp";
 import Footer from "../src/components/Footer/Footer.component";
 import { Header } from "../src/components/Header/Header.components";
 import { getHomepageData } from "../src/wp-rest/getHomepageData.call";
@@ -22,39 +22,58 @@ export default function DashboardPage({ data, categoriesLinkList }) {
 }
 
 export async function getServerSideProps(context) {
-  // const res = await fetch(`https://...`);
-  // const data = await res.json();
-
-  // if (!data) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
-
   const token = getCookie("accessToken", context);
-  // console.log(token, { context });
+  const { req, res } = context;
 
-  // if (!token) {
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
-  // const validationRes = await axios.post("/api/auth/validate", {
-  //   accessToken: token,
-  // });
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
-  // if (validationRes.status === 400) {
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  let invalidToken = false;
+  let response;
+
+  try {
+    response = await WP_BaseHttp.get(
+      "wp-json/simple-jwt-login/v1/auth/validate",
+      config
+    );
+  } catch {
+    invalidToken = true;
+  }
+
+  if (invalidToken) {
+    try {
+      response = await WP_BaseHttp.post(
+        "wp-json/simple-jwt-login/v1/auth/refresh",
+        {
+          JWT: token,
+        }
+      );
+      removeCookies("accessToken", { req, res });
+      setCookies("accessToken", response.data.data.jwt, {
+        req,
+        res,
+        maxAge: 60 * 60 * 24 * 14,
+        sameSite: true,
+      });
+    } catch (err) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
+  }
 
   const data = await getHomepageData();
   const categoriesLinkList = await getMenuCategoriesData();

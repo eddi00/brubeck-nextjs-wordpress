@@ -3,15 +3,7 @@ import styled from "styled-components";
 export const Layout = styled.div`
   width: 1168px;
   margin: 3rem auto;
-  padding: 0 1rem;
-
-  h2 {
-    margin-bottom: 3rem;
-  }
-
-  @media screen and (max-width: 1200px) {
-    width: 100%;
-  }
+  padding: 0rem 1rem;
 `;
 
 export const FlexWrapper = styled.div`
@@ -20,6 +12,13 @@ export const FlexWrapper = styled.div`
 `;
 
 export const LoginContainer = styled.div`
+  h3 {
+    margin-bottom: 2rem;
+  }
+  flex: 1;
+`;
+
+export const RegisterContainer = styled.div`
   h3 {
     margin-bottom: 2rem;
   }
