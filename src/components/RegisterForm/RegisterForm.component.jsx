@@ -27,7 +27,6 @@ const RegisterForm = () => {
   } = useForm({ mode: "onBlur" });
 
   const onSubmit = async data => {
-    console.log(data);
     dispatch(createCustomer(data));
   };
 

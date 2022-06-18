@@ -28,8 +28,8 @@ import {
 
 const Details = ({ product, colorTable }) => {
   const [showSuccess, setShowSuccess] = useState(false);
-  console.log(product);
-  console.log(colorTable);
+  // console.log(product);
+  // console.log(colorTable);
   return (
     <Container>
       <h3>{product.name}</h3>

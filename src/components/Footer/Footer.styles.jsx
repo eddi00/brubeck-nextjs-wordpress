@@ -23,7 +23,7 @@ export const Grid = styled.div`
 `;
 
 export const Logo = styled(LogoText)`
-  color: white;
+  color: white !important;
 `;
 
 export const Line = styled.div`

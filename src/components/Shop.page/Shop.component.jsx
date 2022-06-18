@@ -22,7 +22,7 @@ const ShopPage = ({ products }) => {
   const { category } = router.query;
   dispatch(setProducts(products));
 
-  console.log(category);
+  // console.log(category);
 
   useEffect(() => {
     if (!router.isReady) return;

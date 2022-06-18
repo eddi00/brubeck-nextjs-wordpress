@@ -27,10 +27,10 @@ import {
 import { returnColorRuName } from "../../Utils/returnColorRuName";
 import { useDispatch } from "react-redux";
 import {
-  removeItem,
   addItem,
   clearItemFromCart,
-} from "../../../redux/cart/cart.actions";
+  removeItem,
+} from "../../../redux/cart/cart.slice";
 
 const CartItem = ({ cartItem, index }) => {
   const dispatch = useDispatch();

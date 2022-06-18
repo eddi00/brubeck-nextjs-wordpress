@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import { MdPhone, MdDomain, MdSearch, MdShoppingCart } from "react-icons/md";
 import { IoMdHeart } from "react-icons/io";
+import { FaUser } from "react-icons/fa";
 import Link from "next/link";
 
 export const TopBarLayout = styled.div`
@@ -134,6 +135,20 @@ export const HeartIconRef = React.forwardRef(({ onClick, href, size }, ref) => {
 });
 HeartIconRef.displayName = "HeartIconRef";
 
+export const UserIcon = styled(FaUser)`
+  color: ${props => props.theme.primary_color_2};
+  margin-right: 1rem;
+  cursor: pointer;
+`;
+export const UserIconRef = React.forwardRef(({ onClick, href, size }, ref) => {
+  return (
+    <a href={href} onClick={onClick} ref={ref}>
+      <UserIcon size={size} />
+    </a>
+  );
+});
+UserIconRef.displayName = "UserIconRef";
+
 export const LoginText = styled.span`
   font-family: "Open Sans";
   font-style: normal;
@@ -141,6 +156,7 @@ export const LoginText = styled.span`
   font-size: 12px;
   color: ${props => props.theme.primary_color_2};
   cursor: pointer;
+  margin-left: ${props => (props.marginleft ? "1rem" : "0")};
 `;
 
 export const CategoriesLayout = styled.div`

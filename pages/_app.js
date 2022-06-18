@@ -12,6 +12,7 @@ import { theme } from "../src/theme/theme";
 
 import "aos/dist/aos.css";
 import Aos from "aos";
+import GlobalWrapper from "../src/components/GlobalWrapper/GlobalWrapper.component";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -26,7 +27,9 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
+          <GlobalWrapper>
+            <Component {...pageProps} />
+          </GlobalWrapper>
         </ThemeProvider>
       </PersistGate>
     </Provider>

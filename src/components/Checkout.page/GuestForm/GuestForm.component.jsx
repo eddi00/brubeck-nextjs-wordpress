@@ -21,8 +21,6 @@ const GuestForm = () => {
   const cartItems = useSelector(state => selectCartItems(state));
   const [loading, setLoading] = useState(false);
 
-  console.log(cartItems);
-
   const {
     register,
     handleSubmit,
@@ -31,8 +29,6 @@ const GuestForm = () => {
 
   const onSubmit = async data => {
     setLoading(true);
-
-    console.log(data);
 
     let bodyRequest = {
       cart: cartItems,
