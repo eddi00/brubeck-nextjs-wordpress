@@ -2,7 +2,7 @@ import { WC_Api } from "../../../src/axios/wp-woocommerce";
 
 export default async function handlesGuestOrder(req, res) {
   const { cart, customer } = req.body;
-  console.log(customer);
+  //console.log(customer);
 
   const line_items = [];
 
@@ -14,7 +14,7 @@ export default async function handlesGuestOrder(req, res) {
     line_items.push(temp);
   });
 
-  console.log(line_items);
+  //console.log(line_items);
 
   const data = {
     payment_method: "bacs",
@@ -39,7 +39,7 @@ export default async function handlesGuestOrder(req, res) {
 
   WC_Api.post("orders", data)
     .then(response => {
-      console.log(response.data);
+      //console.log(response.data);
       res.status(200).json({ response: response.data });
     })
     .catch(error => {

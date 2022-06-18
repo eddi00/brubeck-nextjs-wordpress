@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import cartReducer from "./cart/cart.reducer";
+import cartReducer from "./cart/cart.slice";
 import shopReducer from "./shop/shop.slice";
 import favoritesReducer from "./favorites/favorites.slice";
 import userReducer from "./user/user.slice";

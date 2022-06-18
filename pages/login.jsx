@@ -17,6 +17,7 @@ export default function LoginPage({ data, categoriesLinkList }) {
     if (redirect) {
       router.push("/dashboard");
       dispatch(setRedirectFalse());
+      //dispatch(get)
     }
   }, [redirect]);
 

@@ -32,7 +32,7 @@ export const InputGroup = styled.div`
 
     box-sizing: border-box;
     padding-left: 1rem;
-    /* transition: all 0.1s; */
+    transition: all 0.3s;
 
     outline: none;
     /* outline-color: ${props => props.theme.primary_color_3};
@@ -40,10 +40,9 @@ export const InputGroup = styled.div`
 
     font-weight: 400;
 
-    &:hover,
-    &:focus {
-      /* background-color: rgba(0, 0, 0, 0.2); */
-      outline: ${props => props.theme.primary_color_3} solid 2px;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+      /* outline: ${props => props.theme.primary_color_3} solid 2px; */
     }
   }
 `;

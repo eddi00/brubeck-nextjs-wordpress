@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../../redux/user/user.slice";
+import { emptyCart } from "../../redux/cart/cart.actions";
+import { signOutUser } from "../../redux/user/user.slice";
 import {
   AddressIcon,
   LogoText,
@@ -14,7 +15,6 @@ import {
   TopBarGrid,
   TopBarLayout,
   Wrapper,
-  HeartIcon,
   LoginText,
   CategoriesLayout,
   Category,
@@ -22,11 +22,18 @@ import {
   AllCategories,
   CartIconRef,
   HeartIconRef,
+  UserIconRef,
 } from "./Header.styles";
 
 export const Header = ({ data, categories }) => {
   const loggedUser = !!useSelector(state => state.user.currentUser);
   const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    dispatch(signOutUser());
+    dispatch(emptyCart());
+  };
+
   return (
     <header>
       <TopBarLayout>
@@ -69,9 +76,16 @@ export const Header = ({ data, categories }) => {
                 <LoginText>Войти</LoginText>
               </Link>
             ) : (
-              <Link href="/">
-                <LoginText onClick={() => dispatch(signOut())}>Выйти</LoginText>
-              </Link>
+              <>
+                <Link href="/dashboard" passHref>
+                  <UserIconRef size="24" />
+                </Link>
+                <Link href="/login">
+                  <LoginText marginleft onClick={handleSignOut}>
+                    Выйти
+                  </LoginText>
+                </Link>
+              </>
             )}
           </Wrapper>
         </MainMenuGrid>

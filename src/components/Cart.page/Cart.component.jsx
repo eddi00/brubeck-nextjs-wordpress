@@ -12,7 +12,7 @@ import CheckoutBox from "./CheckoutBox/CheckoutBox.component";
 
 const Cart = () => {
   const cart = useSelector(state => state.cart.cartItems);
-  console.log(cart);
+  //console.log(cart);
 
   return (
     <Layout>

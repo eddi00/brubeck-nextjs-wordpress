@@ -39,7 +39,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    signOut: (state, action) => {
+    signOutUser: (state, action) => {
       removeCookies("accessToken");
       return { ...initialState };
     },
@@ -101,6 +101,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { signOut, setRedirectFalse } = userSlice.actions;
+export const { signOutUser, setRedirectFalse } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -11,8 +11,9 @@ import {
 } from "./AddToCartBox.styles";
 import DropdownColor from "./DropdownColor/DropdownColor.component";
 import DropDownSize from "./DropdownSize/DropdownSize.component";
-import { addItem } from "../../../redux/cart/cart.actions";
 import { returnAddToCartObject } from "../../Utils/returnAddtoCartObject";
+import { addItem, updateUserCart } from "../../../redux/cart/cart.slice";
+import { getCookie } from "cookies-next";
 
 const AddToCartBox = ({ product, setShowSuccess, colorTable }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,15 @@ const AddToCartBox = ({ product, setShowSuccess, colorTable }) => {
 
       dispatch(addItem(tempProduct));
       setShowSuccess(true);
+
+      // const token = getCookie("accessToken");
+
+      // if (token) {
+      //   dispatch(updateUserCart(tempProduct));
+      // } else {
+      //   dispatch(addItem(tempProduct));
+      //   setShowSuccess(true);
+      // }
     }
   };
 
