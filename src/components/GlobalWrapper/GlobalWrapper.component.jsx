@@ -18,7 +18,7 @@ const GlobalWrapper = props => {
 
   useEffect(() => {
     console.log("AUTH useEffect");
-    if (accessToken && temp) {
+    if (accessToken) {
       try {
         axios.post("/api/auth/validate", {
           accessToken,
