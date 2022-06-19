@@ -9,8 +9,8 @@ import { signOutUser } from "../user/user.slice";
 
 export function* favoritesSagas() {
   /* When user is signed in */
-  yield takeLatest(addItem.type, handleUpdateFavoritesInDB);
-  yield takeLatest(removeItem.type, handleUpdateFavoritesInDB);
+  yield takeEvery(addItem.type, handleUpdateFavoritesInDB);
+  yield takeEvery(removeItem.type, handleUpdateFavoritesInDB);
 
   /* When user signs in */
   yield takeEvery(getFavoritesSaga.type, handleGetFavoritesFromDB);

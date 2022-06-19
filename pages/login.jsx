@@ -11,15 +11,22 @@ import { getMenuCategoriesData } from "../src/wp-rest/getMenuCategoriesData.call
 
 export default function LoginPage({ data, categoriesLinkList }) {
   const redirect = useSelector(state => state.user.redirect);
+  const user = useSelector(state => state.user.currentUser);
   const router = useRouter();
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (redirect) {
       router.push("/dashboard");
       dispatch(setRedirectFalse());
-      //dispatch(get)
     }
   }, [redirect]);
+
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard");
+    }
+  }, [user]);
 
   return (
     <div>

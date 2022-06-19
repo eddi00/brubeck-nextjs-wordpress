@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { removeCookies, setCookies } from "cookies-next";
+import { getCookie, removeCookies, setCookies } from "cookies-next";
 
 // First, create the thunk
 export const signInWithEmail = createAsyncThunk(
@@ -47,6 +47,10 @@ export const userSlice = createSlice({
       state.loginLoading = false;
       state.registerLoading = false;
       state.redirect = false;
+    },
+    signInUser: (state, action) => {
+      const accessToken = getCookie("accessToken");
+      state.currentUser = jwt_decode(accessToken);
     },
   },
   extraReducers: builder => {
@@ -101,6 +105,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { signOutUser, setRedirectFalse } = userSlice.actions;
+export const { signOutUser, setRedirectFalse, signInUser } = userSlice.actions;
 
 export default userSlice.reducer;
