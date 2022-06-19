@@ -36,7 +36,6 @@ export function* handleGetFavoritesFromDB(action) {
       });
 
       // if (res.data?.favorites === null) return;
-      console.log(res.data);
       const parsedFavorites = JSON.parse(res.data?.favorites);
 
       if (parsedFavorites) {

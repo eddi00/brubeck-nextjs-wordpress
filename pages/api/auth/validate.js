@@ -3,12 +3,20 @@ import { WP_BaseHttp } from "../../../src/axios/wp";
 export default async function handler(req, res) {
   const { accessToken } = req.body;
 
-  const response = await WP_BaseHttp.post(
-    "wp-json/simple-jwt-login/v1/auth/validate",
-    {
-      JWT: accessToken,
-    }
-  );
+  if (!accessToken) return res.status(400).json({ msg: "No token" });
 
-  res.status(response.status).json(response.data);
+  let validateRes;
+  try {
+    validateRes = await WP_BaseHttp.get(
+      "wp-json/simple-jwt-login/v1/auth/validate",
+      {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "Invalid token" });
+  }
+
+  res.status(200).json(validateRes.data);
 }

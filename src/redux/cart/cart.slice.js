@@ -9,7 +9,7 @@ import {
 const initialState = {
   cartItems: [],
   status: "none",
-  userCartItems: [],
+  //userCartItems: [],
 };
 
 export const cartSlice = createSlice({
@@ -43,11 +43,13 @@ export const cartSlice = createSlice({
       );
     },
     setUserCart: (state, action) => {
-      if (current(state.cartItems).length === 0) {
-        state.cartItems = action.payload;
-      } else {
-        state.userCartItems = action.payload;
-      }
+      state.cartItems = action.payload;
+
+      // if (current(state.cartItems).length === 0) {
+      //   state.cartItems = action.payload;
+      // } else {
+      //   state.userCartItems = action.payload;
+      // }
     },
     getCartSaga: (state, action) => {},
   },
