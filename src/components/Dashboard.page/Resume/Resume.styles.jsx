@@ -9,7 +9,7 @@ export const ResumeContainer = styled.div`
 `;
 
 export const LastOrders = styled.div`
-  max-width: 560px;
+  max-width: 720px;
 `;
 
 export const Order = styled.div`
@@ -28,4 +28,14 @@ export const Order = styled.div`
   }
 `;
 
-export const Status = styled.div``;
+//export const FlexWrapper
+
+export const Status = styled.div`
+  font-family: "Open Sans";
+  font-weight: 500;
+`;
+
+export const DetailName = styled.span`
+  color: ${props => props.theme.black_3};
+  margin-right: 0.5rem;
+`;

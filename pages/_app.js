@@ -6,6 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "../src/redux/store";
 
 import "normalize.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.css";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../src/theme/theme";
