@@ -4,7 +4,7 @@ import { LoadingCartItem } from "./CartItem.styles";
 
 import CartItem from "./CartItem.component";
 import { useDispatch } from "react-redux";
-import { modifyItem } from "../../../redux/cart/cart.actions";
+import { modifyItem } from "../../../redux/cart/cart.slice";
 
 const fetcher = url => fetch(url).then(res => res.json());
 

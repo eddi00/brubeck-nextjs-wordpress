@@ -1,12 +1,21 @@
 import { getCookie, removeCookies, setCookies } from "cookies-next";
+import jwtDecode from "jwt-decode";
 import Head from "next/head";
 import { WP_BaseHttp } from "../src/axios/wp";
+import Dashboard from "../src/components/Dashboard.page/Dashboard.component";
 import Footer from "../src/components/Footer/Footer.component";
 import { Header } from "../src/components/Header/Header.components";
+import { getCustomerData } from "../src/wp-rest/getCustomerData";
 import { getHomepageData } from "../src/wp-rest/getHomepageData.call";
 import { getMenuCategoriesData } from "../src/wp-rest/getMenuCategoriesData.call";
+import { getOrdersFromUser } from "../src/wp-rest/getOrdersFromUserId.call";
 
-export default function DashboardPage({ data, categoriesLinkList }) {
+export default function DashboardPage({
+  data,
+  categoriesLinkList,
+  orders,
+  customer,
+}) {
   return (
     <div>
       <Head>
@@ -15,7 +24,7 @@ export default function DashboardPage({ data, categoriesLinkList }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header data={data} categories={categoriesLinkList} />
-      <h1>You are logged in</h1>
+      <Dashboard customer={customer} orders={orders} />
       <Footer data={data} />
     </div>
   );
@@ -68,20 +77,26 @@ export async function getServerSideProps(context) {
     } catch (err) {
       return {
         redirect: {
-          destination: "/",
+          destination: "/signOut",
           permanent: false,
         },
       };
     }
   }
 
+  const user = jwtDecode(token);
+
   const data = await getHomepageData();
   const categoriesLinkList = await getMenuCategoriesData();
+  const orders = await getOrdersFromUser(user);
+  const customer = JSON.parse(await getCustomerData(user));
 
   return {
     props: {
       data,
       categoriesLinkList,
+      orders,
+      customer,
     }, // will be passed to the page component as props
   };
 }

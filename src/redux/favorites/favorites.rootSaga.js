@@ -4,7 +4,12 @@ import {
   handleGetFavoritesFromDB,
   handleUpdateFavoritesInDB,
 } from "./favorites.sagas";
-import { addItem, getFavoritesSaga, removeItem } from "./favorites.slice";
+import {
+  addItem,
+  getFavoritesSaga,
+  joinFavoritesWithUserOnes,
+  removeItem,
+} from "./favorites.slice";
 import { signOutUser } from "../user/user.slice";
 
 export function* favoritesSagas() {
@@ -14,6 +19,7 @@ export function* favoritesSagas() {
 
   /* When user signs in */
   yield takeEvery(getFavoritesSaga.type, handleGetFavoritesFromDB);
+  yield takeEvery(joinFavoritesWithUserOnes.type, handleUpdateFavoritesInDB);
 
   /* When user signs out */
   yield takeEvery(signOutUser.type, clearFavoritesOnSignOut);

@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
-import { signInWithEmail } from "../../redux/user/user.slice";
+import { signInWithEmail_start } from "../../redux/user/user.slice";
 
 import {
   ErrorLabel,
@@ -27,7 +27,10 @@ const LoginForm = () => {
   } = useForm({ mode: "onBlur" });
 
   const onSubmit = async data => {
-    dispatch(signInWithEmail(data));
+    console.log(router);
+
+    const config = { data, pathname: router.pathname };
+    dispatch(signInWithEmail_start(config));
   };
 
   return (
