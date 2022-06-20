@@ -12,7 +12,7 @@ const Resume = ({ orders }) => {
   const returnStatus = status => {
     switch (status) {
       case "pending":
-        return "В ожидание обработаки";
+        return "В ожидании обработаки";
       default:
         return status;
     }
