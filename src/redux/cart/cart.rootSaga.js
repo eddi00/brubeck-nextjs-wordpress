@@ -6,6 +6,7 @@ import {
   modifyItem,
   removeItem,
   getCartSaga,
+  joinCartWithUserOne,
 } from "./cart.slice";
 import {
   clearCartOnSignOut,
@@ -24,6 +25,7 @@ export function* cartSagas() {
 
   /* When user signs in */
   yield takeEvery(getCartSaga.type, handleGetCartFromDB);
+  yield takeEvery(joinCartWithUserOne.type, handleUpdateCartInDB);
 
   /* When user signs out */
   yield takeEvery(signOutUser.type, clearCartOnSignOut);

@@ -1,7 +1,11 @@
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import { call, put, select } from "redux-saga/effects";
-import { emptyFavorites, setUserFavorites } from "./favorites.slice";
+import {
+  emptyFavorites,
+  joinFavoritesWithUserOnes,
+  setUserFavorites,
+} from "./favorites.slice";
 // import { joinfavorites } from "../../actions/favorites";
 
 export const getFavorites = state => state.favorites;
@@ -39,7 +43,11 @@ export function* handleGetFavoritesFromDB(action) {
       const parsedFavorites = JSON.parse(res.data?.favorites);
 
       if (parsedFavorites) {
-        yield put(setUserFavorites(parsedFavorites));
+        if (action.payload?.join) {
+          yield put(joinFavoritesWithUserOnes(parsedFavorites));
+        } else {
+          yield put(setUserFavorites(parsedFavorites));
+        }
       }
     } catch (error) {
       console.log(error);

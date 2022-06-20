@@ -3,6 +3,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
+import { setUserCart } from "../../redux/cart/cart.slice";
+import { setUserFavorites } from "../../redux/favorites/favorites.slice";
 import { createCustomer } from "../../redux/user/user.slice";
 
 import {
@@ -20,6 +22,9 @@ const RegisterForm = () => {
   const loading = useSelector(state => state.user.registerLoading);
   const registerError = useSelector(state => state.user.registerError);
 
+  const cart = useSelector(state => state.cart.cartItems);
+  const favorites = useSelector(state => state.favorites.favoriteItems);
+
   const {
     register: registerReg,
     handleSubmit,
@@ -28,6 +33,8 @@ const RegisterForm = () => {
 
   const onSubmit = async data => {
     dispatch(createCustomer(data));
+    dispatch(setUserCart(cart));
+    dispatch(setUserFavorites(favorites));
   };
 
   return (

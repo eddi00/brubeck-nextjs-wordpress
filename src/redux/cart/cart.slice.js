@@ -52,6 +52,9 @@ export const cartSlice = createSlice({
       // }
     },
     getCartSaga: (state, action) => {},
+    joinCartWithUserOne: (state, action) => {
+      state.cartItems = [...current(state.cartItems), ...action.payload];
+    },
   },
   extraReducers: builder => {},
 });
@@ -64,6 +67,7 @@ export const {
   clearItemFromCart,
   setUserCart,
   getCartSaga,
+  joinCartWithUserOne,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -8,9 +8,9 @@ import { getCookie } from "cookies-next";
 
 const GlobalWrapper = props => {
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.user.currentUser);
   const accessToken = getCookie("accessToken");
 
+  // const currentUser = useSelector(state => state.user.currentUser);
   // useEffect(() => {
   //   if (currentUser) {
   //   }

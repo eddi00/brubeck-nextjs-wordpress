@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import { call, put, select } from "redux-saga/effects";
-import { emptyCart, setUserCart } from "./cart.slice";
+import { emptyCart, joinCartWithUserOne, setUserCart } from "./cart.slice";
 // import { joinCart } from "../../actions/cart";
 
 export const getCart = state => state.cart;
@@ -38,7 +38,11 @@ export function* handleGetCartFromDB(action) {
       const parsedCart = JSON.parse(res.data?.cart);
 
       if (parsedCart) {
-        yield put(setUserCart(parsedCart));
+        if (action.payload?.join) {
+          yield put(joinCartWithUserOne(parsedCart));
+        } else {
+          yield put(setUserCart(parsedCart));
+        }
       }
     } catch (error) {
       console.log(error);

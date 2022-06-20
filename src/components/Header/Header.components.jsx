@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { emptyCart } from "../../redux/cart/cart.actions";
-import { signOutUser } from "../../redux/user/user.slice";
+import { signOutUser, emptyCart } from "../../redux/user/user.slice";
 import {
   AddressIcon,
   LogoText,
@@ -31,7 +30,6 @@ export const Header = ({ data, categories }) => {
 
   const handleSignOut = () => {
     dispatch(signOutUser());
-    dispatch(emptyCart());
   };
 
   return (

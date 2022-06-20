@@ -4,13 +4,13 @@ import jwt_decode from "jwt-decode";
 import { getCookie, removeCookies, setCookies } from "cookies-next";
 
 // First, create the thunk
-export const signInWithEmail = createAsyncThunk(
-  "users/signInWithEmail",
-  async data => {
-    const response = await axios.post("/api/auth/signIn", data);
-    return response.data;
-  }
-);
+// export const signInWithEmail = createAsyncThunk(
+//   "users/signInWithEmail",
+//   async data => {
+//     const response = await axios.post("/api/auth/signIn", data);
+//     return response.data;
+//   }
+// );
 
 export const createCustomer = createAsyncThunk(
   "users/createCustomer",
@@ -52,28 +52,40 @@ export const userSlice = createSlice({
       const accessToken = getCookie("accessToken");
       state.currentUser = jwt_decode(accessToken);
     },
+
+    signInWithEmail_start: (state, action) => {
+      state.loginLoading = true;
+    },
+    signInWithEmail_success: (state, action) => {
+      state.currentUser = action.payload;
+      state.redirect = true;
+    },
+    signInWithEmail_failed: (state, action) => {
+      state.loginError = action.payload;
+      state.loginLoading = false;
+    },
   },
   extraReducers: builder => {
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(signInWithEmail.pending, (state, action) => {
-      state.loginLoading = true;
-    });
-    builder.addCase(signInWithEmail.fulfilled, (state, action) => {
-      // Add user to the state array
-      const { data } = action.payload;
+    // builder.addCase(signInWithEmail.pending, (state, action) => {
+    //   state.loginLoading = true;
+    // });
+    // builder.addCase(signInWithEmail.fulfilled, (state, action) => {
+    //   // Add user to the state array
+    //   const { data } = action.payload;
 
-      setCookies("accessToken", data.jwt, {
-        sameSite: true,
-        maxAge: 60 * 60 * 24 * 14,
-      });
-      state.currentUser = jwt_decode(data.jwt);
-      state.redirect = true;
-    });
-    builder.addCase(signInWithEmail.rejected, (state, action) => {
-      // console.log(action.error);
-      state.loginError = action.error.code;
-      state.loginLoading = false;
-    });
+    //   setCookies("accessToken", data.jwt, {
+    //     sameSite: true,
+    //     maxAge: 60 * 60 * 24 * 14,
+    //   });
+    //   state.currentUser = jwt_decode(data.jwt);
+    //   state.redirect = true;
+    // });
+    // builder.addCase(signInWithEmail.rejected, (state, action) => {
+    //   // console.log(action.error);
+    //   state.loginError = action.error.code;
+    //   state.loginLoading = false;
+    // });
 
     builder.addCase(createCustomer.pending, (state, action) => {
       state.registerLoading = true;
@@ -81,7 +93,6 @@ export const userSlice = createSlice({
     builder.addCase(createCustomer.fulfilled, (state, action) => {
       // Add user to the state array
       const { data } = action.payload;
-      console.log(action.payload);
 
       setCookies("accessToken", data.jwt, {
         sameSite: true,
@@ -105,6 +116,13 @@ export const userSlice = createSlice({
   },
 });
 
-export const { signOutUser, setRedirectFalse, signInUser } = userSlice.actions;
+export const {
+  signOutUser,
+  setRedirectFalse,
+  signInUser,
+  signInWithEmail_start,
+  signInWithEmail_failed,
+  signInWithEmail_success,
+} = userSlice.actions;
 
 export default userSlice.reducer;
