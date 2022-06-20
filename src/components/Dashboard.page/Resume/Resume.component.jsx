@@ -1,11 +1,20 @@
 import React from "react";
-import { LastOrders, Order, ResumeContainer, Status } from "./Resume.styles";
+import {
+  DetailName,
+  LastOrders,
+  Order,
+  ResumeContainer,
+  Status,
+} from "./Resume.styles";
+import Accordion from "react-bootstrap/Accordion";
 
 const Resume = ({ orders }) => {
   const returnStatus = status => {
     switch (status) {
       case "pending":
-        return "В ожидание";
+        return "В ожидание обработаки";
+      default:
+        return status;
     }
   };
 
@@ -17,10 +26,31 @@ const Resume = ({ orders }) => {
         {orders.length ? (
           <>
             {orders.slice(0, 5).map((item, key) => (
-              <Order key={key}>
-                <Status>Статус: {returnStatus(item.status)}</Status>
-                <Status>Количество:{item.line_items.length}</Status>
-              </Order>
+              <Accordion alwaysOpen={false} key={key}>
+                <Accordion.Item className="mb-1" eventKey={key}>
+                  <Accordion.Header>
+                    <div className="d-flex gap-5">
+                      <Status>
+                        <DetailName>Статус:</DetailName>
+                        {returnStatus(item.status)}
+                      </Status>
+                      <Status>
+                        <DetailName>Кол. товара:</DetailName>
+                        {item.line_items.length}
+                      </Status>
+                      <Status>
+                        <DetailName>Итого:</DetailName>
+                        {item.total} руб.
+                      </Status>
+                    </div>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             ))}
           </>
         ) : (

@@ -36,7 +36,7 @@ const CheckoutBox = () => {
       <Link href="/checkout">
         <CheckoutButton>
           <CheckoutIcon size="20" />
-          <ButtonText>Перейти к оплате</ButtonText>
+          <ButtonText>Перейти к оформлению</ButtonText>
         </CheckoutButton>
       </Link>
     </Box>
