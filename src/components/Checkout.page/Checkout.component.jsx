@@ -13,32 +13,34 @@ const Checkout = () => {
   const router = useRouter();
   const cartItemsCount = useSelector(state => selectCartItemsCount(state));
 
-  const [window, setWindow] = useState("window_1");
+  const [window, setWindow] = useState(1);
 
   const user = useSelector(state => state.user.currentUser);
 
   useEffect(() => {
     if (cartItemsCount === 0) router.push("/");
 
-    if (user) setWindow("windowForLoggedInUsers");
-  }, []);
+    if (user) setWindow(2);
+  }, [user]);
 
-  const FirstWindow = (
-    <FlexWrapper>
-      <GuestForm />
-      <LoginContainer>
-        <h3>Оформить через личный кабинет</h3>
-        <LoginForm />
-      </LoginContainer>
-    </FlexWrapper>
-  );
+  const FirstWindow = () => {
+    return (
+      <FlexWrapper>
+        <GuestForm />
+        <LoginContainer>
+          <h3>Оформить через личный кабинет</h3>
+          <LoginForm />
+        </LoginContainer>
+      </FlexWrapper>
+    );
+  };
 
   const showWindow = type => {
     switch (type) {
-      case "window_1":
+      case 1:
         return <FirstWindow />;
-      case "windowForLoggedInUsers":
-        return "hello";
+      case 2:
+        return <CheckoutForm />;
     }
   };
 

@@ -2,7 +2,6 @@ import React from "react";
 import {
   DetailName,
   LastOrders,
-  Order,
   ResumeContainer,
   Status,
 } from "./Resume.styles";

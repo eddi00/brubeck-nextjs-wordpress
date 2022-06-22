@@ -610,7 +610,7 @@ model wp_usermeta {
 }
 
 model wp_users {
-  ID                  Int   @id @default(autoincrement()) @db.UnsignedInt
+  ID                  BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
   user_login          String   @default("") @db.VarChar(60)
   user_pass           String   @default("") @db.VarChar(255)
   user_nicename       String   @default("") @db.VarChar(50)
