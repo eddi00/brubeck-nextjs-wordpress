@@ -100,7 +100,7 @@ const Details = ({ product, colorTable }) => {
                 <SuccessText>Добавлен в корзину!</SuccessText>
               </SuccessMessage>
               <Link href="/cart">
-                <GoToCart>Перейти к оформлению</GoToCart>
+                <GoToCart>Перейти в корзину</GoToCart>
               </Link>
             </SuccessContainer>
           )}
