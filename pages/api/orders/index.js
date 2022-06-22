@@ -33,6 +33,8 @@ handler.post(async (req, res) => {
       country: "RU",
       email: customer.email,
       phone: customer.phone,
+      city: customer.city,
+      address_1: customer.address1,
     },
     line_items,
     // shipping_lines: [
