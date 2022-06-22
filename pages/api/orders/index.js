@@ -1,48 +1,58 @@
-import { getCookie, getCookies } from "cookies-next";
-import jwtDecode from "jwt-decode";
-import { WP_BaseHttp } from "../../../src/axios/wp";
+import nc from "next-connect";
+import { WC_Api } from "../../../src/axios/wp-woocommerce";
+import { checkToken } from "../../../src/lib/API-Middleware/checkToken";
 
-export default async function handler(req, res) {
-  // const { authorization } = req.headers;
-  // if (!authorization || !authorization.startsWith("Bearer "))
-  //   return res.status(400).json({ msg: "No token in headers" });
+const handler = nc().use(checkToken);
 
-  // const token = authorization.substring(7);
-  const token = getCookie("accessToken", { req, res });
-  console.log(getCookies({ req, res }));
-  console.log(token);
+handler.post(async (req, res) => {
+  const { user } = req.headers.user.data;
 
-  let validateRes;
-  try {
-    validateRes = await WP_BaseHttp.get(
-      "wp-json/simple-jwt-login/v1/auth/validate",
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-  } catch (error) {
-    return res.status(401).json({ msg: "Invalid token" });
-  }
+  const { cart, customer } = req.body;
+  //console.log(customer);
 
-  if (req.method === "POST") {
-    // Process a POST request
-  } else if (req.method === "GET") {
-    // Handle any other HTTP method
+  const line_items = [];
 
-    // const user = jwtDecode(accessToken);
-    // console.log(user);
+  cart.forEach(item => {
+    let temp = { product_id: item.id, quantity: item.quantity };
 
-    // let cartRes;
-    // try {
-    //   const prisma = new PrismaClient();
-    //   cartRes = await prisma.wp_users.findUnique({
-    //     where: { ID: parseInt(validateRes.data.data.user.ID) },
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    //   return res.status(500).json({ msg: "DB error" });
-    // }
+    if (item.variationId !== null) temp.variation_id = item.variationId;
 
-    res.status(200).json({ msg: "hello" });
-  }
-}
+    line_items.push(temp);
+  });
+
+  //console.log(line_items);
+
+  const data = {
+    customer_id: user.ID,
+    payment_method: "bacs",
+    payment_method_title: "Direct Bank Transfer",
+    set_paid: false,
+    billing: {
+      first_name: customer.firstName,
+      last_name: customer.lastName,
+      country: "RU",
+      email: customer.email,
+      phone: customer.phone,
+    },
+    line_items,
+    // shipping_lines: [
+    //   {
+    //     method_id: "flat_rate",
+    //     method_title: "Flat Rate",
+    //     total: "10.00",
+    //   },
+    // ],
+  };
+
+  WC_Api.post("orders", data)
+    .then(response => {
+      //console.log(response.data);
+      res.status(200).json({ response: response.data });
+    })
+    .catch(error => {
+      console.log(error.data);
+      res.status(400).json({ response: error.data });
+    });
+});
+
+export default handler;

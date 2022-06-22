@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
 import { selectCartItems } from "../../../redux/cart/cart.selectors";
 import {
@@ -18,8 +18,11 @@ import {
 
 const GuestForm = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const cartItems = useSelector(state => selectCartItems(state));
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const {
     register,
@@ -39,7 +42,10 @@ const GuestForm = () => {
     // const res = await axios.get("/orders/new-order");
     console.log(res);
 
-    if (res.status === 200) router.push("/thank-you");
+    if (res.status === 200) {
+      dispatch(emptyCart());
+      router.push("/thank-you");
+    }
   };
 
   return (
@@ -98,6 +104,11 @@ const GuestForm = () => {
           <LoadingContainer>
             <BeatLoader color="#B19436" loading={true} size={14} />
           </LoadingContainer>
+        )}
+        {error && (
+          <ErrorLabel data-aos="fade">
+            Ошибка при попытке создать заказ.
+          </ErrorLabel>
         )}
       </Form>
     </Container>
