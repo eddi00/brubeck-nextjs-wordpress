@@ -2,7 +2,6 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import { call, put, select } from "redux-saga/effects";
 import { emptyCart, joinCartWithUserOne, setUserCart } from "./cart.slice";
-// import { joinCart } from "../../actions/cart";
 
 export const getCart = state => state.cart;
 
@@ -13,8 +12,7 @@ export function* handleUpdateCartInDB(action) {
   if (accessToken) {
     try {
       yield call(() => {
-        axios.post("/api/cart/update", {
-          accessToken,
+        axios.put("/api/cart", {
           cartItems: cart.cartItems,
         });
       });
@@ -30,13 +28,11 @@ export function* handleGetCartFromDB(action) {
   if (accessToken) {
     try {
       const res = yield call(() => {
-        return axios.post("/api/cart/get-cart", {
-          accessToken,
-        });
+        return axios.get("/api/cart");
       });
 
       const parsedCart = JSON.parse(res.data?.cart);
-
+      console.log("Parsed CART: ", res.data.cart);
       if (parsedCart) {
         if (action.payload?.join) {
           yield put(joinCartWithUserOne(parsedCart));
@@ -45,7 +41,7 @@ export function* handleGetCartFromDB(action) {
         }
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 }

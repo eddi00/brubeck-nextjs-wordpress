@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
 import { selectCartItems } from "../../../redux/cart/cart.selectors";
+import { emptyCart } from "../../../redux/cart/cart.slice";
 import {
   Container,
   ErrorLabel,
@@ -38,7 +39,7 @@ const GuestForm = () => {
       customer: data,
     };
 
-    const res = await axios.post("/api/orders/new-order", bodyRequest);
+    const res = await axios.post("/api/orders/guest-order", bodyRequest);
     // const res = await axios.get("/orders/new-order");
     console.log(res);
 

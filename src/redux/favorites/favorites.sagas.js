@@ -6,7 +6,6 @@ import {
   joinFavoritesWithUserOnes,
   setUserFavorites,
 } from "./favorites.slice";
-// import { joinfavorites } from "../../actions/favorites";
 
 export const getFavorites = state => state.favorites;
 
@@ -17,8 +16,7 @@ export function* handleUpdateFavoritesInDB(action) {
   if (accessToken) {
     try {
       yield call(() => {
-        axios.post("/api/favorites/update", {
-          accessToken,
+        axios.put("/api/favorites", {
           favoriteItems: favorites.favoriteItems,
         });
       });
@@ -34,12 +32,9 @@ export function* handleGetFavoritesFromDB(action) {
   if (accessToken) {
     try {
       const res = yield call(() => {
-        return axios.post("/api/favorites/get-favorites", {
-          accessToken,
-        });
+        return axios.get("/api/favorites");
       });
 
-      // if (res.data?.favorites === null) return;
       const parsedFavorites = JSON.parse(res.data?.favorites);
 
       if (parsedFavorites) {
@@ -50,7 +45,7 @@ export function* handleGetFavoritesFromDB(action) {
         }
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 }

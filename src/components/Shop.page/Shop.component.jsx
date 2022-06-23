@@ -16,13 +16,10 @@ import { Grid, Layout, Title } from "./Shop.styles";
 
 const ShopPage = ({ products }) => {
   const dispatch = useDispatch();
-  console.log({ products });
 
   const router = useRouter();
   const { category } = router.query;
   dispatch(setProducts(products));
-
-  // console.log(category);
 
   useEffect(() => {
     if (!router.isReady) return;

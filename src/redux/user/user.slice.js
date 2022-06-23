@@ -16,7 +16,7 @@ export const createCustomer = createAsyncThunk(
   "users/createCustomer",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/api/users/new-customer", data);
+      const response = await axios.post("/api/users", data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

@@ -3,12 +3,8 @@ import { setCookies } from "cookies-next";
 import { call, put, select } from "redux-saga/effects";
 import { signInWithEmail_failed, signInWithEmail_success } from "./user.slice";
 import jwt_decode from "jwt-decode";
-import {
-  getFavoritesSaga,
-  joinFavoritesWithCloud,
-  setUserFavorites,
-} from "../favorites/favorites.slice";
-import { getCartSaga, setUserCart } from "../cart/cart.slice";
+import { getFavoritesSaga } from "../favorites/favorites.slice";
+import { getCartSaga } from "../cart/cart.slice";
 
 export const getCart = state => state.cart;
 export const getFavorites = state => state.favorites;

@@ -7,8 +7,6 @@ import Resume from "./Resume/Resume.component";
 import Settings from "./Settings/Settings.component";
 
 const Dashboard = props => {
-  console.log(props.customer, props.orders);
-
   const [activeTab, setActiveTab] = useState("resume");
 
   const render = tab => {
