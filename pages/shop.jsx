@@ -7,6 +7,7 @@ import ShopPage from "../src/components/Shop.page/Shop.component";
 import { getAllProducts } from "../src/wp-rest/getAllProducts.call";
 
 export default function Shop({ data, categoriesLinkList, products }) {
+  console.log(products);
   return (
     <div>
       <Head>

@@ -1,5 +1,9 @@
 import { WC_Api } from "../axios/wp-woocommerce";
-import { returnAttributeList, returnCategoriesList } from "./wp-rest.utils";
+import {
+  returnAttributeList,
+  returnCategoriesList,
+  returnMetaValue,
+} from "./wp-rest.utils";
 
 export const getAllProducts = async () => {
   try {
@@ -31,6 +35,17 @@ const processAllProducts = object => {
       colorList: returnAttributeList(item.attributes, "Color"),
       sizeList: returnAttributeList(item.attributes, "Size"),
       stockStatus: item.stock_status,
+      afc_price:
+        returnMetaValue(item.meta_data, "discount_bool") === "1"
+          ? returnMetaValue(item.meta_data, "afc_priceDiscount")
+          : returnMetaValue(item.meta_data, "priceItem"),
+      afc_regularPrice:
+        returnMetaValue(item.meta_data, "discount_bool") === "1"
+          ? returnMetaValue(item.meta_data, "priceItem")
+          : null,
+      afc_onSale:
+        returnMetaValue(item.meta_data, "discount_bool") === "1" ? true : false,
+      afc_salePrice: returnMetaValue(item.meta_data, "afc_priceDiscount"),
     };
     temp.push(tempProduct);
   });

@@ -48,13 +48,13 @@ const ProductCard = ({ product }) => {
       <ProductBottom>
         <PriceContainer>
           <CurrencySymbol size="20" />
-          {product.onSale ? (
+          {product.afc_onSale ? (
             <>
-              <WithDiscount>{product.salePrice}</WithDiscount>
-              <WithoutDiscount>{product.regularPrice}</WithoutDiscount>
+              <WithDiscount>{product.afc_salePrice}</WithDiscount>
+              <WithoutDiscount>{product.afc_regularPrice}</WithoutDiscount>
             </>
           ) : (
-            <>{product.price}</>
+            <>{product.afc_price}</>
           )}
         </PriceContainer>
       </ProductBottom>

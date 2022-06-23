@@ -16,7 +16,7 @@ export const returnAddToCartObject = (product, size, color, quantity) => {
     size: size,
     color: color,
     categoriesList: product.categoriesList,
-    price: product.price,
+    price: product.afc_price,
     sku: product.sku,
     quantity: quantity,
     imageSrc: product.images.length > 0 ? product.images[0].src : null,

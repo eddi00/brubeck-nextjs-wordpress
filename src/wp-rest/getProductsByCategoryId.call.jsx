@@ -1,4 +1,5 @@
 import { WC_Api } from "../axios/wp-woocommerce";
+import { returnMetaValue } from "./wp-rest.utils";
 
 export const getProductsByCategoryId = async categoryId => {
   try {
@@ -29,6 +30,17 @@ const processProductsByCategoryId = object => {
       images: item.images,
       attributes: item.attributes,
       stockStatus: item.stock_status,
+      afc_price:
+        returnMetaValue(item.meta_data, "discount_bool") === "1"
+          ? returnMetaValue(item.meta_data, "afc_priceDiscount")
+          : returnMetaValue(item.meta_data, "priceItem"),
+      afc_regularPrice:
+        returnMetaValue(item.meta_data, "discount_bool") === "1"
+          ? returnMetaValue(item.meta_data, "priceItem")
+          : null,
+      afc_onSale:
+        returnMetaValue(item.meta_data, "discount_bool") === "1" ? true : false,
+      afc_salePrice: returnMetaValue(item.meta_data, "afc_priceDiscount"),
     };
     temp.push(tempProduct);
   });

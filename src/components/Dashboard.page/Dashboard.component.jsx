@@ -1,7 +1,5 @@
-import jwtDecode from "jwt-decode";
 import React from "react";
 import { useState } from "react";
-import { render } from "react-dom";
 import { Layout } from "./Dashboard.styles";
 import Resume from "./Resume/Resume.component";
 import Settings from "./Settings/Settings.component";

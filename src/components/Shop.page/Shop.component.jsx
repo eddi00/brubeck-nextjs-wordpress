@@ -5,9 +5,7 @@ import {
   applyCategory,
   applyGender,
   recount,
-  resetFilter,
   resetFilterWithProducts,
-  resetPage,
   setProducts,
 } from "../../redux/shop/shop.slice";
 import Filter from "./Filter/Filter.component";
@@ -16,8 +14,8 @@ import { Grid, Layout, Title } from "./Shop.styles";
 
 const ShopPage = ({ products }) => {
   const dispatch = useDispatch();
-
   const router = useRouter();
+
   const { category } = router.query;
   dispatch(setProducts(products));
 

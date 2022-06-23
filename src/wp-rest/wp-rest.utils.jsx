@@ -18,3 +18,16 @@ export const returnAttributeList = (attributes, attributeName) => {
   }
   return temp;
 };
+
+export const returnMetaValue = (list, keyName) => {
+  let value = null;
+  if (list) {
+    list.map(item => {
+      if (item?.key === keyName) {
+        value = item.value;
+      }
+    });
+  }
+
+  return value;
+};

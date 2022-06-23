@@ -59,12 +59,3 @@ const ProductGrid = () => {
 };
 
 export default ProductGrid;
-
-// Trash
-
-// const [slicedProducts, setSlicedProducts] = useState(
-//   filteredProducts.slice((page - 1) * sliceBy, page * sliceBy)
-// );
-// const [slicedProducts, setSlicedProducts] = useState();
-
-// console.log({ shopFilter, page, sliceBy, filterProducts, slicedProducts });

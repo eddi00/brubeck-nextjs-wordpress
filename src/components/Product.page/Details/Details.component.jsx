@@ -70,18 +70,18 @@ const Details = ({ product, colorTable }) => {
           )}
           <DetailSectionPrice>
             <DetailNamePrice>Стоимость</DetailNamePrice>
-            {product.salePrice ? (
+            {product.afc_salePrice ? (
               <DetailWrapper>
-                <RegularPrice>{product.regularPrice}</RegularPrice>
+                <RegularPrice>{product.afc_regularPrice}</RegularPrice>
                 <PriceContainer>
                   <PriceIcon size="20" />
-                  <PriceNumber>{product.price}</PriceNumber>
+                  <PriceNumber>{product.afc_price}</PriceNumber>
                 </PriceContainer>
               </DetailWrapper>
             ) : (
               <PriceContainer>
                 <PriceIcon size="20" />
-                <PriceNumber>{product.price}</PriceNumber>
+                <PriceNumber>{product.afc_price}</PriceNumber>
               </PriceContainer>
             )}
           </DetailSectionPrice>
