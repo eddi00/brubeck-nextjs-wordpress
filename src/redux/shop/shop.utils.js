@@ -63,3 +63,25 @@ export const returnFilteredProductsByColor = (products, filterArray) => {
   });
   return temp;
 };
+
+export const returnSortedProductsByPrice = (products, sortType) => {
+  if (products.length === 0) return products;
+
+  let temp = [];
+  switch (sortType) {
+    case "expensiveFirst":
+      temp = products.sort((a, b) =>
+        parseFloat(a.afc_price) < parseFloat(b.afc_price) ? 1 : -1
+      );
+      break;
+    case "cheapFirst":
+      temp = products.sort((a, b) =>
+        parseFloat(a.afc_price) > parseFloat(b.afc_price) ? 1 : -1
+      );
+      break;
+    default:
+      temp = products;
+      break;
+  }
+  return temp;
+};

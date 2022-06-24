@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
 // import { CheckBox } from "./Filter.logic";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { applySortBy } from "../../../redux/shop/shop.slice";
 
 import { returnCategoryRuName } from "../../Utils/returnCategoryRuName";
 import { returnColorRuName } from "../../Utils/returnColorRuName";
@@ -17,21 +18,27 @@ import {
 } from "./Filter.styles";
 
 const Filter = () => {
+  const dispatch = useDispatch();
   const filterByGender = useSelector(state => state.shop.filterByGender);
   const filterByCategory = useSelector(state => state.shop.filterByCategory);
   const filterByColor = useSelector(state => state.shop.filterByColor);
   const filterBySize = useSelector(state => state.shop.filterBySize);
+  const sortBy = useSelector(state => state.shop.sortBy);
 
   return (
     <Container>
       <h4>Фильтр</h4>
       <Line />
       <SectionTitle>Сортировать</SectionTitle>
-      <Select name="filter-type" id="filter-1">
-        <option value="volvo">По умолчанию</option>
-        <option value="saab">1</option>
-        <option value="mercedes">2</option>
-        <option value="audi">3</option>
+      <Select
+        name="filter-type"
+        id="filter-1"
+        onChange={e => dispatch(applySortBy(e.target.value))}
+        value={sortBy}
+      >
+        <option value="default">По умолчанию</option>
+        <option value="cheapFirst">Сначала дешевле</option>
+        <option value="expensiveFirst">Сначала дороже</option>
       </Select>
       <Line />
       <Section>

@@ -7,6 +7,7 @@ import {
   returnFilteredProductsByCategory,
   returnFilteredProductsByColor,
   returnFilteredProductsBySize,
+  returnSortedProductsByPrice,
 } from "./shop.utils";
 
 const initialState = {
@@ -34,7 +35,9 @@ const initialState = {
     M: { checked: false, count: 0 },
     L: { checked: false, count: 0 },
     XL: { checked: false, count: 0 },
+    XXL: { checked: false, count: 0 },
   },
+  sortBy: "default",
   page: 1,
   sliceProductsBy: 6,
   products: [],
@@ -116,7 +119,10 @@ export const shopSlice = createSlice({
 
         // Apply results if there are any
         state.productsFilteredByGenCatSize = temp;
-        state.filteredProducts = temp;
+        state.filteredProducts = returnSortedProductsByPrice(
+          temp.slice(),
+          state.sortBy
+        );
 
         // Re-assign count values in filters taking into account the new filtered array
         // Object.entries(current(state.filterByGender)).map(([key, value]) => {
@@ -165,7 +171,10 @@ export const shopSlice = createSlice({
 
         // Apply results if there are any
         state.productsFilteredByGenCatSize = temp;
-        state.filteredProducts = temp;
+        state.filteredProducts = returnSortedProductsByPrice(
+          temp.slice(),
+          state.sortBy
+        );
 
         // Re-assign count values in filters taking into account the new filtered array
         Object.entries(current(state.filterByGender)).map(([key, value]) => {
@@ -216,7 +225,10 @@ export const shopSlice = createSlice({
 
         // Apply results if there are any
         state.productsFilteredByGenCatSize = temp;
-        state.filteredProducts = temp;
+        state.filteredProducts = returnSortedProductsByPrice(
+          temp.slice(),
+          state.sortBy
+        );
 
         // Re-assign count values in filters taking into account the new filtered array
         Object.entries(current(state.filterByGender)).map(([key, value]) => {
@@ -245,7 +257,10 @@ export const shopSlice = createSlice({
         if (colorArray.length > 0) {
           temp = returnFilteredProductsByColor(temp, colorArray);
         }
-        state.filteredProducts = temp;
+        state.filteredProducts = returnSortedProductsByPrice(
+          temp.slice(),
+          state.sortBy
+        );
       }
     },
     recount: (state, action) => {
@@ -269,6 +284,7 @@ export const shopSlice = createSlice({
         filterBySize: initialState.filterBySize,
         filterByGender: initialState.filterByGender,
         filterByColor: {},
+        sortBy: "default",
       };
     },
     resetFilterWithProducts: (state, action) => {
@@ -276,6 +292,7 @@ export const shopSlice = createSlice({
       state.filterByColor = {};
       state.filterByGender = initialState.filterByGender;
       state.filterBySize = initialState.filterBySize;
+      state.sortBy = "default";
 
       state.products = action.payload;
       state.productsFilteredByGenCatSize = action.payload;
@@ -287,6 +304,15 @@ export const shopSlice = createSlice({
       state.page = action.payload;
     },
     resetPage: state => {
+      state.page = 1;
+    },
+    applySortBy: (state, action) => {
+      state.sortBy = action.payload;
+      let copy = current(state.productsFilteredByGenCatSize).slice();
+      state.filteredProducts = returnSortedProductsByPrice(
+        copy,
+        action.payload
+      );
       state.page = 1;
     },
   },
@@ -304,6 +330,7 @@ export const {
   applyColor,
   recount,
   resetFilterWithProducts,
+  applySortBy,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;

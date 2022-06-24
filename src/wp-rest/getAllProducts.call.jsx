@@ -32,8 +32,8 @@ const processAllProducts = object => {
       tags: item.tags,
       images: item.images,
       attributes: item.attributes,
-      colorList: returnAttributeList(item.attributes, "Color"),
-      sizeList: returnAttributeList(item.attributes, "Size"),
+      colorList: returnAttributeList(item.attributes, "Цвет"),
+      sizeList: returnAttributeList(item.attributes, "Размер"),
       stockStatus: item.stock_status,
       afc_price:
         returnMetaValue(item.meta_data, "discount_bool") === "1"
