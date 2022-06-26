@@ -10,27 +10,24 @@ const GlobalWrapper = props => {
   const dispatch = useDispatch();
   const accessToken = getCookie("accessToken");
 
-  // const currentUser = useSelector(state => state.user.currentUser);
-  // useEffect(() => {
-  //   if (currentUser) {
-  //   }
-  // }, [currentUser]);
-
   useEffect(() => {
-    console.log("AUTH useEffect");
-    if (accessToken) {
-      try {
-        axios.post("/api/auth/validate", {
-          accessToken,
-        });
-        dispatch(signInUser());
-        dispatch(getCartSaga());
-        dispatch(getFavoritesSaga());
-      } catch (err) {
-        console.log(err);
-        dispatch(signOutUser());
+    // console.log("AUTH useEffect");
+    const validateUser = async () => {
+      if (accessToken) {
+        try {
+          await axios.post("/api/auth/validate", {
+            accessToken,
+          });
+          dispatch(signInUser());
+          dispatch(getCartSaga());
+          dispatch(getFavoritesSaga());
+        } catch (err) {
+          // console.log(err);
+          dispatch(signOutUser());
+        }
       }
-    }
+    };
+    validateUser();
   }, []);
 
   return { ...props.children };

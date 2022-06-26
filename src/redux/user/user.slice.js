@@ -3,15 +3,6 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { getCookie, removeCookies, setCookies } from "cookies-next";
 
-// First, create the thunk
-// export const signInWithEmail = createAsyncThunk(
-//   "users/signInWithEmail",
-//   async data => {
-//     const response = await axios.post("/api/auth/signIn", data);
-//     return response.data;
-//   }
-// );
-
 export const createCustomer = createAsyncThunk(
   "users/createCustomer",
   async (data, { rejectWithValue }) => {
@@ -66,27 +57,6 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    // Add reducers for additional action types here, and handle loading state as needed
-    // builder.addCase(signInWithEmail.pending, (state, action) => {
-    //   state.loginLoading = true;
-    // });
-    // builder.addCase(signInWithEmail.fulfilled, (state, action) => {
-    //   // Add user to the state array
-    //   const { data } = action.payload;
-
-    //   setCookies("accessToken", data.jwt, {
-    //     sameSite: true,
-    //     maxAge: 60 * 60 * 24 * 14,
-    //   });
-    //   state.currentUser = jwt_decode(data.jwt);
-    //   state.redirect = true;
-    // });
-    // builder.addCase(signInWithEmail.rejected, (state, action) => {
-    //   // console.log(action.error);
-    //   state.loginError = action.error.code;
-    //   state.loginLoading = false;
-    // });
-
     builder.addCase(createCustomer.pending, (state, action) => {
       state.registerLoading = true;
     });
@@ -106,7 +76,7 @@ export const userSlice = createSlice({
       console.log(action.payload);
 
       if (action.payload?.error?.code === "registration-error-email-exists") {
-        state.registerError = 38; // account already exists
+        state.registerError = "userExists"; // account already exists
       } else {
         state.registerError = action.error.code;
       }

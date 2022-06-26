@@ -16,6 +16,7 @@ export default function ProductId({
   product,
   colorTable,
 }) {
+  console.log(product);
   return (
     <div>
       <Head>

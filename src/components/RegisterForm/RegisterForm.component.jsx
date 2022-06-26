@@ -6,6 +6,8 @@ import { BeatLoader } from "react-spinners";
 import { setUserCart } from "../../redux/cart/cart.slice";
 import { setUserFavorites } from "../../redux/favorites/favorites.slice";
 import { createCustomer } from "../../redux/user/user.slice";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import {
   ErrorLabel,
@@ -15,11 +17,27 @@ import {
   SubmitButton,
 } from "./RegisterForm.styles";
 
+const schema = yup.object().shape({
+  firstName: yup.string().required("Поле для обязательного заполнения"),
+  email: yup
+    .string()
+    .required("Поле для обязательного заполнения")
+    .email("Введите правильную электронную почту"),
+  password: yup
+    .string()
+    .required("Поле для обязательного заполнения")
+    .min(6, "Пароль должен как минимум содержать 6 символов"),
+  confirmPassword: yup
+    .string()
+    .required("Введите повторно пароль")
+    .oneOf([yup.ref("password")], "Парол должен быть один и тот же"),
+});
+
 const RegisterForm = () => {
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.user.registerLoading);
+  const registerLoading = useSelector(state => state.user.registerLoading);
   const registerError = useSelector(state => state.user.registerError);
 
   const cart = useSelector(state => state.cart.cartItems);
@@ -29,7 +47,7 @@ const RegisterForm = () => {
     register: registerReg,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onBlur" });
+  } = useForm({ mode: "onBlur", resolver: yupResolver(schema) });
 
   const onSubmit = async data => {
     dispatch(createCustomer(data));
@@ -43,9 +61,7 @@ const RegisterForm = () => {
         <label>*Имя:</label>
         <input {...registerReg("firstName", { required: true })} />
         {errors.firstName && (
-          <ErrorLabel data-aos="fade">
-            Поле для обязательного заполнения.
-          </ErrorLabel>
+          <ErrorLabel data-aos="fade">{errors.firstName.message}</ErrorLabel>
         )}
       </InputGroup>
 
@@ -62,34 +78,30 @@ const RegisterForm = () => {
       <InputGroup>
         <label>*Электронная почта:</label>
         <input type={"email"} {...registerReg("email", { required: true })} />
-        {errors.username && (
-          <ErrorLabel data-aos="fade">
-            Поле для обязательного заполнения.
-          </ErrorLabel>
+        {errors.email && (
+          <ErrorLabel data-aos="fade">{errors.email.message}</ErrorLabel>
         )}
       </InputGroup>
 
       <InputGroup>
         <label>*Пароль:</label>
-        <input {...registerReg("password", { required: true })} />
+        <input {...registerReg("password")} />
         {errors.password && (
+          <ErrorLabel data-aos="fade">{errors.password.message}</ErrorLabel>
+        )}
+      </InputGroup>
+
+      <InputGroup>
+        <label>*Повторите пароль:</label>
+        <input {...registerReg("confirmPassword")} />
+        {errors.confirmPassword && (
           <ErrorLabel data-aos="fade">
-            Поле для обязательного заполнения.
+            {errors.confirmPassword.message}
           </ErrorLabel>
         )}
       </InputGroup>
 
-      {/* <InputGroup>
-        <label>*Повторите пароль:</label>
-        <input {...registerReg("passwordTwice", { required: true })} />
-        {errors.passwordTwice && (
-          <ErrorLabel data-aos="fade">
-            Поле для обязательного заполнения.
-          </ErrorLabel>
-        )}
-      </InputGroup> */}
-
-      {!loading ? (
+      {!registerLoading ? (
         <SubmitButton type="submit">Создать</SubmitButton>
       ) : (
         <LoadingContainer>
@@ -101,7 +113,7 @@ const RegisterForm = () => {
           Ошибка при попытке создать аккаунт.
         </ErrorLabel>
       )}
-      {registerError === 38 && (
+      {registerError === "userExists" && (
         <ErrorLabel data-aos="fade">Аккаунт уже существует.</ErrorLabel>
       )}
     </Form>

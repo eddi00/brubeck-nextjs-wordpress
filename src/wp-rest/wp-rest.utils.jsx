@@ -1,4 +1,5 @@
 import React from "react";
+import { WP_RestHttp } from "../axios/wp";
 
 export const returnCategoriesList = categories => {
   let array = [];
@@ -30,4 +31,15 @@ export const returnMetaValue = (list, keyName) => {
   }
 
   return value;
+};
+
+export const getRenderedProductPost = async pageId => {
+  if (!pageId || pageId.length === 0) return null;
+  try {
+    const res = await WP_RestHttp.get(`posts/${pageId[0]}?_fields=content`);
+    return res.data.content.rendered;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };

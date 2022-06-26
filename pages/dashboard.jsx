@@ -9,6 +9,8 @@ import { getCustomerData } from "../src/wp-rest/getCustomerData";
 import { getHomepageData } from "../src/wp-rest/getHomepageData.call";
 import { getMenuCategoriesData } from "../src/wp-rest/getMenuCategoriesData.call";
 import { getOrdersFromUser } from "../src/wp-rest/getOrdersFromUserId.call";
+import nc from "next-connect";
+import { verifySessionCookieSSR } from "../src/lib/API-Middleware/verifySessionCookieSSR";
 
 export default function DashboardPage({
   data,
@@ -30,60 +32,29 @@ export default function DashboardPage({
   );
 }
 
-export async function getServerSideProps(context) {
-  const token = getCookie("accessToken", context);
-  const { req, res } = context;
+const handler = nc().use(verifySessionCookieSSR);
 
-  if (!token) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+export async function getServerSideProps({ req, res }) {
+  await handler.run(req, res);
 
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
-
-  let invalidToken = false;
-  let response;
-
-  try {
-    response = await WP_BaseHttp.get(
-      "wp-json/simple-jwt-login/v1/auth/validate",
-      config
-    );
-  } catch {
-    invalidToken = true;
-  }
-
-  if (invalidToken) {
-    try {
-      response = await WP_BaseHttp.post(
-        "wp-json/simple-jwt-login/v1/auth/refresh",
-        {
-          JWT: token,
-        }
-      );
-      removeCookies("accessToken", { req, res });
-      setCookies("accessToken", response.data.data.jwt, {
-        req,
-        res,
-        maxAge: 60 * 60 * 24 * 14,
-        sameSite: true,
-      });
-    } catch (err) {
+  switch (req.error) {
+    case "noToken":
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    case "invalidToken":
       return {
         redirect: {
           destination: "/signOut",
           permanent: false,
         },
       };
-    }
   }
 
+  const token = getCookie("accessToken", { req, res });
   const user = jwtDecode(token);
 
   const data = await getHomepageData();

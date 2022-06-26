@@ -19,7 +19,7 @@ export const Description = styled.div`
 `;
 
 export const DescriptionTitle = styled.h4`
-  padding: 0.5rem 0 0.5rem 0;
+  padding: 0.5rem 0 1rem 0;
 `;
 
 export const DescriptionContent = styled.div`

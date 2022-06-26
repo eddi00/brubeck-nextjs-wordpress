@@ -13,12 +13,13 @@ const CartItemWrapper = props => {
   const { cartItem } = props;
   const { data, error } = useSWR(`/api/product/${cartItem.id}`, fetcher);
 
-  if (error) return <div>An error has occured</div>;
+  //if (error) return <div>An error has occured</div>;
+  if (error) console.log(error);
   if (!data) return <LoadingCartItem />;
 
-  if (cartItem.price != data.price) {
-    let newItem = cartItem;
-    newItem.price = data.price;
+  if (cartItem.price != data.afc_price) {
+    let newItem = structuredClone(cartItem);
+    newItem.price = data.afc_price;
     newItem.changedPrice = true;
 
     let payload = {

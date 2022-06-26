@@ -24,7 +24,7 @@ const Product = ({ product, colorTable }) => {
       <Description>
         <DescriptionTitle>Описание и характеристики</DescriptionTitle>
         <DescriptionContent
-          dangerouslySetInnerHTML={{ __html: product.description }}
+          dangerouslySetInnerHTML={{ __html: product.renderedPost }}
         />
       </Description>
     </Layout>

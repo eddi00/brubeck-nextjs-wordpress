@@ -3,6 +3,7 @@ import {
   returnCategoriesList,
   returnAttributeList,
   returnMetaValue,
+  getRenderedProductPost,
 } from "./wp-rest.utils";
 
 export const getProduct = async productId => {
@@ -11,6 +12,7 @@ export const getProduct = async productId => {
     const product = processProduct(res.data);
 
     product.variations = await getVariations(productId);
+    product.renderedPost = await getRenderedProductPost(product.afc_pageId);
 
     return product;
   } catch (err) {
@@ -47,6 +49,7 @@ const processProduct = object => {
     afc_onSale:
       returnMetaValue(object.meta_data, "discount_bool") === "1" ? true : false,
     afc_salePrice: returnMetaValue(object.meta_data, "afc_priceDiscount"),
+    afc_pageId: returnMetaValue(object.meta_data, "productPageId"),
   };
 };
 

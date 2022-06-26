@@ -32,7 +32,7 @@ export function* handleGetCartFromDB(action) {
       });
 
       const parsedCart = JSON.parse(res.data?.cart);
-      console.log("Parsed CART: ", res.data.cart);
+
       if (parsedCart) {
         if (action.payload?.join) {
           yield put(joinCartWithUserOne(parsedCart));

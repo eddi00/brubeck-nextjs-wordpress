@@ -11,6 +11,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.css";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../src/theme/theme";
+// import "../styles/gutenberg.css";
+import "@wordpress/block-library/build-style/common.css";
+import "@wordpress/block-library/build-style/style.css";
+import "@wordpress/block-library/build-style/theme.css";
 
 import "aos/dist/aos.css";
 import Aos from "aos";
