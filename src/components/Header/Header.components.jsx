@@ -22,7 +22,17 @@ import {
   CartIconRef,
   HeartIconRef,
   UserIconRef,
+  MobileMenuGrid,
+  LogoWrapper,
+  CartWrapper,
+  SearchWrapper,
 } from "./Header.styles";
+
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 export const Header = ({ data, categories }) => {
   const loggedUser = !!useSelector(state => state.user.currentUser);
@@ -32,6 +42,7 @@ export const Header = ({ data, categories }) => {
     dispatch(signOutUser());
   };
 
+  const expand = "lg";
   return (
     <header>
       <TopBarLayout>
@@ -47,19 +58,56 @@ export const Header = ({ data, categories }) => {
         </TopBarGrid>
       </TopBarLayout>
       <MainMenuLayout>
+        <MobileMenuGrid>
+          <Link href="/">
+            <LogoText>BRUBECK</LogoText>
+          </Link>
+          <Navbar bg="white" expand={expand}>
+            {/* <Container fluid> */}
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  Меню
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link>
+                    <Link href="/">Главная</Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link href="/favorites">Понравившийся товары</Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link href="/shop">Магазин</Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link href="/cart">Корзина</Link>
+                  </Nav.Link>
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+            {/* </Container> */}
+          </Navbar>
+        </MobileMenuGrid>
         <MainMenuGrid>
-          <Wrapper>
+          <LogoWrapper>
             <Link href="/">
               <LogoText>BRUBECK</LogoText>
             </Link>
-          </Wrapper>
-          <Wrapper>
+          </LogoWrapper>
+          <SearchWrapper>
             <SearchContainer>
               <SearchIcon size="24" />
               <Search type={"text"} />
             </SearchContainer>
-          </Wrapper>
-          <Wrapper>
+          </SearchWrapper>
+          <CartWrapper>
             {/* <Link href="/cart" passHref>
               <CartIcon size="24" />
             </Link> */}
@@ -85,7 +133,7 @@ export const Header = ({ data, categories }) => {
                 </Link>
               </>
             )}
-          </Wrapper>
+          </CartWrapper>
         </MainMenuGrid>
       </MainMenuLayout>
       <CategoriesLayout>

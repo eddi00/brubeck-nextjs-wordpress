@@ -9,6 +9,10 @@ export const TopBarLayout = styled.div`
   margin: 0 auto;
   width: 1168px;
   padding: 0 1rem;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 export const TopBarGrid = styled.div`
@@ -18,9 +22,19 @@ export const TopBarGrid = styled.div`
   grid-column-gap: 1rem;
   /* align-items: center; */
   /* padding: 0 1rem; */
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    height: 4rem;
+    justify-items: center;
+  }
 `;
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
   display: flex;
   align-items: center;
 
@@ -53,6 +67,10 @@ export const MainMenuLayout = styled.div`
   width: 1400px;
   border-bottom: 1px solid ${props => props.theme.black_4};
   border-top: 1px solid ${props => props.theme.black_4};
+
+  @media (max-width: 1400px) {
+    width: 100%;
+  }
 `;
 
 export const MainMenuGrid = styled.div`
@@ -63,6 +81,53 @@ export const MainMenuGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-column-gap: 1rem;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
+
+  @media (max-width: 992px) {
+    margin-top: -1rem;
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const MobileMenuGrid = styled.div`
+  width: 100%;
+  padding: 0 1rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+`;
+
+export const LogoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+`;
+
+export const CartWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+`;
+
+export const SearchWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 992px) {
+    flex: 1;
+  }
 `;
 
 export const LogoText = styled.span`
@@ -109,7 +174,7 @@ export const SearchIcon = styled(MdSearch)`
 export const CartIcon = styled(MdShoppingCart)`
   color: ${props => props.theme.primary_color_2};
   margin-right: 1rem;
-  margin-left: 100px;
+  margin-left: 1rem;
   cursor: pointer;
 `;
 export const CartIconRef = React.forwardRef(({ onClick, href, size }, ref) => {
@@ -164,11 +229,18 @@ export const CategoriesLayout = styled.div`
   width: 1400px;
   height: 40px;
   border-bottom: 1px solid ${props => props.theme.black_4};
+
+  @media (max-width: 1400px) {
+    width: 100%;
+  }
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const Categories = styled.div`
   margin: 0 auto;
-  /* width: 1168px; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
